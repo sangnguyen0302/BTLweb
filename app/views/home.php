@@ -9,7 +9,6 @@
     <div class="header">
         this is header
     </div>
-   <?php echo __FILE__; ?>
 <form action="../controllers/loginController.php" method= "post">
     <input type="submit" name="Login" value="Log in">
     <input type="submit" name="Regist" value="Sign up">
