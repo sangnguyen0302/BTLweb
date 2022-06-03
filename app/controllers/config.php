@@ -1,3 +1,3 @@
 <?php
-define('APP_ROOT', dirname(dirname(__FILE__)));
+    define('APP_ROOT', dirname(dirname(__FILE__)));
 ?>

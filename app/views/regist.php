@@ -1,16 +1,14 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Ecommerce</title>
+<?php  require dirname(dirname(dirname(__FILE__))) . '/inc/head.php'; ?> 
+<title>Đăng ký</title>
 </head>
 <body>
-    <div class="header">
-        this is header
-    </div>
+    <?php require dirname(dirname(dirname(__FILE__))) . '/inc/header.php'; ?>
+    <?php require dirname(dirname(dirname(__FILE__))) . '/inc/nav.php'; ?>
+    <div class="login">
+        <div class="login-triangle"></div>
+        <h2 class="login-header">Đăng ký</h2>
     
-<form action="../controllers/loginController.php" method="post">
+    <form action="../controllers/loginController.php" method="post" class="login-container">
       <p><input type="text" placeholder="Họ tên" name="fullName" required></p>
       <p><input type="email" placeholder="Email" name="email" required></p>
 
@@ -22,7 +20,12 @@
       <p><input type="password" placeholder="Nhập lại mật khẩu" name="repassword" required oninput="check(this)"></p>
       <p><input type="submit" name="RegisterAction" value="Sign up!"></p>
 </form>
-<script language='javascript' type='text/javascript'>
+    </div>
+
+    <div class="footer">
+        this is footer
+    </div>
+    <script language='javascript' type='text/javascript'>
       function check(input) {
             if (input.value != document.getElementById('password').value) {
                 input.setCustomValidity('Password Must be Matching.');
@@ -31,8 +34,5 @@
             }
       }
 </script>
-    <div class="footer">
-        this is footer
-    </div>
 </body>
 </html>
