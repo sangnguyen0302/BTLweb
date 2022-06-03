@@ -18,7 +18,7 @@
       <p><input type="text" placeholder="Địa chỉ" name="address" required></p>
       <p><input type="password" id="password" placeholder="Mật khẩu" name="password" required></p>
       <p><input type="password" placeholder="Nhập lại mật khẩu" name="repassword" required oninput="check(this)"></p>
-      <p><input type="submit" name="RegisterAction" value="Sign up!"></p>
+      <p><input type="submit" name="RegisterAction" value="Đăng ký"></p>
 </form>
     </div>
 

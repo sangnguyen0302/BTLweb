@@ -10,6 +10,7 @@
     width: 100%;
     border-width: 1px;
     border-style: solid;
+    border-radius: 5px;
     padding: 16px;
     outline: 0;
     font-family: inherit;

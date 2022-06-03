@@ -11,7 +11,7 @@
 <form action="../controllers/loginController.php" method="post" class ="login-container">
       <p><input type="email" placeholder="Email" name="email" required></p>
       <p><input type="password" placeholder="Mật khẩu" name="password" required></p>
-      <p><input type="submit" name="LoginAction" value="Login!"></p>
+      <p><input type="submit" name="LoginAction" value="Đăng nhập"></p>
 </form>
 </div>
 <?php require dirname(dirname(dirname(__FILE__))) . '/inc/footer.php'; ?>
