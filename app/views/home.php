@@ -6,7 +6,6 @@
     <title>Ecommerce</title>
 </head>
 <body>
-    <h1> hihih</h1>
     <div class="header">
         this is header
     </div>
