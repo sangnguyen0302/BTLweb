@@ -1,10 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Home</title>
-</head>
+<?php require_once("inc/head.php"); ?>
 <body>
     <div class="header">
         this is header
@@ -14,8 +8,6 @@
     <input type="submit" name="Regist" value="Sign up">
 </form>
 
-    <div class="footer">
-        this is footer
-    </div>
+    <?php require_once("inc/footer.php"); ?>
 </body>
 </html>
