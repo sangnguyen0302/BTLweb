@@ -1,0 +1,30 @@
+      <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">LOGO</a>
+          <ul class="navbar-nav">
+           <!--input type="checkbox" id="checkbox_toggle" />
+            <label for="checkbox_toggle" class="hamburger">&#9776;</label-->
+              <li class="nav-item">
+                <a href="#" class="nav-link">Danh mục</a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">Giới thiệu</a>
+              </li>
+              <?php
+                if (isset($_SESSION['user_id'])) { ?>
+    
+              <?php  } else { ?>
+                <li class="nav-item">
+                  <a class="nav-link" href="../regist.php">Đăng ký</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../login.php">Đăng nhập</a>
+                </li>
+              <?php  }
+              ?>
+              <li class="nav-item">
+                <a class="nav-link" href="#"><i class="fa-solid fa-cart-shopping"></i> (<!--?= $total ?-->)</a>
+              </li>
+          </ul>
+        </div>
+      </nav>

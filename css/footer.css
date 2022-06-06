@@ -5,8 +5,8 @@ footer{
     background-color: black;
     color: white;
     width: 100%;
-    font-family: 'Montserrat-Medium', sans-serif;
-    padding: 0px 0 50px 0px;
+    
+    padding: 0px 0 30px 0px;
     line-height: 1.7;
 }
 
@@ -15,9 +15,7 @@ footer h4 {
 }
 
 .col-link {
-    float:left;
     margin-left: 5%;
-    width: 20%;
 }
 
 .col-link a {
@@ -25,34 +23,47 @@ footer h4 {
     cursor: pointer;
 }
 
-.col-con {
-    float:left;
-    width: 25%;
-}
-
-.col-con li {
+.col-con ul{
     color: #9f9f9f;
 }
 
-.col-social {
-    float: left;
+.col-con span {
+    padding-left: 25px;
+    display: inline-block;
 }
-.socials{
+
+.contact-1::before {
+    font-family: 'FontAwesome';
+    content:"\f3c5";
+    position: absolute;
+}
+
+.contact-2::before {
+    font-family: 'FontAwesome';
+    content:"\f095";
+    position: absolute;
+}
+
+.contact-3::before {
+    font-family: 'FontAwesome';
+    content:"\f0e0";
+    position: absolute;
+}
+
+.social{
     list-style: none;
     display: flex;
     align-items: center;
     justify-content: center;
     padding-bottom: 10px;
 }
-.socials li{
+.social li{
     margin: 0 10px;
 }
-.socials a{
+.social a{
     text-decoration: none;
     color: white;
-    border: 1px solid;
-    border-radius: 50%;
 }
-.socials a:hover i{
+.social a:hover i{
     color: royalblue;
 }
