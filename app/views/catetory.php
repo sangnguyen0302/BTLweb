@@ -20,7 +20,7 @@ require '../DB.php';
 <div class="<?php echo $css2; ?>">
     <h2>Giỏ hàng đang rỗng</h2>
     <br>
-    <div class="cart2 active"><a href="trangchu.php>">Quay lại</a></div>
+    <div class="cart2 active"><a href="trangchu.php">Quay lại</a></div>
     
 </div>
 <div class="<?php echo $css; ?>">
