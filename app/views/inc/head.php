@@ -11,4 +11,3 @@
     <link type="text/css" rel="stylesheet" href= "../../css/login.css">
     <link type="text/css" rel="stylesheet" href= "../../css/footer.css">
     <link type="text/css" rel="stylesheet" href= "../../css/nav.css">
-</head>

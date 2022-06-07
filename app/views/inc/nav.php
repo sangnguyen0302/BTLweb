@@ -1,9 +1,7 @@
       <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">LOGO</a>
+          <a class="navbar-brand" href="home.php">LOGO</a>
           <ul class="navbar-nav">
-           <!--input type="checkbox" id="checkbox_toggle" />
-            <label for="checkbox_toggle" class="hamburger">&#9776;</label-->
               <li class="nav-item">
                 <a href="#" class="nav-link">Danh mục</a>
               </li>
@@ -15,10 +13,10 @@
     
               <?php  } else { ?>
                 <li class="nav-item">
-                  <a class="nav-link" href="../regist.php">Đăng ký</a>
+                  <a class="nav-link" href="regist.php">Đăng ký</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="../login.php">Đăng nhập</a>
+                  <a class="nav-link" href="login.php">Đăng nhập</a>
                 </li>
               <?php  }
               ?>

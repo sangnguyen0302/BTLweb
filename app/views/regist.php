@@ -1,9 +1,8 @@
-<?php  require dirname(dirname(dirname(__FILE__))) . '/inc/head.php'; ?> 
+<?php  require_once  'inc/head.php'; ?> 
 <title>Đăng ký</title>
 </head>
 <body>
-    <?php require dirname(dirname(dirname(__FILE__))) . '/inc/header.php'; ?>
-    <?php require dirname(dirname(dirname(__FILE__))) . '/inc/nav.php'; ?>
+    <?php require_once  'inc/nav.php'; ?>
     <div class="login">
         <div class="login-triangle"></div>
         <h2 class="login-header">Đăng ký</h2>
@@ -19,12 +18,10 @@
       <p><input type="password" id="password" placeholder="Mật khẩu" name="password" required></p>
       <p><input type="password" placeholder="Nhập lại mật khẩu" name="repassword" required oninput="check(this)"></p>
       <p><input type="submit" name="RegisterAction" value="Đăng ký"></p>
-</form>
+    </form>
     </div>
 
-    <div class="footer">
-        this is footer
-    </div>
+    <?php require_once 'inc/footer.php' ?>
     <script language='javascript' type='text/javascript'>
       function check(input) {
             if (input.value != document.getElementById('password').value) {
@@ -33,6 +30,6 @@
                 input.setCustomValidity('');
             }
       }
-</script>
+    </script>
 </body>
 </html>

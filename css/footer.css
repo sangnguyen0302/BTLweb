@@ -1,29 +1,20 @@
-footer{
-    position: absolute;
+footer {
+    position: relative;
     left: 0;
     bottom: 0;
     background-color: black;
     color: white;
     width: 100%;
-    
+
     padding: 0px 0 30px 0px;
     line-height: 1.7;
 }
 
-footer h4 {
-    font-size: 1.3em;
-}
-
-.col-link {
-    margin-left: 5%;
-}
-
 .col-link a {
     color: #9f9f9f;
-    cursor: pointer;
 }
 
-.col-con ul{
+.col-con ul {
     color: #9f9f9f;
 }
 
@@ -34,23 +25,23 @@ footer h4 {
 
 .contact-1::before {
     font-family: 'FontAwesome';
-    content:"\f3c5";
+    content: "\f3c5";
     position: absolute;
 }
 
 .contact-2::before {
     font-family: 'FontAwesome';
-    content:"\f095";
+    content: "\f095";
     position: absolute;
 }
 
 .contact-3::before {
     font-family: 'FontAwesome';
-    content:"\f0e0";
+    content: "\f0e0";
     position: absolute;
 }
 
-.social{
+/*.social{
     list-style: none;
     display: flex;
     align-items: center;
@@ -66,4 +57,4 @@ footer h4 {
 }
 .social a:hover i{
     color: royalblue;
-}
+}*/

@@ -1,4 +1,4 @@
-<footer>
+<footer class="container-fluid">
     <div class="row pt-3">
       <div class="col-lg-2 col-link">
         <h4>Liên kết</h4>
@@ -28,5 +28,3 @@
       </div>
     </div>
   </footer>
-</body>
-</html>
