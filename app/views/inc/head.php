@@ -10,11 +10,5 @@
     <link type="text/css" rel="stylesheet" href= "../../css/common.css">
     <link type="text/css" rel="stylesheet" href= "../../css/login.css">
     <link type="text/css" rel="stylesheet" href= "../../css/footer.css">
-<<<<<<< HEAD
     <link type="text/css" rel="stylesheet" href= "../../css/nav.css">
     <link type="text/css" rel="stylesheet" href= "../../css/pro_cart.css">
-=======
-    <link type="text/css" rel="stylesheet" href= "../../css/pro_cart.css">
-
-</head>
->>>>>>> beta
