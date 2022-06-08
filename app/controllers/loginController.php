@@ -21,7 +21,7 @@
 			include_once '../models/loginModel.php';
 
 
-			if(isset($_POST['LoginAction']) && $_POST['LoginAction']=="Login!"){
+			if(isset($_POST['LoginAction']) && $_POST['LoginAction']=="Đăng nhập"){
 				$email=$_POST['email'];
 				$password=$_POST['password'];
 
@@ -31,7 +31,7 @@
 					$current_user = mysqli_fetch_assoc($result);
 
 					$_SESSION['user_id'] = $current_user['id'];
-					header("Location: ../views/home.php");
+					header("Location: ../views/trangchu.php");
 
 				}else{
 
@@ -49,7 +49,7 @@
 					}
 
 				}
-			}else if(isset($_POST['RegisterAction']) && $_POST['RegisterAction']=="Sign up!"){
+			}else if(isset($_POST['RegisterAction']) && $_POST['RegisterAction']=="Đăng ký"){
 				$fullName = $_POST['fullName'];
 	            $email = $_POST['email'];
 	            $dob = $_POST['dob'];
@@ -65,7 +65,7 @@
 
 	            $result = insert($fullName, $email, $dob, $address, $password,$phone);
 	            if($result) {
-	                header("Location: ../views/home.php");
+	                header("Location: ../views/trangchu.php");
 		        }else {
 		        	echo "haha";
 		            header("Location: ../views/regist.php");
