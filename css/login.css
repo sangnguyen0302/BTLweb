@@ -1,4 +1,14 @@
 
+.message{
+  margin:10px 0;
+  width: 100%;
+  border-radius: 5px;
+  padding:10px;
+  text-align: center;
+  background-color: var(--red);
+  color:var(--white);
+  font-size: 20px;
+}
 .login {
     width: 400px;
     margin: 16px auto;
@@ -35,4 +45,5 @@
     text-transform: uppercase;
     color: #fff;
 }
+
   

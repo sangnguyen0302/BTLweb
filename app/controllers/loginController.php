@@ -49,27 +49,6 @@
 					}
 
 				}
-			}else if(isset($_POST['RegisterAction']) && $_POST['RegisterAction']=="Đăng ký"){
-				$fullName = $_POST['fullName'];
-	            $email = $_POST['email'];
-	            $dob = $_POST['dob'];
-	            $address = $_POST['address'];
-	            $password = $_POST['password'];
-	            $phone = $_POST['phone'];
-	            
-	            $checkEmail = checkEmail($email);
-	            $checkPhone = checkPhone($phone);
-	            if (!$checkEmail || !$checkPhone) {
-	               //header("Location: ../views/regist.php");
-	            }
-
-	            $result = insert($fullName, $email, $dob, $address, $password,$phone);
-	            if($result) {
-	                header("Location: ../views/trangchu.php");
-		        }else {
-		        	echo "haha";
-		            header("Location: ../views/regist.php");
-		        }
 			}
 			
 		}

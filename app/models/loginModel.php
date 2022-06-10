@@ -64,14 +64,14 @@
         }
 	}
 
-	function insert($fullName,$email, $dob, $address, $password,$phone){
+	function insert($fullName,$email, $dob, $address, $password,$phone, $image){
 		$db = new DB();
 
 		$user = $db->getInstance();
 
 		$captcha = rand(10000, 99999);
 
-        $sql = "INSERT INTO Users(id, fullName, email, dob, address, password, roleId, status,captcha, isConfirmed, phone) VALUES (NULL,'$fullName','$email','$dob','$address','$password',1,1,'$captcha',1,'$phone')";
+        $sql = "INSERT INTO Users(id, fullName, email, dob, address, password, roleId, status,captcha, isConfirmed, phone, image) VALUES (NULL,'$fullName','$email','$dob','$address','$password',1,1,'$captcha',1,'$phone', '$image')";
         $result = mysqli_query($user->con, $sql);
         if ($result) {
             return true;
