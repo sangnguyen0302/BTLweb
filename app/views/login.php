@@ -6,6 +6,7 @@
     }
 ?>
 <?php  require dirname(__FILE__) . '/inc/head.php'; ?> 
+<?php  require_once('inc/head.php'); ?> 
 <title>Đăng nhập</title>
 <?php
 include_once '../models/loginModel.php';
@@ -40,7 +41,7 @@ if(isset($_POST['LoginAction']) && $_POST['LoginAction']=="Đăng nhập"){
 ?>
 </head>
 <body>
-<?php require dirname(__FILE__) . '/inc/header.php'; ?>
+
 <?php require dirname(__FILE__) . '/inc/nav.php'; ?>
 <div class="login"> 
 <div class="login-triangle"></div>
@@ -57,7 +58,6 @@ if(isset($_POST['LoginAction']) && $_POST['LoginAction']=="Đăng nhập"){
       <p> Chưa có tài khoản? <a href="regist.php"> Đăng ký ngay</a></p>
 </form>
 </div>
-<!-- <?php require dirname(__FILE__) . '/inc/footer.php'; ?> -->
 </body>
 
 

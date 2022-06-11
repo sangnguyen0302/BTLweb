@@ -36,6 +36,11 @@ if(isset($_POST['RegisterAction']) && $_POST['RegisterAction']=="Đăng ký"){
     <?php require 'inc/header.php'; ?>
     <?php require 'inc/nav.php'; ?>
     
+<?php  require_once  'inc/head.php'; ?> 
+<title>Đăng ký</title>
+</head>
+<body>
+    <?php require_once  'inc/nav.php'; ?>
     <div class="login">
         <div class="login-triangle"></div>
         <h2 class="login-header">Đăng ký</h2>
@@ -68,6 +73,7 @@ if(isset($_POST['RegisterAction']) && $_POST['RegisterAction']=="Đăng ký"){
                 input.setCustomValidity('');
             }
       }
-</script>
+    </script>
+    <?php require 'inc/footer.php'; ?>
 </body>
 </html>
