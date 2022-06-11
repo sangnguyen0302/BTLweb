@@ -1,0 +1,58 @@
+.pro_container{
+    min-height: 100vh;
+   background-color: lightblue;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   padding:20px;
+}
+.pro_container .profile{
+    padding:20px;
+    background-color: white;
+    box-shadow: saddlebrown;
+    text-align: center;
+    width: 400px;
+    border-radius: 5px;
+ }
+ .pro_container .profile img{
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 5px;
+ }
+ 
+ .pro_container .profile h3{
+    margin:5px 0;
+    font-size: 20px;
+    color:rebeccapurple;
+ }
+ .pro_container .profile a{
+    text-decoration: none;
+ }
+.btn,
+.delete-btn{
+   width: 100%;
+   border-radius: 5px;
+   padding:10px 30px;
+   color:white;
+   display: block;
+   text-align: center;
+   cursor: pointer;
+   font-size: 20px;
+   margin-top: 10px;
+}
+ .btn{
+    background-color: blue;
+ }
+ 
+ .btn:hover{
+    background-color: darkblue;
+ }
+ .delete-btn{
+    background-color: red;
+ }
+ 
+ .delete-btn:hover{
+    background-color: darkred;
+ }

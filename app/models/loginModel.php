@@ -24,7 +24,7 @@
 
 		$user = $db->getInstance();
 
-	    $sql = "SELECT * FROM admin WHERE email='$email' AND password='$password'";
+	    $sql = "SELECT * FROM users WHERE email='$email' AND password='$password' AND roleID='2'";
 	    $result = mysqli_query($user->con, $sql);
 	    $num_rows = mysqli_num_rows($result);
 	    if ($num_rows > 0) {

@@ -1,5 +1,5 @@
 
-<?php  require dirname(__FILE__) . '/inc/head.php'; ?> 
+<?php  require_once 'inc/head.php'; ?> 
 <?php  require '../models/loginModel.php'; ?>
 <?php
 if(isset($_POST['RegisterAction']) && $_POST['RegisterAction']=="Đăng ký"){
@@ -33,9 +33,9 @@ if(isset($_POST['RegisterAction']) && $_POST['RegisterAction']=="Đăng ký"){
 <title>Đăng ký</title>
 </head>
 <body>
-    <?php require dirname(__FILE__) . '/inc/header.php'; ?>
-    <?php require dirname(__FILE__) . '/inc/nav.php'; ?>
-    <div class="message">Đăng ký</div>
+    <?php require 'inc/header.php'; ?>
+    <?php require 'inc/nav.php'; ?>
+    
     <div class="login">
         <div class="login-triangle"></div>
         <h2 class="login-header">Đăng ký</h2>
@@ -59,10 +59,7 @@ if(isset($_POST['RegisterAction']) && $_POST['RegisterAction']=="Đăng ký"){
       <p> Đã có tài khoản? <a href="login.php"> Đăng nhập ngay</a></p>
 </form>
     </div>
-
-    <div class="footer">
-        this is footer
-    </div>
+    
     <script language='javascript' type='text/javascript'>
       function check(input) {
             if (input.value != document.getElementById('password').value) {
