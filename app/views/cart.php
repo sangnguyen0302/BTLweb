@@ -127,12 +127,11 @@
             else {
                 alert("Số lượng tối đa cho mặc hàng này là 5!");
             }
-            
-
         }
     } else {
         input.val(0);
     }
+    $(this).unbind('click').click();
     });
     $('.input-number').focusin(function(){
         $(this).data('oldValue', $(this).val());
