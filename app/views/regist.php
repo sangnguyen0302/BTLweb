@@ -33,7 +33,6 @@ if(isset($_POST['RegisterAction']) && $_POST['RegisterAction']=="Đăng ký"){
 <title>Đăng ký</title>
 </head>
 <body>
-    <?php require 'inc/header.php'; ?>
     <?php require 'inc/nav.php'; ?>
     
 <?php  require_once  'inc/head.php'; ?> 

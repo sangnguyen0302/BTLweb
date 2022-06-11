@@ -17,7 +17,6 @@
 	        }
 		}
 	}else{
-
 		header("Location: app/views/home.php");
 	}
 

@@ -1,18 +1,17 @@
 
 <?php
     session_start();
+    
     if (isset($_SESSION['user_id'])) {
-        header("location:home.php");
+      header("Location: views/home.php");
     }
 ?>
-<?php  require dirname(__FILE__) . '/inc/head.php'; ?> 
 <?php  require_once('inc/head.php'); ?> 
 <title>Đăng nhập</title>
 <?php
-include_once '../models/loginModel.php';
+require_once '../models/loginModel.php';
 
-
-if(isset($_POST['LoginAction']) && $_POST['LoginAction']=="Đăng nhập"){
+if(isset($_POST['LoginAction'])){
       $email=$_POST['email'];
       $password=$_POST['password'];
 
@@ -21,7 +20,7 @@ if(isset($_POST['LoginAction']) && $_POST['LoginAction']=="Đăng nhập"){
       if($result){
             $current_user = mysqli_fetch_assoc($result);
             $_SESSION['user_id'] = $current_user['id'];
-            header("Location: ../views/home.php");
+            header("Location: home.php");
 
       }else{
             $result=adminCheckLogin($email,$password);
@@ -29,11 +28,9 @@ if(isset($_POST['LoginAction']) && $_POST['LoginAction']=="Đăng nhập"){
                   $current_admin = mysqli_fetch_assoc($result);
 
                   $_SESSION['user_id'] = $current_admin['id'];
-                  header("Location: ../views/management.php");
+                  //header("Location: management.php");
             }else{
                   $message="Tài khoản hoặc mật khẩu không chính xác!";
-                  header("Location: ../views/login.php");
-
             }
 
       }
@@ -42,7 +39,7 @@ if(isset($_POST['LoginAction']) && $_POST['LoginAction']=="Đăng nhập"){
 </head>
 <body>
 
-<?php require dirname(__FILE__) . '/inc/nav.php'; ?>
+<?php require_once 'inc/nav.php'; ?>
 <div class="login"> 
 <div class="login-triangle"></div>
 <h2 class="login-header">Đăng nhập </h2>
@@ -58,6 +55,7 @@ if(isset($_POST['LoginAction']) && $_POST['LoginAction']=="Đăng nhập"){
       <p> Chưa có tài khoản? <a href="regist.php"> Đăng ký ngay</a></p>
 </form>
 </div>
+<?php  require_once('inc/footer.php'); ?> 
 </body>
 
 

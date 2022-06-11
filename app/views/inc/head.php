@@ -12,10 +12,7 @@
     <link type="text/css" rel="stylesheet" href= "../../css/footer.css">
     <link type="text/css" rel="stylesheet" href= "../../css/nav.css">
     <link type="text/css" rel="stylesheet" href= "../../css/pro_cart.css">
-<<<<<<< HEAD
     <link type="text/css" rel="stylesheet" href= "../../css/profile.css">
 
 
-=======
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
->>>>>>> 84b3893e9bc94b065864af24b4fe2304a45b60ec
