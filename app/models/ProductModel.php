@@ -5,10 +5,21 @@ class ProductModel
     {
     }
 
-    public function getInstance()
+    public function getAll()
     {
         $db = DB::getInstance();
         $sql = "SELECT * FROM Products";
+        $result = mysqli_query($db->con, $sql);
+        return $result;
+    }
+
+    public function getPage($page)
+    {
+        $db = DB::getInstance();
+        $per_page_record = 6;  // Number of entries to show in a page.   
+        $start_from = ($page-1) * $per_page_record;
+
+        $sql = "SELECT * FROM Products LIMIT $start_from, $per_page_record";
         $result = mysqli_query($db->con, $sql);
         return $result;
     }

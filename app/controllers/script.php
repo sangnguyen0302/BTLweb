@@ -8,7 +8,7 @@
         $product_id = $_GET['store-product-id'];
         $cart = new CategoryModel($product_id);
         $cart->storeProduct();
-        header("Location: ../views/catetory.php");
+        header("Location: ../views/cart.php");
         exit();
     }
     if(isset($_GET['remove-product-id'])){
@@ -16,7 +16,7 @@
         echo $product_id;
         $cart = new CategoryModel($product_id);
         $cart->removeItem();
-        header("Location: ../views/catetory.php");
+        header("Location: ../views/cart.php");
         exit();
     }
     if(isset($_GET['quantity-update'])){
@@ -26,12 +26,12 @@
             $cart = new CategoryModel($product_id);
             $cart->updateQuantity($quant);
         }
-        header("Location: ../views/catetory.php");
+        header("Location: ../views/cart.php");
         exit();
     }
     if(isset($_GET['clear-cart'])){
         CategoryModel::clearCart();
-        header("Location: ../views/catetory.php");
+        header("Location: ../views/cart.php");
         exit();
     }
 ?>

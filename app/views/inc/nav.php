@@ -1,3 +1,8 @@
+    <?php 
+      /*require_once('../models/cartModel.php'); 
+      $cart = new CategoryModel();
+      $total = $cart->getNumberCart();*/
+    ?>
       <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
         <div class="container-fluid">
           <a class="navbar-brand" href="home.php">LOGO</a>
@@ -21,7 +26,7 @@
               <?php  }
               ?>
               <li class="nav-item">
-                <a class="nav-link" href="#"><i class="fa-solid fa-cart-shopping"></i> (<!--?= $total ?-->)</a>
+                <a class="nav-link" href="cart.php"><i class="fa-solid fa-cart-shopping"></i> (<!--?= $total ?-->)</a>
               </li>
           </ul>
         </div>
