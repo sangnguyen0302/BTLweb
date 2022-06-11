@@ -1,6 +1,6 @@
-<footer>
-    <div class="row">
-      <div class="col-link">
+<footer class="container-fluid">
+    <div class="row pt-3">
+      <div class="col-lg-2 col-link">
         <h4>Liên kết</h4>
         <ul>
           <li><a href="#">Tìm kiếm</a></li>
@@ -11,26 +11,20 @@
         </ul>
       </div>
 
-      <div class="col-con">
+      <div class="col-lg-3 col-con">
         <h4>Thông tin liên hệ</h4>
         <ul>
-          <li>Số 11 Đường Bàu Cát 8, Phường 14, Tân Bình, HCM</li>
-          <li>0123.456.789</li>
-          <li>0123.456.789</li>
-          <li>somekind.ofmail@hcmut.edu.vn</li>
+          <li class="contact-1"> <span>Số 11 Đường Bàu Cát 8, Phường 14, Tân Bình, HCM</span></li>
+          <li class="contact-2"> <span>0123.456.789</span></li>
+          <li class="contact-3"> <span>somekind.ofmail@hcmut.edu.vn</span></li>
         </ul>
       </div>
 
-      <div class="col-social">
+      <div class="col">
         <h4>Mạng xã hội</h4>
-        <ul class="socials">
-          <li><a target="_blank" href="https://www.facebook.com/nts.926"><i class="fa fa-facebook"></i></a></li>
-          <li><a target="_blank" href="#"><i class="fa fa-youtube"></i></a></li>
-          <li><a target="_blank" href="#"><i class="fa fa-twitter"></i></a></li>
-          <li><a target="_blank" href="#"><i class="fa fa-instagram"></i></a></li>
+        <ul>
+          <li><a target="_blank" href="https://www.facebook.com/nts.926"><i class="fa-brands fa-facebook-f"></i></a></li>
           </ul>
       </div>
     </div>
   </footer>
-</body>
-</html>
