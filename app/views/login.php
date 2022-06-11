@@ -3,7 +3,7 @@
     session_start();
     
     if (isset($_SESSION['user_id'])) {
-      header("Location: views/home.php");
+      header("Location: home.php");
     }
 ?>
 <?php  require_once('inc/head.php'); ?> 
@@ -12,30 +12,35 @@
 require_once '../models/loginModel.php';
 
 if(isset($_POST['LoginAction'])){
+      
       $email=$_POST['email'];
       $password=$_POST['password'];
 
       $result = userCheckLogin($email,$password);
-
       if($result){
             $current_user = mysqli_fetch_assoc($result);
+            
             $_SESSION['user_id'] = $current_user['id'];
             header("Location: home.php");
+            
 
-      }else{
-            $result=adminCheckLogin($email,$password);
-            if($result){
-                  $current_admin = mysqli_fetch_assoc($result);
+      }//else{
+      //       $result=adminCheckLogin($email,$password);
+      //       if($result){
+      //             $current_admin = mysqli_fetch_assoc($result);
 
-                  $_SESSION['user_id'] = $current_admin['id'];
-                  //header("Location: management.php");
-            }else{
-                  $message="Tài khoản hoặc mật khẩu không chính xác!";
-            }
+      //             $_SESSION['user_id'] = $current_admin['id'];
+      //             //header("Location: management.php");
+      //       }else{
+      //             $message="Tài khoản hoặc mật khẩu không chính xác!";
+      //       }
 
-      }
+      // }
 }
+
+
 ?>
+
 </head>
 <body>
 

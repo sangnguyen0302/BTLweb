@@ -15,7 +15,7 @@
               </li>
               <?php
                 if (isset($_SESSION['user_id'])) { 
-                    header("Location: ../home.php");
+                    
                 } else { ?>
                 <li class="nav-item">
                   <a class="nav-link" href="regist.php">Đăng ký</a>
