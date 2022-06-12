@@ -20,7 +20,8 @@
                     <?=$_SESSION['user_name'] ?>
                   </a>
                   <ul class="dropdown-menu dropdown-menu-dark">
-                    <li><a class="dropdown-item" href="home.php">Thông tin tài khoản</a></li>
+                    <li><a class="dropdown-item" href="infoUser.php?user_id='<?=$_SESSION['user_id']?>">Thông tin tài khoản</a></li>
+                    <li><a class="dropdown-item" href="changepass.php">Đổi mật khẩu</a></li>
                     <li><a class="dropdown-item" href="logout.php">Đăng xuất</a></li>
                   </ul>
                 </li>
@@ -34,7 +35,12 @@
               <?php  }
               ?>
               <li class="nav-item">
-                <a class="nav-link" href="cart.php"><i class="fa-solid fa-cart-shopping"></i> (<!--?= $total ?-->)</a>
+                <a class="nav-link" href="cart.php"><i class="fa-solid fa-cart-shopping"></i> 
+                <?php if(isset($_SESSION['cart'])){
+                  echo "(";
+                  echo count($_SESSION['cart']);
+                  echo ")";
+                }else{echo"(0)";}?></a>
               </li>
           </ul>
         </div>

@@ -39,7 +39,7 @@
         </div>
 
 
-        <a href="../controllers/orderController.php?action=myOrder">My Order</a>
+        
     <!-- product card grid-->
     <div class="container my-5">
     <div class="row row-cols-2 row-cols-md-3 g-4">
@@ -76,7 +76,7 @@
                             <p class="card-text">$<?php echo number_format($data['originalPrice'], 2) ?></p>
 						    <!--p class="price">$<,?php echo number_format($data['originalPrice'], 2) ?></p-->
 					<!-- The add cart button -->
-						    <a class="btn btn-dark" href="../controllers/script.php?store-product-id=<?php echo $data['id'];?>">Add to cart</a> 
+						    <a class="btn btn-dark" href="../controllers/script.php?store-product-id=<?php echo $data['id'];?>">Thêm vào giỏ hàng</a> 
                         </div>
                         </div>
 					</div> <!-- End of product element -->
