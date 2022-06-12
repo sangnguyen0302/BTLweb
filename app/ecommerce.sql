@@ -173,15 +173,16 @@ CREATE TABLE `users` (
   `status` tinyint(1) NOT NULL,
   `captcha` varchar(50) NOT NULL,
   `isConfirmed` tinyint(4) NOT NULL DEFAULT 0,
-  `phone` varchar(10) NOT NULL
+  `phone` varchar(10) NOT NULL,
+  `image` varchar(30)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
+--  
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `fullName`, `email`, `dob`, `address`, `password`, `roleId`, `status`, `captcha`, `isConfirmed`, `phone`) VALUES
-(59, 'khuong nguyen', 'lapankhuongnguyen@gmail.com', '2022-03-08', 'CanTho', '123', 1, 1, '930819', 1, '123456');
+INSERT INTO `users` (`id`, `fullName`, `email`, `dob`, `address`, `password`, `roleId`, `status`, `captcha`, `isConfirmed`, `phone`, `image`) VALUES
+(59, '', 'sangnguyen.030202@gmail.com', '2022-03-08', 'Vietnam', '123', 1, 1, '930819', 1, '123456','');
 
 --
 -- Indexes for dumped tables
