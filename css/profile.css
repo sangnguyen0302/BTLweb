@@ -30,8 +30,8 @@
  .pro_container .profile a{
     text-decoration: none;
  }
-.btn,
-.delete-btn{
+.btnn,
+.deletee-btnn{
    width: 100%;
    border-radius: 5px;
    padding:10px 30px;
@@ -42,17 +42,17 @@
    font-size: 20px;
    margin-top: 10px;
 }
- .btn{
+ .btnn{
     background-color: blue;
  }
  
- .btn:hover{
+ .btnn:hover{
     background-color: darkblue;
  }
- .delete-btn{
+ .deletee-btnn{
     background-color: red;
  }
  
- .delete-btn:hover{
+ .deletee-btnn:hover{
     background-color: darkred;
  }
