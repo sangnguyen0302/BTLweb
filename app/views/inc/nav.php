@@ -3,7 +3,7 @@
       $cart = new CategoryModel();
       $total = $cart->getNumberCart();*/
     ?>
-      <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+      <nav class="navbar navbar-expand-sm bg-dark navbar-dark sticky-top">
         <div class="container-fluid">
           <a class="navbar-brand" href="home.php">LOGO</a>
           <ul class="navbar-nav">
