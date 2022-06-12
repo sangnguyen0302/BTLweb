@@ -66,7 +66,7 @@
 				    <td><?php echo number_format($value['originalPrice'],2)."VND"?></td>
 				    <td><?php echo number_format($value['originalPrice']*$value['status'],2)?></td>
 				    <td><a class="text-danger" href="../controllers/script.php?remove-product-id=<?php echo $value['id'];?>"><i class="fa-solid fa-trash-can"></i></a></td>
-			    </tr>
+                </tr>
                 <?php
                 }
                 ?>

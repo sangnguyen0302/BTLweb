@@ -19,8 +19,8 @@ if(isset($_POST['LoginAction'])){
       $result = userCheckLogin($email,$password);
       if($result){
             $current_user = mysqli_fetch_assoc($result);
-            
             $_SESSION['user_id'] = $current_user['id'];
+            $_SESSION['user_name'] = $current_user['fullName'];
             header("Location: home.php");
             
 
