@@ -14,9 +14,17 @@
                 <a href="#" class="nav-link">Giới thiệu</a>
               </li>
               <?php
-                if (isset($_SESSION['user_id'])) { 
-                    
-                } else { ?>
+                if (isset($_SESSION['user_id'])) { ?>
+                  <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown">
+                    <?=$_SESSION['user_name'] ?>
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-dark">
+                    <li><a class="dropdown-item" href="home.php">Thông tin tài khoản</a></li>
+                    <li><a class="dropdown-item" href="logout.php">Đăng xuất</a></li>
+                  </ul>
+                </li>
+                <?php } else { ?>
                 <li class="nav-item">
                   <a class="nav-link" href="regist.php">Đăng ký</a>
                 </li>

@@ -8,16 +8,6 @@
 <title>Trang chủ</title>
 </head>
 
-    <?php 
-if(isset($_GET['logout'])){
-    unset($_SESSION['user_id']);
-    session_destroy();
-    header("Location: login.php");
-}
-
-
-?>
-
 <body>
         <?php require_once("inc/nav.php"); ?>
         <!-- Carousel-->
