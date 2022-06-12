@@ -1,0 +1,71 @@
+
+ td, td {
+    border: 1px solid silver;
+}
+table, td, th{
+    line-height: 2em;
+    font-family: sans-serif;
+    border-collapse:collapse;
+    border: 3px solid slategray;
+}
+table th, td{
+    font-size: 20px;
+    text-align: center;
+}
+.buttonn{     
+    background-color: cornflowerblue; 
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    font-family: Comic Sans MS;
+    padding: 16px 32px;
+  text-decoration: none;
+  margin: 4px 2px;
+}
+.view_db{
+    padding: 0px;
+	background-color: #fff;
+	box-shadow: 0 0px 25px rgba(0, 0, 0, 0.2);
+	display: none;
+	border:  thin solid orange;
+}
+.view_db.active{
+    display: block;
+}
+
+h2{
+    color: cornflowerblue;
+}
+.form input{
+    width: 50%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    font-family: Comic Sans MS;
+    
+}
+.form{
+    font-family: Comic Sans MS;
+}
+.form input {
+  background-color: cornflowerblue;
+  color: white;
+  font-family: Comic Sans MS;
+}
+input:focus {
+  background-color: lightblue;
+}
+.form button[type=submit] {
+  background-color: #e9d8f4;
+  border: none;
+  color: black;
+  padding: 16px 32px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+.add_new_record{
+    border: 2px solid black;
+}

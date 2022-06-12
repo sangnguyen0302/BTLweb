@@ -35,4 +35,14 @@
     text-transform: uppercase;
     color: #fff;
 }
+.message{
+  margin:10px 0;
+  width: 100%;
+  border-radius: 5px;
+  padding:10px;
+  text-align: center;
+  background-color: red;
+  color:white;
+  font-size: 20px;
+}
   

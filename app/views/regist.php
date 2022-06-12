@@ -1,14 +1,44 @@
-<?php  require dirname(dirname(dirname(__FILE__))) . '/inc/head.php'; ?> 
+
+<?php   '/inc/head.php'; ?> 
+<?php  require '../models/loginModel.php'; ?>
+<?php
+if(isset($_POST['RegisterAction']) && $_POST['RegisterAction']=="Đăng ký"){
+    $fullName = $_POST['fullName'];
+    $email = $_POST['email'];
+    $dob = $_POST['dob'];
+    $address = $_POST['address'];
+    $password = $_POST['password'];
+    $phone = $_POST['phone'];
+    $checkEmail = checkEmail($email);
+    if (!$checkEmail || !$checkPhone) {
+       //header("Location: ../views/regist.php");
+       $message='Người dùng đã tồn tại';
+    }else{
+        $result = insert($fullName, $email, $dob, $address, $password,$phone, $image);
+        if($result) {
+            $message='Đăng ký thành công';
+        }else {
+            $message="Đăng ký thất bại";
+        }
+    }
+
+    
+}
+?>
 <title>Đăng ký</title>
 </head>
 <body>
-    <?php require dirname(dirname(dirname(__FILE__))) . '/inc/header.php'; ?>
-    <?php require dirname(dirname(dirname(__FILE__))) . '/inc/nav.php'; ?>
+    <?php  '/inc/header.php'; ?>
+    <?php  '/inc/nav.php'; ?>
     <div class="login">
         <div class="login-triangle"></div>
         <h2 class="login-header">Đăng ký</h2>
-    
-    <form action="../controllers/loginController.php" method="post" class="login-container">
+        <?php 
+            if(isset($message)){
+                echo'<div class="message">'.$message.'</div>';
+            }
+        ?>
+    <form action="" class="login-container">
       <p><input type="text" placeholder="Họ tên" name="fullName" required></p>
       <p><input type="email" placeholder="Email" name="email" required></p>
 

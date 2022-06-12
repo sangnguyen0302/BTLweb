@@ -9,5 +9,6 @@
     <link type="text/css" rel="stylesheet" href= "../../css/login.css">
     <link type="text/css" rel="stylesheet" href= "../../css/footer.css">
     <link type="text/css" rel="stylesheet" href= "../../css/pro_cart.css">
+    <link type="text/css" rel="stylesheet" href= "../../css/main.css">
 
-</head>
+

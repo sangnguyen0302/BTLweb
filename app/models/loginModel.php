@@ -8,7 +8,7 @@
 
 		$user = $db->getInstance();
 
-	    $sql = "SELECT * FROM Users WHERE email='$email' AND password='$password' AND isConfirmed=1";
+	    $sql = "SELECT * FROM account WHERE UserName='$email' AND PASS='$password'";
 	    $result = mysqli_query($user->con, $sql);
 	    $num_rows = mysqli_num_rows($result);
 	    if ($num_rows > 0) {
@@ -24,7 +24,7 @@
 
 		$user = $db->getInstance();
 
-	    $sql = "SELECT * FROM admin WHERE email='$email' AND password='$password'";
+	    $sql = "SELECT * FROM account WHERE UserName='$email' AND PASS='$password' AND ATYPE='admin'";
 	    $result = mysqli_query($user->con, $sql);
 	    $num_rows = mysqli_num_rows($result);
 	    if ($num_rows > 0) {
@@ -39,22 +39,7 @@
 
 		$user = $db->getInstance();
 
-		$sql = "SELECT * FROM Users WHERE email='$email' AND isConfirmed=1";
-        $result = mysqli_query($db->con, $sql);
-        $num_rows = mysqli_num_rows($result);
-        if ($num_rows > 0) {
-            return false;
-        }else {
-            return true;
-        }
-	}
-
-	function checkPhone($phone){
-		$db = new DB();
-
-		$user = $db->getInstance();
-
-		$sql = "SELECT * FROM Users WHERE phone='$phone' AND isConfirmed=1";
+		$sql = "SELECT * FROM account WHERE UserName='$email' ";
         $result = mysqli_query($db->con, $sql);
         $num_rows = mysqli_num_rows($result);
         if ($num_rows > 0) {

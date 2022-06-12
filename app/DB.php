@@ -7,11 +7,14 @@ class DB{
     protected $servername = "localhost";
     protected $username = "root";
     protected $password = "";
-    protected $dbname = "ecommerce";
+    protected $dbname = "driver_service";
 
     function __construct(){
         $this->con = mysqli_connect($this->servername, $this->username, $this->password);
         mysqli_select_db($this->con, $this->dbname);
+        if ($this->con->connect_error) {
+          die("Connection failed: " . $this->con->connect_error);
+      }
         mysqli_query($this->con, "SET NAMES 'utf8'");
     }
 
