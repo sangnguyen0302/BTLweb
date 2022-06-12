@@ -1,5 +1,4 @@
 <?php  
-
 	if(isset($_REQUEST['action']) && !empty($_REQUEST['action'])){ 
 		if($_REQUEST['action'] == 'addToCart' && !empty($_REQUEST['id'])){
 

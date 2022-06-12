@@ -39,7 +39,7 @@
         </div>
 
 
-
+        <a href="../controllers/orderController.php?action=myOrder">My Order</a>
     <!-- product card grid-->
     <div class="container my-5">
     <div class="row row-cols-2 row-cols-md-3 g-4">

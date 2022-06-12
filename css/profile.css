@@ -46,17 +46,17 @@
    font-size: 20px;
    margin-top: 10px;
 }
- .btn{
+ .btnn{
     background-color: blue;
  }
  
- .btn:hover{
+ .btnn:hover{
     background-color: darkblue;
  }
- .delete-btn{
+ .deletee-btnn{
     background-color: red;
  }
  
- .delete-btn:hover{
+ .deletee-btnn:hover{
     background-color: darkred;
  }*/
