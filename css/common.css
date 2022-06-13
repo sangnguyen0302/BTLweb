@@ -8,7 +8,11 @@
     content: "";
     clear: both;
     display: table;
-}*/   
+}*/
+
+body {
+    background-color: #efefef;
+}
 
 ul {
     list-style-type: none;
@@ -18,4 +22,13 @@ ul {
 
 li a {
     text-decoration: none;
+}
+
+
+.qty-button-group {
+    width: 120px;
+}
+
+.qty-button-group>input {
+    text-align: center;
 }
