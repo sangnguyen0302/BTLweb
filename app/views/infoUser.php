@@ -44,12 +44,28 @@
                     </form>
                     <?php
                     if(isset($_GET['change-pass'])){
+                        if(isset($_GET['submit-change-pass'])){
+                            $id = $_GET['user_id'];
+                            $sql="SELECT * FROM users WHERE id='$id'";
+                            $result= mysqli_query($db->con, $sql);
+                            $value=$result->fetch_assoc();
+                            $new_pass=$_GET['new-pass'];
+                            if($_GET['old-pass']!=$value['password']){
+                                $message="Sai mật khẩu";
+                            }else if($_GET['new-pass']!=$_GET['confirm-pass']){
+                                $message="Mật khẩu xác nhận không khớp";
+                            }else{
+                                $sql = "UPDATE user SET password='$new_pass' WHERE id='$id']";
+                                $result= mysqli_query($db->con, $sql);
+                                echo "Change password success fully";
+                            }
+                        }
                         ?>
                         <div>
-                            <form action="" method="get">
+                            <form action="?chage-pass='Đổi mật khẩu'" method="get">
                             <?php
                                 if(isset($message)){
-                                    echo "<div class='message'>".$message.'</div>'
+                                    echo "<div class='message'>".$message.'</div>';
                                 }
                             ?>
                             <input type="hidden" name="user_id" value="<?=$user_id?>">
@@ -65,13 +81,7 @@
                         </div>
                         <?php
                     }
-                    if(isset($_GET['submit-change-pass'])){
-                        $id = $_GET['user_id'];
-                        $sql="SELECT * FROM users WHERE id='$id'";
-                        $result= mysqli_query($db->con, $sql);
-                        $value=$result->fetch_assoc();
-                        if($_GET['old-pass']!=){}
-                    }
+                   
                     ?>
                 </div>
                
