@@ -1,3 +1,6 @@
+<?php
+	
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,9 +9,6 @@
 	
 </head>
 <body>
-
-
-
 	<table id = "order_table">
 		<?php
 

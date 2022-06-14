@@ -10,7 +10,7 @@
 			include_once "../models/productModel.php";
 
 			$product = new productModel();
-			$result = $product->getProductById($productId);
+			$result = $product->getById($productId);
 			$listInfor = $result->fetch_assoc();
 
 			require_once "../views/management/editProduct.php"; 
@@ -24,9 +24,9 @@
 
 			$product = new productModel(); 
 
-			$product->removeProductbyId($productId);
+			$product->removeProductById($productId);
 
-			$result = $product->getListProduct();
+			$result = $product->getAll();
 			$productsList= $result->fetch_all(MYSQLI_ASSOC);
 
 			require_once "../views/management/ProductsManagement.php";
@@ -122,7 +122,7 @@
 
         		}
 
-        		$result = $product->getListProduct();
+        		$result = $product->getAll();
         		$productsList= $result->fetch_all(MYSQLI_ASSOC);
 
 				require_once "../views/management/ProductsManagement.php";
@@ -146,7 +146,7 @@
 
         		$product->addNewProduct($listValue);
 
-        		$result = $product->getListProduct();
+        		$result = $product->getAll();
         		$productsList= $result->fetch_all(MYSQLI_ASSOC);
 
 				require_once "../views/management/ProductsManagement.php";
