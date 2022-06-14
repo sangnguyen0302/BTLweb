@@ -3,10 +3,18 @@
       $cart = new CategoryModel();
       $total = $cart->getNumberCart();*/
     ?>
-      <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+      <nav class="navbar navbar-expand-md bg-dark navbar-dark sticky-top">
         <div class="container-fluid">
           <a class="navbar-brand" href="home.php">LOGO</a>
-          <ul class="navbar-nav">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+          <form class="d-flex me-auto">
+            <input class="form-control me-2" type="search" placeholder="Tìm kiếm sản phẩm" aria-label="Search">
+            <button class="btn btn-outline-light" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+          </form>
+          <ul class="navbar-nav my-2 my-lg-0">
               <li class="nav-item">
                 <a href="#" class="nav-link">Danh mục</a>
               </li>
@@ -43,5 +51,7 @@
                 }else{echo"(0)";}?></a>
               </li>
           </ul>
+          
+          </div>
         </div>
       </nav>

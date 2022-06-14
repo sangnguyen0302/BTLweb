@@ -41,3 +41,10 @@
 .cate:hover .sub-menu{
     display: block;
 }*/
+nav {
+    z-index: 1000;
+}
+
+.j-left {
+    justify-self: left;
+}

@@ -4,6 +4,7 @@
     require_once '../DB.php';
     require_once  '../views/inc/head.php';
 ?>
+<script src="../../javascript/pmbtn.js"></script>
 <title>Giỏ hàng</title>
 </head>
 <body>
@@ -54,14 +55,7 @@
                         </div>
                         <input type="hidden" name="product-id" value="<?php echo $value['id']?>"/>
                     </form>
-                    <!--form action="../controllers/script.php" method="get">
-                        
-                        <input type="text" name="quantity" value="<,?php echo $value['status']?>"/>
-
-                        <input type="hidden" name="product-id" value="<,?php echo $value['id']?>"/>
-
-                        <input type="submit" name="quantity-update" value="Thay đổi"/>
-                    </form-->
+                    
                     </td>
 				    <td><?php echo number_format($value['originalPrice'],2)."VND"?></td>
 				    <td><?php echo number_format($value['originalPrice']*$value['status'],2)?></td>
@@ -101,78 +95,6 @@
     <?php } ?>
 </div>
     <?php require_once 'inc/footer.php'; ?>
-<script>
-    $('.btn-number').click(function(e){
-    e.preventDefault();
     
-    fieldName = $(this).attr('data-field');
-    type      = $(this).attr('data-type');
-    var input = $("input[id='"+fieldName+"']");
-    var currentVal = parseInt(input.val());
-    if (!isNaN(currentVal)) {
-        if(type == 'minus') {
-            
-            if(currentVal > input.attr('min')) {
-                input.val(currentVal - 1).change();
-            } 
-            /*if(parseInt(input.val()) == input.attr('min')) {
-                $(this).attr('disabled', true);
-            }*/
-
-        } else if(type == 'plus') {
-
-            if(currentVal < input.attr('max')) {
-                input.val(currentVal + 1).change();
-            }
-            else {
-                alert("Số lượng tối đa cho mặc hàng này là 5!");
-            }
-        }
-    } else {
-        input.val(0);
-    }
-    $(this).unbind('click').click();
-    });
-    $('.input-number').focusin(function(){
-        $(this).data('oldValue', $(this).val());
-    });
-    $('.input-number').change(function() {
-    
-        minValue =  parseInt($(this).attr('min'));
-        maxValue =  parseInt($(this).attr('max'));
-        valueCurrent = parseInt($(this).val());
-    
-        name = $(this).attr('name');
-        if(valueCurrent >= minValue) {
-            /*$(".btn-number[data-type='minus'][data-field='"+name+"']").removeAttr('disabled')*/
-        } else {
-            alert('Error Input');
-            $(this).val($(this).data('oldValue'));
-        }
-        if(valueCurrent <= maxValue) {
-            /*$(".btn-number[data-type='plus'][data-field='"+name+"']").removeAttr('disabled')*/
-        } else {
-            alert('Số lượng tối đa của mặt hàng này là 5');
-            $(this).val($(this).data('oldValue'));
-        }
-    
-    
-    });
-    $(".input-number").keydown(function (e) {
-        // Allow: backspace, delete, tab, escape, enter and .
-        if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 190]) !== -1 ||
-             // Allow: Ctrl+A
-            (e.keyCode == 65 && e.ctrlKey === true) || 
-             // Allow: home, end, left, right
-            (e.keyCode >= 35 && e.keyCode <= 39)) {
-                 // let it happen, don't do anything
-                 return;
-        }
-        // Ensure that it is a number and stop the keypress
-        if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
-            e.preventDefault();
-        }
-    });
-</script>
 </body>
 </html>

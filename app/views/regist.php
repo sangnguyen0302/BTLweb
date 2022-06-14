@@ -40,6 +40,7 @@ if(isset($_POST['RegisterAction']) && $_POST['RegisterAction']=="Đăng ký"){
 </head>
 <body>
     <?php require_once  'inc/nav.php'; ?>
+    <div class="container my-5">
     <div class="login">
         <div class="login-triangle"></div>
         <h2 class="login-header">Đăng ký</h2>
@@ -62,6 +63,7 @@ if(isset($_POST['RegisterAction']) && $_POST['RegisterAction']=="Đăng ký"){
       <p><input type="submit" name="RegisterAction" value="Đăng ký"></p>
       <p> Đã có tài khoản? <a href="login.php"> Đăng nhập ngay</a></p>
 </form>
+    </div>
     </div>
     
     <script language='javascript' type='text/javascript'>

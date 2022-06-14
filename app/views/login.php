@@ -42,6 +42,7 @@ if(isset($_POST['LoginAction'])){
 <body>
 
 <?php require_once 'inc/nav.php'; ?>
+<div class="container my-5">
 <div class="login"> 
 <div class="login-triangle"></div>
 <h2 class="login-header">Đăng nhập </h2>
@@ -56,6 +57,7 @@ if(isset($_POST['LoginAction'])){
       <p><input type="submit" name="LoginAction" value="Đăng nhập"></p>
       <p> Chưa có tài khoản? <a href="regist.php"> Đăng ký ngay</a></p>
 </form>
+</div>
 </div>
 <?php  require_once('inc/footer.php'); ?> 
 </body>
