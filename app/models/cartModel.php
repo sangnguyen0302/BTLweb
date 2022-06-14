@@ -1,5 +1,5 @@
 <?php
-class CategoryModel
+class CartModel
 {
     private $product=[];
 
