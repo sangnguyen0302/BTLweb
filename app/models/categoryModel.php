@@ -16,7 +16,7 @@ class CategoryModel
         return self::$instance;
     }
 
-    public function getAllClient()
+    public static function getAllClient()
     {
         $db = DB::getInstance();
         $sql = "SELECT * FROM Categories WHERE status=1";

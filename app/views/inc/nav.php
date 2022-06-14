@@ -1,5 +1,7 @@
     <?php 
-      
+      require_once '../models/categoryModel.php';
+      $result = CategoryModel::getAllClient();
+      $listCategory = $result->fetch_all(MYSQLI_ASSOC);
     ?>
       <nav class="navbar navbar-expand-md bg-dark navbar-dark sticky-top">
         <div class="container-fluid">
@@ -13,8 +15,17 @@
             <button class="btn btn-outline-light" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
           </form>
           <ul class="navbar-nav my-2 my-lg-0">
-              <li class="nav-item">
-                <a href="#" class="nav-link">Danh mục</a>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown">
+                  Danh mục
+                </a>
+                  <ul class="dropdown-menu dropdown-menu-dark">
+                  <?php
+                    foreach ($listCategory as $category) { ?>
+                      <li><a class="dropdown-item" href="#"><?= $category['name'] ?></a></li>
+                  <?php }
+                  ?>
+                  </ul>
               </li>
               <li class="nav-item">
                 <a href="#" class="nav-link">Giới thiệu</a>
