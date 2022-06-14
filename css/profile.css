@@ -60,3 +60,9 @@
  .deletee-btnn:hover{
     background-color: darkred;
  }*/
+ .change_pass{
+   display: none;
+ }
+ .change_pass.active{
+   display: block;
+ }

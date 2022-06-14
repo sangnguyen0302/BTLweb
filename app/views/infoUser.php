@@ -8,7 +8,7 @@
     if(isset($_GET['user_id'])){
         $user_id= $_GET['user_id'];
         $db = DB::getInstance();
-        $sql = "SELECT * FROM users WHERE id=$user_id'";
+        $sql = "SELECT * FROM users WHERE id='$user_id'";
         $result = mysqli_query($db->con, $sql); 
         if(!$result){
             echo mysqli_error($db->con);
@@ -43,6 +43,7 @@
                         <input type="hidden" name="user_id" value="<?=$user_id?>">
                     </form>
                     <?php
+                    $css="change_pass active";
                     if(isset($_GET['change-pass'])){
                         if(isset($_GET['submit-change-pass'])){
                             $id = $_GET['user_id'];
@@ -55,14 +56,21 @@
                             }else if($_GET['new-pass']!=$_GET['confirm-pass']){
                                 $message="Mật khẩu xác nhận không khớp";
                             }else{
-                                $sql = "UPDATE user SET password='$new_pass' WHERE id='$id']";
+                                $sql = "UPDATE users SET password='$new_pass' WHERE id='$id'";
                                 $result= mysqli_query($db->con, $sql);
-                                echo "Change password success fully";
+                                if($result){
+                                    echo "Change password success fully";
+                                    $css="change_pass";
+                                }else{
+                                    echo mysqli_error($db->con);
+                                }
+                                
                             }
                         }
                         ?>
-                        <div>
-                            <form action="?chage-pass='Đổi mật khẩu'" method="get">
+                        <!-- SỬA FORM ĐỔI MẬT KHẨU TRONG class change-pass -->
+                        <div class="<?=$css?>">
+                            <form action="?chage-pass='Đổi mật khẩu'" method="get" >
                             <?php
                                 if(isset($message)){
                                     echo "<div class='message'>".$message.'</div>';
