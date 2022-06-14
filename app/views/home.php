@@ -55,7 +55,10 @@
                     $page=1;    
                 } 
                 
-                $result = $prod->getPage($page);
+                if($_GET['cateid']){
+                    $result=$prod->getPageandCateid($page,$_GET['cateid']);
+                }
+                else{ $result = $prod->getPage($page);}
                 
                 if($result){
                     while($data=$result->fetch_assoc()) 
@@ -89,7 +92,10 @@
         <nav aria-label="Page navigation" class="my-3 text-dark">
             <ul class="pagination justify-content-center">
             <?php  
-                $result = $prod->getAll();
+                if($_GET['cateid']){
+                    $result=$prod->getByCateid($_GET['cateid']);
+                }
+                else{$result = $prod->getAll();}
                 $total_records = mysqli_num_rows($result);    
           
                 $per_page_record = 6;

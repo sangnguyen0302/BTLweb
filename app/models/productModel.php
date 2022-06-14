@@ -8,7 +8,7 @@ class ProductModel
     public function getAll()
     {
         $db = DB::getInstance();
-        $sql = "SELECT * FROM Products";
+        $sql = "SELECT * FROM Products WHERE qty>0";
         $result = mysqli_query($db->con, $sql);
         return $result;
     }
@@ -19,7 +19,16 @@ class ProductModel
         $per_page_record = 6;  // Number of entries to show in a page.   
         $start_from = ($page-1) * $per_page_record;
 
-        $sql = "SELECT * FROM Products LIMIT $start_from, $per_page_record";
+        $sql = "SELECT * FROM Products  WHERE qty>0 LIMIT $start_from, $per_page_record";
+        $result = mysqli_query($db->con, $sql);
+        return $result;
+    }
+    public function getPageandCateid($page, $cateid)
+    {
+        $db = DB::getInstance();
+        $per_page_record = 6;  // Number of entries to show in a page.   
+        $start_from = ($page-1) * $per_page_record;
+        $sql = "SELECT * FROM Products  WHERE cateId='$cateid' AND qty>0 LIMIT $start_from, $per_page_record";
         $result = mysqli_query($db->con, $sql);
         return $result;
     }
@@ -43,7 +52,7 @@ class ProductModel
     public function getByCateId($CateId)
     {
         $db = DB::getInstance();
-        $sql = "SELECT * FROM Products WHERE cateId='$CateId' AND status=1";
+        $sql = "SELECT * FROM Products WHERE cateId='$CateId' AND qty>0";
         $result = mysqli_query($db->con, $sql);
         return $result;
     }
