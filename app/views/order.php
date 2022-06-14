@@ -6,7 +6,6 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	
 </head>
 <body>
 	<table id = "order_table">
@@ -15,7 +14,6 @@
 			if(count($list)>0){  
 				$count=0;
 				$total=0;
-
 		?>
 		<tr>
 			<tr>STT</tr>
@@ -72,7 +70,6 @@
 		}else{ 
 			echo "<h3>Bạn chưa đặt hàng</h3>";
 		}
-
 	?>
 </body>
 </html>

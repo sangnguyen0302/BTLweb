@@ -1,7 +1,5 @@
     <?php 
-      /*require_once('../models/cartModel.php'); 
-      $cart = new CategoryModel();
-      $total = $cart->getNumberCart();*/
+      
     ?>
       <nav class="navbar navbar-expand-md bg-dark navbar-dark sticky-top">
         <div class="container-fluid">
@@ -29,8 +27,7 @@
                   </a>
                   <ul class="dropdown-menu dropdown-menu-dark">
                     <li><a class="dropdown-item" href="../controllers/orderController.php?action=myOrder">Đơn hàng của tôi</a></li>
-                    <li><a class="dropdown-item" href="infoUser.php?user_id='<?=$_SESSION['user_id']?>">Thông tin tài khoản</a></li>
-                    <li><a class="dropdown-item" href="changepass.php">Đổi mật khẩu</a></li>
+                    <li><a class="dropdown-item" href="infoUser.php?user_id=<?=$_SESSION['user_id']?>">Thông tin tài khoản</a></li>
                     <li><a class="dropdown-item" href="logout.php">Đăng xuất</a></li>
                   </ul>
                 </li>
