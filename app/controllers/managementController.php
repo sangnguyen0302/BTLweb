@@ -1,4 +1,5 @@
 <?php  
+	require_once '../DB.php';
 
 	if(isset($_REQUEST['action']) && !empty($_REQUEST['action'])){ 
 
@@ -28,13 +29,13 @@
 
 		}else if ($_REQUEST['action'] == 'manageProducts'){
 
-			include_once "../models/ProductModel.php";
+			require_once "../models/productModel.php";
 
 			$product = new productModel();
 			$result = $product->getAll();
 			$productsList= $result->fetch_all(MYSQLI_ASSOC);
 
-			require_once "../views/management/productsManagement.php";
+			require_once "../views/productsManagement.php";
 
 		}
 
