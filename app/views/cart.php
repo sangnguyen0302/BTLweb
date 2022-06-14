@@ -1,6 +1,6 @@
 <?php
     session_start();
-    require_once  '../models/cartModel.php';
+    require_once  '../models/categoryModel.php';
     require_once '../DB.php';
     require_once  '../views/inc/head.php';
 ?>

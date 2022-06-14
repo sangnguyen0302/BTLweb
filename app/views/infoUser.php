@@ -8,7 +8,7 @@
     if(isset($_GET['user_id'])){
         $user_id= $_GET['user_id'];
         $db = DB::getInstance();
-        $sql = "SELECT * FROM users WHERE id=59 ";
+        $sql = "SELECT * FROM users WHERE id=$user_id'";
         $result = mysqli_query($db->con, $sql); 
         if(!$result){
             echo mysqli_error($db->con);
@@ -47,6 +47,11 @@
                         ?>
                         <div>
                             <form action="" method="get">
+                            <?php
+                                if(isset($message)){
+                                    echo "<div class='message'>".$message.'</div>'
+                                }
+                            ?>
                             <input type="hidden" name="user_id" value="<?=$user_id?>">
                             <input type="hidden" name="change-pass" value="Đổi mật khẩu">
                             Nhập mật khẩu hiện tại: <br>
@@ -64,6 +69,8 @@
                         $id = $_GET['user_id'];
                         $sql="SELECT * FROM users WHERE id='$id'";
                         $result= mysqli_query($db->con, $sql);
+                        $value=$result->fetch_assoc();
+                        if($_GET['old-pass']!=){}
                     }
                     ?>
                 </div>
