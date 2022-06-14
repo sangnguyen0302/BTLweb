@@ -21,6 +21,7 @@ if(isset($_POST['LoginAction'])){
             $_SESSION['user_id'] = $current_user['id'];
             $_SESSION['user_name'] = $current_user['fullName'];
             header("Location: home.php");
+<<<<<<< HEAD
       }else{
              $result=adminCheckLogin($email,$password);
              if($result){
@@ -32,6 +33,21 @@ if(isset($_POST['LoginAction'])){
                    $message="Tài khoản hoặc mật khẩu không chính xác!";
              }
 
+=======
+            
+
+      }else{
+           $result=adminCheckLogin($email,$password);
+             if($result){
+                   $current_admin = mysqli_fetch_assoc($result);
+
+                   $_SESSION['user_id'] = $current_admin['id'];
+                   header("Location: management.php");
+             }else{
+                   $message="Tài khoản hoặc mật khẩu không chính xác!";
+             }
+
+>>>>>>> 25129ae62ca1ba35211235efd75691c3eb6498a5
        }
 }
 

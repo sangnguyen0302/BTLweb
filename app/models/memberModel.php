@@ -16,7 +16,7 @@
 
 		public function getListMember(){
 			$db = DB::getInstance();
-	        $sql = "SELECT * FROM users";
+	        $sql = "SELECT * FROM users WHERE roleID='2'";
 	        $result = mysqli_query($db->con, $sql);
 	        return $result;
 		}

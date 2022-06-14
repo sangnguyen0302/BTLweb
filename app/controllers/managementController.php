@@ -28,10 +28,10 @@
 
 		}else if ($_REQUEST['action'] == 'manageProducts'){
 
-			include_once "../models/productModel.php";
+			include_once "../models/ProductModel.php";
 
 			$product = new productModel();
-			$result = $product->getListProduct();
+			$result = $product->getAll();
 			$productsList= $result->fetch_all(MYSQLI_ASSOC);
 
 			require_once "../views/management/productsManagement.php";
