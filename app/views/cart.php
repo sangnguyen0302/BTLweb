@@ -57,8 +57,8 @@
                     </form>
                     
                     </td>
-				    <td><?php echo number_format($value['originalPrice'],2)."VND"?></td>
-				    <td><?php echo number_format($value['originalPrice']*$value['status'],2)?></td>
+				    <td><?php echo number_format($value['originalPrice'])."VND"?></td>
+				    <td><?php echo number_format($value['originalPrice']*$value['status'])?></td>
 				    <td><a class="text-danger" href="../controllers/script.php?remove-product-id=<?php echo $value['id'];?>"><i class="fa-solid fa-trash-can"></i></a></td>
                 </tr>
                 <?php
@@ -67,14 +67,14 @@
 
             <tr>
 			    <td class="cart-items" colspan="6">
-                    Cart Items <span> <?php echo CategoryModel::getNumberCart()?></span>
+                    Cart Items <span> <?php echo CartModel::getNumberCart()?></span>
                 </td>
 	        </tr>
 
             <tr> <!-- The total sum -->
 				<td class="total-price" colspan="6">Total Price
                     <span>
-                        <?php echo number_format(CategoryModel::getTotalPrice(),2)?>
+                        <?php echo number_format(CartModel::getTotalPrice())?>
                     </span>
                 </td>
 			</tr>
