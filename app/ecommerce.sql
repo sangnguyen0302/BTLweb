@@ -170,16 +170,10 @@ CREATE TABLE `users` (
 --
 -- Đang đổ dữ liệu cho bảng `users`
 --
--- Vinh
--- INSERT INTO `users` (`id`, `fullName`, `email`, `dob`, `address`, `password`, `roleId`, `status`, `captcha`, `isConfirmed`, `phone`) VALUES
--- (59, 'Nguyễn Tuấn Vinh', 'nguyentuanvinh1222@gmail.com', '2022-06-12', '276/1, Đường Tỉnh Lộ 827B', '12345', 1, 1, '930819', 1, '0793191854'),
--- (64, 'admin1', 'superAdmin@gmail.com', '2022-06-13', 'Trái Đất', '101001', '1', '1', '101001', '1', '0987654321');
---  
--- Dumping data for table `users` 
---
---Sang
-INSERT INTO `users` (`id`, `fullName`, `email`, `dob`, `address`, `password`, `roleId`, `status`, `captcha`, `isConfirmed`, `phone`, `image`) VALUES
-(59, '', 'sangnguyen.030202@gmail.com', '2022-03-08', 'Vietnam', '123', 1, 1, '930819', 1, '123456','');
+
+INSERT DELAYED INTO `users` (`id`, `fullName`, `email`, `dob`, `address`, `password`, `roleId`, `status`, `captcha`, `isConfirmed`, `phone`,`image`) VALUES
+(59, 'Nguyễn Tuấn Vinh', 'nguyentuanvinh1222@gmail.com', '2022-06-12', '276/1, Đường Tỉnh Lộ 827B', '12345', 2, 1, '930819', 1, '0793191854',''),
+(64, 'admin1', 'superAdmin@gmail.com', '2022-06-13', 'Trái Đất', '101001', 1, 1, '101001', 1, '0987654321','');
 
 --
 -- Chỉ mục cho các bảng đã đổ
