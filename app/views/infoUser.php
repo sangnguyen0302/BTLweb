@@ -19,14 +19,18 @@
             <div class="container">
                 <h3>Thông tin cá nhân</h3>
                 <div class="card-body info">
-                    <form>
                     <?php
                     if($value['image']==''){
                         echo '<img src="../../image/default-avatar.png">';
                     }else{
-                        echo '<img src="../../upload_image/'.$fetch['image'].'">';
+                        echo '<img src="../../upload_image/'.$value['image'].'">';
                     }
                     ?>
+                    <form action="../controllers/infoController.php".$user_id method="POST" enctype="multipart/form-data">
+                        <input type="file" name="image" accept="image/jpg, image/jpeg, image/png">
+                        <input type="hidden" name="user-id" value=<?=$user_id?>>
+                        <input type="submit" name="change-avt" value="Đổi ảnh đại diện">
+                    </form>
                     <h4 class="card-title">Họ và tên: <?php echo $value['fullName'];?></h4>
                     <p class="card-text">Ngày sinh: 
                         <input type="date" value="<?=$value['dob']?>"/>
