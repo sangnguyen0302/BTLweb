@@ -31,6 +31,7 @@
             <tbody class="text-center align-middle">
       
                 <?php
+                    //print_r($_SESSION['cart']);
                     foreach($_SESSION['cart'] as $value){
                 ?>
                 <tr> <!-- The product html template -->
@@ -94,6 +95,28 @@
          </div>
     <?php } ?>
 </div>
+
+<!--
+    This is payment form. It's will send a request to paymentController with value Payment. 
+    You can place it in another location that is reasonable.
+-->
+    <form action = "../controllers/paymentController.php" method="post">
+        
+        <p>vui lòng chọn hình thức thanh toán</p>
+        <input type="radio" name="paymentMethod" value="Payment_on_deliver">
+        <lable>Thanh toán khi nhận hàng</label><br>
+
+        <input type="radio" name="paymentMethod" value="digital_wallet">
+        <label>Thanh toán bằng ví điện tử</label><br>
+
+        <input type="radio" name="paymentMethod" value="banking">
+        <label>Chuyển khoản ngân hàng</label><br>
+
+        <input type="submit" name="paymentAction" value="Payment">
+        
+    </form>
+
+
     <?php require_once 'inc/footer.php'; ?>
     
 </body>

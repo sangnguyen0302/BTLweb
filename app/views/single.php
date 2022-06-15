@@ -62,7 +62,75 @@
             </div>
 
             <div class="product-rate-comment bg-white row">
-                <h4>Bình luận Đánh giá</h4>
+
+                <div class="print-rate">
+                    <!-- Print average rate number -->
+                    <h3>Đã đánh giá</h3>
+                    <?php
+                        echo $averRate;    
+
+                    ?>
+
+                </div>
+
+                <div class="print-comments">
+                    <!-- Print comments -->
+                    <?php  
+                        if(count($productRow)>0){
+                            foreach ($productRow as $value) {
+                                if(!empty($value['comment'])){
+                    ?>
+
+                                    <h4><?php echo $value['userName'] ?></h4>
+                                    <p><?php echo $value['comment'] ?></p>
+                                    <br>
+                    <?php        
+                                }
+                            }
+                        }else{
+                    ?>
+
+                            <p>Chưa có bình luận</p>
+                    <?php
+                        }
+                    ?>
+
+                </div>
+
+                <?php  
+                    if($checkOrdered){
+                ?>
+                
+                    <!--
+                    Five <a> tag below are allow user to rate thier ordered product
+                    They will sent a request to productMnController.php 
+                     -->
+                    <p>Đánh giá</p>
+                    <a href="../controllers/productMnController.php?action=rate1Star">1 sao</a>
+                    <a href="../controllers/productMnController.php?action=rate2Star">2 sao</a>
+                    <a href="../controllers/productMnController.php?action=rate3Star">3 sao</a>
+                    <a href="../controllers/productMnController.php?action=rate4Star">4 sao</a>
+                    <a href="../controllers/productMnController.php?action=rate5Star">5 sao</a>
+
+
+                    <!-- 
+                        This <form> tag below is allows user to comment into thier ordered product
+                        It will sent a request to productMnController.php with post method
+                    -->
+                    <form action="../controllers/productMnController.php" method= "post">
+                        <p>Bình luận</p>
+                        <textarea name="des" cols="100" rows="5">Bình luận...</textarea>
+                        <input type="submit" name="comment" value="comment">
+                    </form>
+
+
+                <?php       
+                    }
+
+                ?>
+                
+
+
             </div>
         </div>
     </main>

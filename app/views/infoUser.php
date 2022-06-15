@@ -49,7 +49,7 @@
                             <form action="" method="get">
                             <?php
                                 if(isset($message)){
-                                    echo "<div class='message'>".$message.'</div>'
+                                    echo "<div class='message'>".$message.'</div>';
                                 }
                             ?>
                             <input type="hidden" name="user_id" value="<?=$user_id?>">
