@@ -55,7 +55,7 @@
                     $page=1;    
                 } 
                 
-                if($_GET['cateid']){
+                if(isset($_GET['cateid'])){
                     $result=$prod->getPageandCateid($page,$_GET['cateid']);
                 }
                 else{ $result = $prod->getPage($page);}
@@ -92,7 +92,7 @@
         <nav aria-label="Page navigation" class="my-3 text-dark">
             <ul class="pagination justify-content-center">
             <?php  
-                if($_GET['cateid']){
+                if(isset($_GET['cateid'])){
                     $result=$prod->getByCateid($_GET['cateid']);
                 }
                 else{$result = $prod->getAll();}

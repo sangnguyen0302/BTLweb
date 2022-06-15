@@ -20,6 +20,13 @@
                 <h3>Thông tin cá nhân</h3>
                 <div class="card-body info">
                     <form>
+                    <?php
+                    if($value['image']==''){
+                        echo '<img src="../../image/default-avatar.png">';
+                    }else{
+                        echo '<img src="../../upload_image/'.$fetch['image'].'">';
+                    }
+                    ?>
                     <h4 class="card-title">Họ và tên: <?php echo $value['fullName'];?></h4>
                     <p class="card-text">Ngày sinh: 
                         <input type="date" value="<?=$value['dob']?>"/>
