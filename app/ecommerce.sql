@@ -152,7 +152,9 @@ INSERT INTO `products` (`id`, `name`, `originalPrice`, `promotionPrice`, `image`
 (22, 'Trụ Sở Nghiên Cứu NASA Mặt Trăng', '3199000', '3199000', '60350_1_.jpg', 59, '2022-03-11', 7, 9, 'Hãy hạ cánh tàu đổ bộ mặt trăng để có những cuộc phiêu lưu tuyệt vời tại Trụ Sở Nghiên Cứu NASA Mặt Trăng. Tời và di chuyển các vật thể bằng máy bay không người lái, lấy mẫu từ máy bay VIPER và thực hiện các thí nghiệm trong phòng thí nghiệm khoa học và thực vật học. Sau đó nhảy lên xe buggy mặt trăng và đi đến khóa không khí và chỗ ở, nơi bạn có thể cất mũ bảo hiểm và ba lô của mình cho đến nhiệm vụ tiếp theo!', 1, 0),
 (23, 'Xe Ford® F-150 Raptor', '4899000', '4899000', '42126_1_.jpg', 59, '2022-03-11', 7, 10, 'Xe bán tải Ford® nổi tiếng về sức mạnh và chức năng của chúng. Giờ đây, bạn có thể sở hữu sự bản sao của chiếc xe này với bộ LEGO® Technic ™ Xe Ford® F-150 Raptor (42126). Tận hưởng thời gian chất lượng khi bạn khám phá các tính năng thực tế được thiết kế trong mô hình giống như thật này, gồm động cơ V6 với các piston chuyển động, cùng với hệ thống treo trên tất cả các bánh xe.', 1, 0),
 (24, 'Trạm Cứu Hỏa Abrick', '1000000', '1100000', '003026_2_.jpg', 59, '2022-06-10', 7, 20, 'Abrick ECOIFFIER 003026 Fire Station is a realistic fire station simulation toy model - a barracks complete with a team of qualified firefighters for all interventions: air, road… help put out quickly extinguish the fire, bringing peace to the people. Through simulation toys, children learn to understand the world around them, practice the skills they need for life, and be more independent every day.', 1, 2),
-(28, 'Vinh', '12022001', '1000000000', '', 59, '2022-06-11', 6, 1, 'nice', 1, 0);
+(28, 'Đồ chơi bé làm bác sĩ', '879000', '879000','bx1230z-mykingdom.jpg', 59, '2022-06-11', 6, 1, 'nice', 1, 0),
+(1,'Xe cứu hộ bãi biển RAM 2500 với nhân viên và ván chèo đứng','2199000','1979000','bru02506-tiki-th.jpg',59,'2022-06-15',7,9,'Xe cứu hộ bãi biển RAM 2500 với nhân viên và ván chèo đứng BRU02506 là một trong những sản phẩm cao cấp đến từ thương hiệu đồ chơi Bruder. Sự mạnh mẽ và khả năng di chuyển trên mọi địa hình của RAM là huyền thoại và vẫn là độc nhất cho đến ngày nay. Đây là một mẫu xe không thể thiếu cho các hoạt động trên bãi biển, thể thao dưới nước,... Hơn thế nữa, mô hình này đã thể hiện rõ phương châm của Bruder – mang lại chức năng giống ngoài đời thật để các bé có thể làm quen và nhận biết. Các bé hãy cùng nhau khám phá mẫu xe cứu hộ bãi biển cực thú vị này nhé!',1,0),
+(2,'Trò chơi bắn tàu','199000','159000','b0995_1_.jpg',59,'2022-06-15',6,15,'Đồ chơi Hasbro Gaming trò chơi bắn tàu B0995 là bộ đồ chơi đòi hỏi sự khéo léo, tính toán và kiên trì của người chơi. Sản phẩm giúp hỗ trợ trí não bé phát triển cũng như hỗ trợ bé khéo léo, tập tính kiên trì khi chơi và tương tác với bạn bè, anh chị em hay bố mẹ.',1,0);
 
 -- --------------------------------------------------------
 
@@ -202,7 +204,7 @@ CREATE TABLE `users` (
 -- (59, 'Nguyễn Tuấn Vinh', 'nguyentuanvinh1222@gmail.com', '2022-06-12', '276/1, Đường Tỉnh Lộ 827B', '12345', 1, 1, '930819', 1, '0793191854'),
 -- (64, 'admin1', 'superAdmin@gmail.com', '2022-06-13', 'Trái Đất', '101001', '1', '1', '101001', '1', '0987654321');
 --  
--- Dumping data for table `users`
+-- Dumping data for table `users` 
 --
 --Sang
 INSERT INTO `users` (`id`, `fullName`, `email`, `dob`, `address`, `password`, `roleId`, `status`, `captcha`, `isConfirmed`, `phone`, `image`) VALUES

@@ -1,18 +1,8 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Managemant Webpage</title>
+<?php require_once 'inc/head.php'; ?>
+<title>Quản trị</title>
 </head>
 <body>
-	<h1>Management Page</h1>
-
-	<a href="../controllers/managementController.php?action=manageMembers">Thành viên</a><br>
-	<a href="../controllers/managementController.php?action=manageComments">Bình luận và đánh giá</a><br>
-	<a href="../controllers/managementController.php?action=manageCustomerContacted">Liên hệ của khách hàng</a><br>
-	<a href="../controllers/managementController.php?action=manageExceptionInfors">Các thông tin tiêu biểu</a><br>
-	<a href="../controllers/managementController.php?action=manageProducts">Sản phẩm</a>
+	<?php require_once 'inc/sidebar.php' ?>
 
 </body>
 </html>
