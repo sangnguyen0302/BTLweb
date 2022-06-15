@@ -3,7 +3,7 @@
 
     require("../models/cartModel.php");
     require("../models/ProductModel.php");
-    require("../DB.php");
+    //require("../DB.php");
     if(isset($_GET['store-product-id'])){
         $product_id = $_GET['store-product-id'];
         $cart = new CartModel($product_id);

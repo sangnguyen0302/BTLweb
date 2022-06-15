@@ -37,11 +37,23 @@
 	        $result = mysqli_query($db->con, $sql);
 	        return $result;
     	}
+
+
+    	public function getOrder($userId)
+    	{
+	        $db = DB::getInstance();
+	        $sql = "SELECT * FROM orders WHERE userId='$userId' AND status='processing'";
+	        $result = mysqli_query($db->con, $sql);
+	        return $result;
+    	}
+
     	public function removeByUserIdAndProductId($userId,$productId){
     		$db = DB::getInstance();
 	        $sql = "DELETE FROM orders WHERE userId='$userId' AND productId='$productId'";
 	        $result = mysqli_query($db->con, $sql);
 	        return $result;
     	}
+
+    	
 	}
 ?>

@@ -1,10 +1,16 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
-<body>
-	Payment
-</body>
-</html>
+<?php  
+	session_start();
+	if($_SERVER['REQUEST_METHOD'] == 'POST'){
+
+		if(isset($_POST['paymentAction']) && $_POST['paymentAction']=="Payment"){
+
+
+			//Get payment method 
+			$_SESSION['paymentMethod']=$_POST['paymentMethod'];
+
+			header("Location: ../views/payment.php"); 
+
+		}
+	}	
+
+?>

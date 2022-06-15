@@ -39,7 +39,7 @@
             <td><?php echo number_format($value['productPrice'], 0, '', ','); ?>VND</td>
             <td><?php echo $value['receivedDate']; ?></td>
             <td><?php echo $value['status']; ?></td>
-            <td><a href="../controllers/orderController.php?action=removeProduct&id=<?php echo $value['productId']?>">Bỏ sản phẩm</a>
+            <td><a href="../controllers/orderController.php?action=removeProduct&id=<?php echo $value['productId']?>">Bỏ đơn hàng</a>
             	<br>
             <a href="../controllers/orderController.php?action=viewDetail&id=<?php echo $value['productId']?>">Chi tiết sản phẩm</a></td>                 
         </tr>
@@ -61,11 +61,8 @@
 
 
 
-	<h4>Phương thức thanh toán</h4>
-	<input type="radio" name="gender" value="Payment_on_deliver" checked> Thanh toán khi nhận hàng<br>
-	<input type="radio" name="gender" value="Payment_via_bank_card"> Thanh toán qua thẻ ngân hàng<br>
-	<input type="radio" name="gender" value="Payment_by_credit_card"> Thanh toán bằng thẻ tín dụng<br><br>
-	<a href="./paymentController.php?action=payment">Xác nhận đặt hàng</a>
+	<a href="../controllers/loginController.php?action=return">Tiếp tục mua hàng</a>
+	
 	<?php  
 		}else{ 
 			echo "<h3>Bạn chưa đặt hàng</h3>";

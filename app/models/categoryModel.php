@@ -1,4 +1,6 @@
 <?php
+
+include_once "../DB.php";
 class CategoryModel
 {
     private static $instance = null;
