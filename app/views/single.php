@@ -1,5 +1,6 @@
-<
-<?php 
+
+<?php
+    session_start();
     require_once '../DB.php';
     require_once 'inc/head.php';?>
 <title>Tên sản phẩm</title>
@@ -58,7 +59,7 @@
                             </div>
 
                             <div class="add-to-cart-btn my-5">
-                                    <a class="btn btn-outline-dark" href="">Thêm vào giỏ hàng</a>
+                                    <a class="btn btn-outline-dark" href="../controllers/script.php?single-store-product-id=<?php echo $value['id'];?>">Thêm vào giỏ hàng</a>
                             </div>
                         </div>
                         
