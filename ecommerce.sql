@@ -20,28 +20,22 @@ SET time_zone = "+00:00";
 --
 -- Cơ sở dữ liệu: `ecommerce`
 --
+DROP DATABASE IF EXISTS `ecommerce`;
 CREATE DATABASE IF NOT EXISTS `ecommerce` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `ecommerce`;
-
+-- DROP TABLE IF EXISTS `cart`;
+-- DROP TABLE IF EXISTS `categories`;
+-- DROP TABLE IF EXISTS `orders`;
+-- DROP TABLE IF EXISTS `order_details`;
+-- DROP TABLE IF EXISTS `products`;
+-- DROP TABLE IF EXISTS `role`;
+-- DROP TABLE IF EXISTS `users`;
 -- --------------------------------------------------------
 
---
--- Cấu trúc bảng cho bảng `admin`
---
-
-CREATE TABLE `admin` (
-  `id` int(10) NOT NULL,
-  `email` varchar(255) DEFAULT NULL,
-  `password` varchar(255) DEFAULT NULL,
-  `phone` varchar(10) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `admin`
 --
-
-INSERT INTO `admin` (`id`, `email`, `password`, `phone`) VALUES
-(1, 'nguyentuanvinh1222@gmail.com', '120201', '1234567890');
 
 -- --------------------------------------------------------
 
@@ -56,7 +50,7 @@ CREATE TABLE `cart` (
   `productName` varchar(100) NOT NULL,
   `productPrice` decimal(10,0) NOT NULL,
   `productImage` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+);
 
 -- --------------------------------------------------------
 
@@ -68,16 +62,7 @@ CREATE TABLE `categories` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `status` tinyint(4) NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Đang đổ dữ liệu cho bảng `categories`
---
-
-INSERT INTO `categories` (`id`, `name`, `status`) VALUES
-(6, 'Xe điều khiển', 1),
-(7, 'Đồ chơi lắp ghép', 1),
-(8, 'Đồ chơi mô phỏng', 1);
+) ;
 
 -- --------------------------------------------------------
 
@@ -95,14 +80,8 @@ CREATE TABLE `orders` (
   `productPrice` int(20) NOT NULL,
   `receivedDate` date DEFAULT NULL,
   `status` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ;
 
---
--- Đang đổ dữ liệu cho bảng `orders`
---
-
-INSERT INTO `orders` (`id`, `productId`, `userId`, `createdDate`, `productName`, `qty`, `productPrice`, `receivedDate`, `status`) VALUES
-(57, 21, 59, '2009-06-22', 'Xe điều khiển 1:24 Ferrari FXXK Evo', 1, 335000, '0000-00-00', 'processing');
 
 -- --------------------------------------------------------
 
@@ -113,12 +92,12 @@ INSERT INTO `orders` (`id`, `productId`, `userId`, `createdDate`, `productName`,
 CREATE TABLE `order_details` (
   `id` int(11) NOT NULL,
   `orderId` int(11) NOT NULL,
+  `userId` int(11) NOT NULL,
+  `userName` varchar(255) NOT NULL,
   `productId` int(11) NOT NULL,
-  `qty` int(11) NOT NULL,
-  `productPrice` decimal(10,0) NOT NULL,
-  `productName` varchar(100) NOT NULL,
-  `productImage` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `rate` int(11) NOT NULL,
+  `comment` varchar(1000) NOT NULL
+) ;
 
 -- --------------------------------------------------------
 
@@ -139,18 +118,8 @@ CREATE TABLE `products` (
   `des` varchar(1000) NOT NULL,
   `status` tinyint(1) NOT NULL,
   `soldCount` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ;
 
---
--- Đang đổ dữ liệu cho bảng `products`
---
-
-INSERT INTO `products` (`id`, `name`, `originalPrice`, `promotionPrice`, `image`, `createdBy`, `createdDate`, `cateId`, `qty`, `des`, `status`, `soldCount`) VALUES
-(21, 'Xe điều khiển 1:24 Ferrari FXXK Evo', '335000', '335000', 'R79300_1.jpg', 59, '2022-03-08', 6, 10, 'Xe điều khiển Ferrari FXXK Evo R79300 của thương hiệu RASTAR, được mua bản quyền và mô phỏng lại chính xác với tỷ lệ thu nhỏ 1:24. Sở hữu thiết kế chân thực như một chiếc xe ngoài đời thật, sản phẩm không chỉ là món đồ chơi giải trí sau những giờ học tập mệt mỏi mà còn giúp bé có thêm kiến thức về các loại phương tiện giao thông.', 1, 1),
-(22, 'Trụ Sở Nghiên Cứu NASA Mặt Trăng', '3199000', '3199000', '60350_1_.jpg', 59, '2022-03-11', 7, 9, 'Hãy hạ cánh tàu đổ bộ mặt trăng để có những cuộc phiêu lưu tuyệt vời tại Trụ Sở Nghiên Cứu NASA Mặt Trăng. Tời và di chuyển các vật thể bằng máy bay không người lái, lấy mẫu từ máy bay VIPER và thực hiện các thí nghiệm trong phòng thí nghiệm khoa học và thực vật học. Sau đó nhảy lên xe buggy mặt trăng và đi đến khóa không khí và chỗ ở, nơi bạn có thể cất mũ bảo hiểm và ba lô của mình cho đến nhiệm vụ tiếp theo!', 1, 0),
-(23, 'Xe Ford® F-150 Raptor', '4899000', '4899000', '42126_1_.jpg', 59, '2022-03-11', 7, 10, 'Xe bán tải Ford® nổi tiếng về sức mạnh và chức năng của chúng. Giờ đây, bạn có thể sở hữu sự bản sao của chiếc xe này với bộ LEGO® Technic ™ Xe Ford® F-150 Raptor (42126). Tận hưởng thời gian chất lượng khi bạn khám phá các tính năng thực tế được thiết kế trong mô hình giống như thật này, gồm động cơ V6 với các piston chuyển động, cùng với hệ thống treo trên tất cả các bánh xe.', 1, 0),
-(24, 'Trạm Cứu Hỏa Abrick', '1000000', '1100000', '003026_2_.jpg', 59, '2022-06-10', 7, 20, 'Abrick ECOIFFIER 003026 Fire Station is a realistic fire station simulation toy model - a barracks complete with a team of qualified firefighters for all interventions: air, road… help put out quickly extinguish the fire, bringing peace to the people. Through simulation toys, children learn to understand the world around them, practice the skills they need for life, and be more independent every day.', 1, 2),
-(28, 'Vinh', '12022001', '1000000000', '', 59, '2022-06-11', 6, 1, 'nice', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -161,15 +130,8 @@ INSERT INTO `products` (`id`, `name`, `originalPrice`, `promotionPrice`, `image`
 CREATE TABLE `role` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ;
 
---
--- Đang đổ dữ liệu cho bảng `role`
---
-
-INSERT INTO `role` (`id`, `name`) VALUES
-(1, 'Admin'),
-(2, 'Normal');
 
 -- --------------------------------------------------------
 
@@ -188,15 +150,10 @@ CREATE TABLE `users` (
   `status` tinyint(1) NOT NULL,
   `captcha` varchar(50) NOT NULL,
   `isConfirmed` tinyint(4) NOT NULL DEFAULT 0,
-  `phone` varchar(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `phone` varchar(10) NOT NULL,
+  `image` varchar(50)
+) ;
 
---
--- Đang đổ dữ liệu cho bảng `users`
---
-
-INSERT INTO `users` (`id`, `fullName`, `email`, `dob`, `address`, `password`, `roleId`, `status`, `captcha`, `isConfirmed`, `phone`) VALUES
-(59, 'Nguyễn Tuấn Vinh', 'nguyentuanvinh1222@gmail.com', '2022-06-12', '276/1, Đường Tỉnh Lộ 827B', '12345', 1, 1, '930819', 1, '0793191854');
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -205,8 +162,6 @@ INSERT INTO `users` (`id`, `fullName`, `email`, `dob`, `address`, `password`, `r
 --
 -- Chỉ mục cho bảng `admin`
 --
-ALTER TABLE `admin`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Chỉ mục cho bảng `cart`
@@ -265,10 +220,7 @@ ALTER TABLE `users`
 --
 -- AUTO_INCREMENT cho bảng `admin`
 --
-ALTER TABLE `admin`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
---
 -- AUTO_INCREMENT cho bảng `categories`
 --
 ALTER TABLE `categories`
@@ -278,7 +230,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT cho bảng `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
 
 --
 -- AUTO_INCREMENT cho bảng `order_details`
@@ -290,7 +242,7 @@ ALTER TABLE `order_details`
 -- AUTO_INCREMENT cho bảng `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT cho bảng `role`
@@ -299,10 +251,58 @@ ALTER TABLE `role`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- Đang đổ dữ liệu cho bảng `orders`
+--
+
+INSERT INTO `orders` (`id`, `productId`, `userId`, `createdDate`, `productName`, `qty`, `productPrice`, `receivedDate`, `status`) VALUES
+(57, 21, 59, '2009-06-22', 'Xe điều khiển 1:24 Ferrari FXXK Evo', 1, 335000, '0000-00-00', 'processing');
+
+--
 -- AUTO_INCREMENT cho bảng `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+
+--
+-- Đang đổ dữ liệu cho bảng `categories`
+--
+
+INSERT INTO `categories` (`id`, `name`, `status`) VALUES
+(6, 'Xe điều khiển', 1),
+(7, 'Đồ chơi lắp ghép', 1),
+(8, 'Đồ chơi mô phỏng', 1);
+
+--
+-- Đang đổ dữ liệu cho bảng `products`
+--
+
+INSERT INTO `products` (`id`, `name`, `originalPrice`, `promotionPrice`, `image`, `createdBy`, `createdDate`, `cateId`, `qty`, `des`, `status`, `soldCount`) VALUES
+(21, 'Xe điều khiển 1:24 Ferrari FXXK Evo', '335000', '335000', 'R79300_1.jpg', 59, '2022-03-08', 6, 10, 'Xe điều khiển Ferrari FXXK Evo R79300 của thương hiệu RASTAR, được mua bản quyền và mô phỏng lại chính xác với tỷ lệ thu nhỏ 1:24. Sở hữu thiết kế chân thực như một chiếc xe ngoài đời thật, sản phẩm không chỉ là món đồ chơi giải trí sau những giờ học tập mệt mỏi mà còn giúp bé có thêm kiến thức về các loại phương tiện giao thông.', 1, 1),
+(22, 'Trụ Sở Nghiên Cứu NASA Mặt Trăng', '3199000', '3199000', '60350_1_.jpg', 59, '2022-03-11', 7, 9, 'Hãy hạ cánh tàu đổ bộ mặt trăng để có những cuộc phiêu lưu tuyệt vời tại Trụ Sở Nghiên Cứu NASA Mặt Trăng. Tời và di chuyển các vật thể bằng máy bay không người lái, lấy mẫu từ máy bay VIPER và thực hiện các thí nghiệm trong phòng thí nghiệm khoa học và thực vật học. Sau đó nhảy lên xe buggy mặt trăng và đi đến khóa không khí và chỗ ở, nơi bạn có thể cất mũ bảo hiểm và ba lô của mình cho đến nhiệm vụ tiếp theo!', 1, 0),
+(23, 'Xe Ford® F-150 Raptor', '4899000', '4899000', '42126_1_.jpg', 59, '2022-03-11', 7, 10, 'Xe bán tải Ford® nổi tiếng về sức mạnh và chức năng của chúng. Giờ đây, bạn có thể sở hữu sự bản sao của chiếc xe này với bộ LEGO® Technic ™ Xe Ford® F-150 Raptor (42126). Tận hưởng thời gian chất lượng khi bạn khám phá các tính năng thực tế được thiết kế trong mô hình giống như thật này, gồm động cơ V6 với các piston chuyển động, cùng với hệ thống treo trên tất cả các bánh xe.', 1, 0),
+(24, 'Trạm Cứu Hỏa Abrick', '1000000', '1100000', '003026_2_.jpg', 59, '2022-06-10', 7, 20, 'Abrick ECOIFFIER 003026 Fire Station is a realistic fire station simulation toy model - a barracks complete with a team of qualified firefighters for all interventions: air, road… help put out quickly extinguish the fire, bringing peace to the people. Through simulation toys, children learn to understand the world around them, practice the skills they need for life, and be more independent every day.', 1, 2),
+(28, 'Vinh', '12022001', '1000000000', '', 59, '2022-06-11', 6, 1, 'nice', 1, 0);
+
+
+--
+-- Đang đổ dữ liệu cho bảng `users`
+--
+
+INSERT INTO `users` (`id`, `fullName`, `email`, `dob`, `address`, `password`, `roleId`, `status`, `captcha`, `isConfirmed`, `phone`, `image`) VALUES
+('50', 'Thanh Sang', 'admin@gmail.com', '2022-06-12', '276/1, Đường Tỉnh Lộ 827B', '123', 1, 1, '123455', 1, '0365840620', 'ic.jpg');
+
+INSERT INTO `users` (`id`, `fullName`, `email`, `dob`, `address`, `password`, `roleId`, `status`, `captcha`, `isConfirmed`, `phone`,`image`) VALUES
+('59', 'Nguyễn Tuấn Vinh', 'nguyentuanvinh1222@gmail.com', '2022-06-12', '276/1, Đường Tỉnh Lộ 827B', '12345', 1, 1, '930819', 1, '0793191854','');
+
+--
+-- Đang đổ dữ liệu cho bảng `role`
+--
+
+INSERT INTO `role` (`id`, `name`) VALUES
+(1, 'Admin'),
+(2, 'Normal');
+
 
 --
 -- Các ràng buộc cho các bảng đã đổ
@@ -345,6 +345,7 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
 
 
 
