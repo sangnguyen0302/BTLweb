@@ -2,19 +2,21 @@
 <?php
     session_start();
     require_once '../DB.php';
-    require_once 'inc/head.php';?>
-<title>Tên sản phẩm</title>
+    require_once 'inc/head.php';
+    $db = new DB();
+    $user = $db->getInstance();
+    $id = $_GET['prod_id'];
+    $sql = "SELECT * FROM products WHERE id='$id'";
+    $result=mysqli_query($user->con, $sql);
+    $value=$result->fetch_assoc();
+?>
+<title><?= $value['name'] ?></title>
 <script src="../../javascript/pmbtnp.js"></script>
 <link type="text/css" rel="stylesheet" href= "../../css/single.css">
 </head>
 <body>
     <?php require_once 'inc/nav.php';
-        $db = new DB();
-        $user = $db->getInstance();
-        $id = $_GET['prod_id'];
-        $sql = "SELECT * FROM products WHERE id='$id'";
-        $result=mysqli_query($user->con, $sql);
-        $value=$result->fetch_assoc();
+        
     ?>
     
     <main class="my-5">
@@ -34,7 +36,7 @@
 
                     <div class="product-body">
                         <div class="product-price bg-light py-2 px-3">
-                            <span class="h2 text-dark">Giá: <?php echo $value['originalPrice']?></span>
+                            <span class="h2 text-danger"><?php echo number_format($value['originalPrice'])?> VNĐ</span>
                         </div>
 
                         <div class="add-to-cart py-5">
@@ -69,7 +71,7 @@
 
             </div>
 
-            <div class="product-description bg-white row mb-5">
+            <div class="product-description bg-white row mb-5 p-3">
                 <h4>Mô tả sản phẩm</h4>
                 <div>
                     <?php 
@@ -78,11 +80,11 @@
                 </div>
             </div>
 
-            <div class="product-rate-comment bg-white row">
+            <div class="product-rate-comment bg-white row p-3">
 
                 <div class="print-rate">
                     <!-- Print average rate number -->
-                    <h3>Đã đánh giá</h3>
+                    <h4>Đã đánh giá</h4>
                     <?php
                         echo $averRate;    
 
