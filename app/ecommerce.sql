@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th6 15, 2022 lúc 07:21 PM
+-- Thời gian đã tạo: Th6 12, 2022 lúc 03:31 PM
 -- Phiên bản máy phục vụ: 10.4.24-MariaDB
 -- Phiên bản PHP: 8.1.4
 
@@ -20,6 +20,28 @@ SET time_zone = "+00:00";
 --
 -- Cơ sở dữ liệu: `ecommerce`
 --
+CREATE DATABASE IF NOT EXISTS `ecommerce` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `ecommerce`;
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `admin`
+--
+
+CREATE TABLE `admin` (
+  `id` int(10) NOT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `phone` varchar(10) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `admin`
+--
+
+INSERT INTO `admin` (`id`, `email`, `password`, `phone`) VALUES
+(1, 'nguyentuanvinh1222@gmail.com', '120201', '1234567890');
 
 -- --------------------------------------------------------
 
@@ -52,7 +74,7 @@ CREATE TABLE `categories` (
 -- Đang đổ dữ liệu cho bảng `categories`
 --
 
-INSERT DELAYED INTO `categories` (`id`, `name`, `status`) VALUES
+INSERT INTO `categories` (`id`, `name`, `status`) VALUES
 (6, 'Xe điều khiển', 1),
 (7, 'Đồ chơi lắp ghép', 1),
 (8, 'Đồ chơi mô phỏng', 1);
@@ -75,6 +97,13 @@ CREATE TABLE `orders` (
   `status` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Đang đổ dữ liệu cho bảng `orders`
+--
+
+INSERT INTO `orders` (`id`, `productId`, `userId`, `createdDate`, `productName`, `qty`, `productPrice`, `receivedDate`, `status`) VALUES
+(57, 21, 59, '2009-06-22', 'Xe điều khiển 1:24 Ferrari FXXK Evo', 1, 335000, '0000-00-00', 'processing');
+
 -- --------------------------------------------------------
 
 --
@@ -83,11 +112,12 @@ CREATE TABLE `orders` (
 
 CREATE TABLE `order_details` (
   `id` int(11) NOT NULL,
-  `userId` int(11) NOT NULL,
-  `userName` varchar(255) NOT NULL,
+  `orderId` int(11) NOT NULL,
   `productId` int(11) NOT NULL,
-  `rate` int(11) NOT NULL,
-  `comment` varchar(1000) NOT NULL
+  `qty` int(11) NOT NULL,
+  `productPrice` decimal(10,0) NOT NULL,
+  `productName` varchar(100) NOT NULL,
+  `productImage` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -115,14 +145,12 @@ CREATE TABLE `products` (
 -- Đang đổ dữ liệu cho bảng `products`
 --
 
-INSERT DELAYED INTO `products` (`id`, `name`, `originalPrice`, `promotionPrice`, `image`, `createdBy`, `createdDate`, `cateId`, `qty`, `des`, `status`, `soldCount`) VALUES
-(21, 'Xe điều khiển 1:24 Ferrari FXXK Evo', '335000', '335000', 'R79300_1.jpg', 59, '2022-03-08', 6, 10, 'Ferrari FXXK Evo R79300 driver by RASTAR brand, licensed and accurately reproduced with 1:24 scale down. Possessing a leg design like a real-life vehicle, the product is not only an entertaining toy after hours of tiring study but also helps children gain more knowledge about various types of media.', 1, 1),
+INSERT INTO `products` (`id`, `name`, `originalPrice`, `promotionPrice`, `image`, `createdBy`, `createdDate`, `cateId`, `qty`, `des`, `status`, `soldCount`) VALUES
+(21, 'Xe điều khiển 1:24 Ferrari FXXK Evo', '335000', '335000', 'R79300_1.jpg', 59, '2022-03-08', 6, 10, 'Xe điều khiển Ferrari FXXK Evo R79300 của thương hiệu RASTAR, được mua bản quyền và mô phỏng lại chính xác với tỷ lệ thu nhỏ 1:24. Sở hữu thiết kế chân thực như một chiếc xe ngoài đời thật, sản phẩm không chỉ là món đồ chơi giải trí sau những giờ học tập mệt mỏi mà còn giúp bé có thêm kiến thức về các loại phương tiện giao thông.', 1, 1),
 (22, 'Trụ Sở Nghiên Cứu NASA Mặt Trăng', '3199000', '3199000', '60350_1_.jpg', 59, '2022-03-11', 7, 9, 'Hãy hạ cánh tàu đổ bộ mặt trăng để có những cuộc phiêu lưu tuyệt vời tại Trụ Sở Nghiên Cứu NASA Mặt Trăng. Tời và di chuyển các vật thể bằng máy bay không người lái, lấy mẫu từ máy bay VIPER và thực hiện các thí nghiệm trong phòng thí nghiệm khoa học và thực vật học. Sau đó nhảy lên xe buggy mặt trăng và đi đến khóa không khí và chỗ ở, nơi bạn có thể cất mũ bảo hiểm và ba lô của mình cho đến nhiệm vụ tiếp theo!', 1, 0),
 (23, 'Xe Ford® F-150 Raptor', '4899000', '4899000', '42126_1_.jpg', 59, '2022-03-11', 7, 10, 'Xe bán tải Ford® nổi tiếng về sức mạnh và chức năng của chúng. Giờ đây, bạn có thể sở hữu sự bản sao của chiếc xe này với bộ LEGO® Technic ™ Xe Ford® F-150 Raptor (42126). Tận hưởng thời gian chất lượng khi bạn khám phá các tính năng thực tế được thiết kế trong mô hình giống như thật này, gồm động cơ V6 với các piston chuyển động, cùng với hệ thống treo trên tất cả các bánh xe.', 1, 0),
 (24, 'Trạm Cứu Hỏa Abrick', '1000000', '1100000', '003026_2_.jpg', 59, '2022-06-10', 7, 20, 'Abrick ECOIFFIER 003026 Fire Station is a realistic fire station simulation toy model - a barracks complete with a team of qualified firefighters for all interventions: air, road… help put out quickly extinguish the fire, bringing peace to the people. Through simulation toys, children learn to understand the world around them, practice the skills they need for life, and be more independent every day.', 1, 2),
-(28, 'Đồ chơi bé làm bác sĩ', '879000', '879000','bx1230z-mykingdom.jpg', 59, '2022-06-11', 6, 1, 'nice', 1, 0),
-(1,'Xe cứu hộ bãi biển RAM 2500 với nhân viên và ván chèo đứng','2199000','1979000','bru02506-tiki-th.jpg',59,'2022-06-15',7,9,'Xe cứu hộ bãi biển RAM 2500 với nhân viên và ván chèo đứng BRU02506 là một trong những sản phẩm cao cấp đến từ thương hiệu đồ chơi Bruder. Sự mạnh mẽ và khả năng di chuyển trên mọi địa hình của RAM là huyền thoại và vẫn là độc nhất cho đến ngày nay. Đây là một mẫu xe không thể thiếu cho các hoạt động trên bãi biển, thể thao dưới nước,... Hơn thế nữa, mô hình này đã thể hiện rõ phương châm của Bruder – mang lại chức năng giống ngoài đời thật để các bé có thể làm quen và nhận biết. Các bé hãy cùng nhau khám phá mẫu xe cứu hộ bãi biển cực thú vị này nhé!',1,0),
-(2,'Trò chơi bắn tàu','199000','159000','b0995_1_.jpg',59,'2022-06-15',6,15,'Đồ chơi Hasbro Gaming trò chơi bắn tàu B0995 là bộ đồ chơi đòi hỏi sự khéo léo, tính toán và kiên trì của người chơi. Sản phẩm giúp hỗ trợ trí não bé phát triển cũng như hỗ trợ bé khéo léo, tập tính kiên trì khi chơi và tương tác với bạn bè, anh chị em hay bố mẹ.',1,0);
+(28, 'Vinh', '12022001', '1000000000', '', 59, '2022-06-11', 6, 1, 'nice', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -139,7 +167,7 @@ CREATE TABLE `role` (
 -- Đang đổ dữ liệu cho bảng `role`
 --
 
-INSERT DELAYED INTO `role` (`id`, `name`) VALUES
+INSERT INTO `role` (`id`, `name`) VALUES
 (1, 'Admin'),
 (2, 'Normal');
 
@@ -167,13 +195,18 @@ CREATE TABLE `users` (
 -- Đang đổ dữ liệu cho bảng `users`
 --
 
-INSERT DELAYED INTO `users` (`id`, `fullName`, `email`, `dob`, `address`, `password`, `roleId`, `status`, `captcha`, `isConfirmed`, `phone`,`image`) VALUES
-(59, 'Nguyễn Tuấn Vinh', 'nguyentuanvinh1222@gmail.com', '2022-06-12', '276/1, Đường Tỉnh Lộ 827B', '12345', 2, 1, '930819', 1, '0793191854',''),
-(64, 'admin1', 'superAdmin@gmail.com', '2022-06-13', 'Trái Đất', '101001', 1, 1, '101001', 1, '0987654321','');
+INSERT INTO `users` (`id`, `fullName`, `email`, `dob`, `address`, `password`, `roleId`, `status`, `captcha`, `isConfirmed`, `phone`) VALUES
+(59, 'Nguyễn Tuấn Vinh', 'nguyentuanvinh1222@gmail.com', '2022-06-12', '276/1, Đường Tỉnh Lộ 827B', '12345', 1, 1, '930819', 1, '0793191854');
 
 --
 -- Chỉ mục cho các bảng đã đổ
 --
+
+--
+-- Chỉ mục cho bảng `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Chỉ mục cho bảng `cart`
@@ -200,7 +233,7 @@ ALTER TABLE `orders`
 --
 ALTER TABLE `order_details`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `order_id` (`userId`),
+  ADD KEY `order_id` (`orderId`),
   ADD KEY `product_id` (`productId`);
 
 --
@@ -230,6 +263,12 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT cho bảng `admin`
+--
+ALTER TABLE `admin`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT cho bảng `categories`
 --
 ALTER TABLE `categories`
@@ -239,7 +278,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT cho bảng `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- AUTO_INCREMENT cho bảng `order_details`
@@ -251,7 +290,7 @@ ALTER TABLE `order_details`
 -- AUTO_INCREMENT cho bảng `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT cho bảng `role`
@@ -263,7 +302,7 @@ ALTER TABLE `role`
 -- AUTO_INCREMENT cho bảng `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
 -- Các ràng buộc cho các bảng đã đổ
@@ -287,7 +326,7 @@ ALTER TABLE `orders`
 --
 ALTER TABLE `order_details`
   ADD CONSTRAINT `order_details_ibfk_1` FOREIGN KEY (`productId`) REFERENCES `products` (`id`),
-  ADD CONSTRAINT `order_details_ibfk_2` FOREIGN KEY (`userId`) REFERENCES `orders` (`id`);
+  ADD CONSTRAINT `order_details_ibfk_2` FOREIGN KEY (`orderId`) REFERENCES `orders` (`id`);
 
 --
 -- Các ràng buộc cho bảng `products`
@@ -306,6 +345,3 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
-/*j do*/
-
