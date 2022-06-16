@@ -119,8 +119,8 @@
                     -->
                     <form action="../controllers/productMnController.php" method= "post">
                         <p>Bình luận</p>
-                        <textarea name="des" cols="100" rows="5">Bình luận...</textarea>
-                        <input type="submit" name="comment" value="comment">
+                        <textarea name="user_comment" cols="100" rows="5">Bình luận...</textarea>
+                        <input type="submit" name="comment" value="<?php echo $productId?>">
                     </form>
 
 

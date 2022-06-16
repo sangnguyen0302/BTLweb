@@ -34,6 +34,20 @@
 	        }
     	}
 
+    	public function addNewComment($userId,$userName,$productId,$comment)
+    	{
+    		$db = new DB();
+
+			$user = $db->getInstance();
+
+	        $sql = "INSERT INTO order_details(id,orderId,userId,userName,productId,rate,comment) VALUES (NULL,57,'$userId','$userName','$productId',0,'$comment')";
+	        $result = mysqli_query($user->con, $sql);
+	        if ($result) {
+	            return true;
+	        }
+	        return false;
+    	}
+
 	}
 
 

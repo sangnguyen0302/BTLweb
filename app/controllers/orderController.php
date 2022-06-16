@@ -17,6 +17,8 @@
 
         	$userId=$_SESSION['user_id'];
 
+            //Sửa sau
+
         	//Isert from cart to order after payment
         	foreach($_SESSION['cart'] as $value){
         		$cart->insertToOrder($value['id'],$userId,$value['name'],1,$value['promotionPrice']);
@@ -39,12 +41,12 @@
     	}else if($_REQUEST['action'] == 'viewDetail' && !empty($_REQUEST['id'])){
 
     		$userId=$_SESSION['user_id'];
-    		$product_id = $_REQUEST['id'];
+    		$productId = $_REQUEST['id'];
     		include_once "../models/orderDetailModel.php";
     		include_once "../models/orderModel.php";
 
         	$cart = new orderDetailModel();
-        	$result= $cart->getProduct($product_id);
+        	$result= $cart->getProduct($productId);
         	$productRow=$result->fetch_all(MYSQLI_ASSOC);
 
         	$totalRate = 0;
@@ -60,7 +62,7 @@
                 $averRate = floor($totalRate/$countRate);
             }
 
-            $checkOrdered = $cart->checkExistOrder($userId,$product_id); 
+            $checkOrdered = $cart->checkExistOrder($userId,$productId); 
 
         	require_once "../views/single.php";
     	}else if($_REQUEST['action'] == 'removeProduct' && !empty($_REQUEST['id'])){

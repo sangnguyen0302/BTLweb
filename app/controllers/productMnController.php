@@ -1,5 +1,7 @@
 <?php  
 
+	session_start();
+
 	if(isset($_REQUEST['action']) && !empty($_REQUEST['action'])){ 
 
 
@@ -152,6 +154,45 @@
 				require_once "../views/management/ProductsManagement.php";
 
         	}
+
+        }else if(isset($_POST['comment'])){
+        	
+    		$userId = $_SESSION['user_id'];
+    		$productId= $_POST['comment'];
+    		$comment = $_POST['user_comment'];
+
+    		include_once "../models/memberModel.php";
+
+    		$user = new memberModel();
+    		$user_result = $user->getMemById($userId);
+    		$user_property = $user_result->fetch_assoc();
+    		
+    		$userName = $user_property['fullName']; 
+
+    		include_once "../models/orderDetailModel.php";
+
+    		$detail = new orderDetailModel();
+    		$detail->addNewComment($userId,$userName,$productId,$comment);
+
+        	$result= $detail->getProduct($productId);
+        	$productRow=$result->fetch_all(MYSQLI_ASSOC);
+
+        	$totalRate = 0;
+            $countRate =0; 
+            $averRate=0;
+            foreach($productRow as $value){
+                ++$countRate;
+                $totalRate+=$value['rate'];
+            }
+
+
+            if($countRate>0){
+                $averRate = floor($totalRate/$countRate);
+            }
+
+            $checkOrdered = $detail->checkExistOrder($userId,$productId); 
+
+        	require_once "../views/single.php";
 
         }
 	}	
