@@ -55,12 +55,18 @@
               <?php  }
               ?>
               <li class="nav-item">
-                <a class="nav-link" href="cart.php"><i class="fa-solid fa-cart-shopping"></i> 
-                <?php if(isset($_SESSION['cart'])){
+                <a class="nav-link position-relative" href="cart.php" style="width: 34px;"><i class="fa-solid fa-cart-shopping"></i> 
+                <!--?php if(isset($_SESSION['cart'])){
                   echo "(";
                   echo count($_SESSION['cart']);
                   echo ")";
-                }else{echo"(0)";}?></a>
+                }else{echo"(0)";}?-->
+                <span class="position-absolute top-10 start-100 translate-middle badge rounded-circle bg-danger">
+                  <?php if(isset($_SESSION['cart'])){
+                    echo count($_SESSION['cart']);
+                  }else{echo"0";}?>
+                </span>
+                </a>
               </li>
           </ul>
           
