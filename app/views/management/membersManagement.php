@@ -1,4 +1,12 @@
 <?php require_once '../views/inc/head.php'; ?>
+<style>
+	a {
+		text-decoration : none;
+	}
+	a:hover {
+		text-decoration : underline;
+	}
+</style>
 <title>Quản trị thành viên</title>
 </head>
 <body>
@@ -6,7 +14,7 @@
 	<main style="margin-left: 220px" class="p-3">
 		<div class="container-fluid my-5 bg-light py-3">
 			<h4>User page</h4>
-			<div class="table-responsive-lg">
+			<div class="table-responsive-xxl">
 			<table class="table table-hover">
 				<?php 
 					$count=0;
@@ -20,9 +28,9 @@
 					<td>Ngày sinh</td>
 					<td>Địa chỉ</td>
 					<td>Mật khẩu</td>
-					<td>Trạng thái</td>
-					<td>Mã captcha</td>
-					<td>Comfirmed?</td>
+					<!--td>Trạng thái</td-->
+					<!--td>Mã captcha</td-->
+					<!--td>Comfirmed?</td-->
 					<td>Số điện thoại</td>
 					<td>Thao tác</td>
 
@@ -42,13 +50,13 @@
 						<td><?php echo $value['dob']; ?></td>
 						<td><?php echo $value['address']; ?></td>
 						<td><?php echo $value['password']; ?></td>
-						<td><?php echo $value['status']; ?></td>
-						<td><?php echo $value['captcha']; ?></td>
-						<td><?php echo $value['isConfirmed']; ?></td>
+						<!--td><,?php echo $value['status']; ?></td>
+						<td><,?php echo $value['captcha']; ?></td>
+						<td><,?php echo $value['isConfirmed']; ?></td-->
 						<td><?php echo $value['phone']; ?></td>
 						<td>
 							<a href="../controllers/memMnController.php?action=editInfor&id=<?php echo $value['id'] ?>">Sửa thông tin</a><br>
-							<a href="../controllers/memMnController.php?action=removeMem&id=<?php echo $value['id'] ?>">Xóa</a>
+							<a class="text-danger" href="../controllers/memMnController.php?action=removeMem&id=<?php echo $value['id'] ?>">Xóa</a>
 						</td>
 					</tr>
 
