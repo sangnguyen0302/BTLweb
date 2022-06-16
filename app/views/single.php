@@ -1,28 +1,40 @@
-<?php require_once 'inc/head.php';?>
+
+<?php
+    session_start();
+    require_once '../DB.php';
+    require_once 'inc/head.php';?>
 <title>Tên sản phẩm</title>
 <script src="../../javascript/pmbtnp.js"></script>
 <link type="text/css" rel="stylesheet" href= "../../css/single.css">
 </head>
 <body>
-    <?php require_once 'inc/nav.php'; ?>
+    <?php require_once 'inc/nav.php';
+        $db = new DB();
+        $user = $db->getInstance();
+        $id = $_GET['prod_id'];
+        $sql = "SELECT * FROM products WHERE id='$id'";
+        $result=mysqli_query($user->con, $sql);
+        $value=$result->fetch_assoc();
+    ?>
     
     <main class="my-5">
         <div class="container mx-auto">
 
             <div class="row bg-white product-info mb-5">
                 <div class="col-lg-6 border border-start-0 border-top-0 border-bottom-0 py-3 h-100">
-                <img src="https://dthezntil550i.cloudfront.net/82/latest/822204301513096530015282071/1280_960/ec2b5a03-b0cd-4054-b83c-d0436d50e242.jpg" alt="" width=100% height="100%">
+                <img src="../../image/<?=$value['image']?>" alt="" width=100% height="100%">
                 </div>
 
                 <div class="col-lg-6 py-3 h-100">
 
                     <div class="product-header my-3">
-                        <h3>Tên sản phẩm</h3>
+                        <h3>Tên sản phẩm: <?php echo $value['name']?></h3>
+                        <h4>Số lượng còn lại: <?php echo $value['qty']?></h4>   
                     </div>
 
                     <div class="product-body">
                         <div class="product-price bg-light py-2 px-3">
-                            <span class="h2 text-dark">Giá cả</span>
+                            <span class="h2 text-dark">Giá: <?php echo $value['originalPrice']?></span>
                         </div>
 
                         <div class="add-to-cart py-5">
@@ -47,7 +59,7 @@
                             </div>
 
                             <div class="add-to-cart-btn my-5">
-                                    <a class="btn btn-outline-dark" href="">Thêm vào giỏ hàng</a>
+                                    <a class="btn btn-outline-dark" href="../controllers/script.php?single-store-product-id=<?php echo $value['id'];?>">Thêm vào giỏ hàng</a>
                             </div>
                         </div>
                         
@@ -59,6 +71,11 @@
 
             <div class="product-description bg-white row mb-5">
                 <h4>Mô tả sản phẩm</h4>
+                <div>
+                    <?php 
+                        echo $value['des'];
+                    ?>
+                </div>
             </div>
 
             <div class="product-rate-comment bg-white row">
