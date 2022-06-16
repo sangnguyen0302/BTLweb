@@ -4,6 +4,8 @@
     require_once("../DB.php");
     require_once '../models/ProductModel.php';
  ?>
+<title>Thông tin tài khoản</title>
+</head>
 <?php
     if(isset($_GET['user_id'])){
         $user_id= $_GET['user_id'];
@@ -14,28 +16,44 @@
             echo mysqli_error($db->con);
         }
         $value = $result->fetch_assoc();
-        ?>
-        <div class="page contact-us-page">
-            <div class="container">
-                <h3>Thông tin cá nhân</h3>
-                <div class="card-body info">
-                    <?php
-                    if($value['image']==''){
-                        echo '<img src="../../image/default-avatar.png">';
-                    }else{
-                        echo '<img src="../../upload_image/'.$value['image'].'">';
-                    }
-                    ?>
-                    <form action="../controllers/infoController.php".$user_id method="POST" enctype="multipart/form-data">
-                        <input type="file" name="image" accept="image/jpg, image/jpeg, image/png">
-                        <input type="hidden" name="user-id" value=<?=$user_id?>>
-                        <input type="submit" name="change-avt" value="Đổi ảnh đại diện">
-                    </form>
+?>
+<body>
+    <div class="container my-5">
+        <h3>Thông tin tài khoản</h3>
+        <div class="container-fluid p-3 bg-light">
+            <div class="row">
+                <div class="col self-info">
+                    <h6>Thông tin cá nhân</h6>
+                    <div class="avatar">
+                        <?php
+                            if($value['image']==''){
+                                echo '<img src="../../image/default-avatar.png" class="rounded-circle">';
+                            }else{
+                                echo '<img src="../../upload_image/'.$value['image'].'" class="rounded-circle">';
+                            }
+                        ?>
+                        <form action="../controllers/infoController.php".$user_id method="POST" enctype="multipart/form-data">
+                            <input type="file" name="image" accept="image/jpg, image/jpeg, image/png">
+                            <input type="hidden" name="user-id" value=<?=$user_id?>>
+                            <input class="btn btn-outline-secondary" type="submit" name="change-avt" value="Đổi ảnh đại diện">
+                        </form>
+                    </div>
+
+
+                    
+                </div>
+
+            </div>
+        </div>
+    </div>
+                
+                    
+
                     <h4 class="card-title">Họ và tên: <?php echo $value['fullName'];?></h4>
                     <p class="card-text">Ngày sinh: 
                         <input type="date" value="<?=$value['dob']?>"/>
                         <p class="card-text">Địa chỉ: <?php echo $value['address'];?></p>
-                        <p class="card-text">Mã số tài khoản: <?php echo $value['id'];?></p>
+                        <!--p class="card-text">Mã số tài khoản: <,?php echo $value['id'];?></p-->
                         <p class="card-text">Số điện thoại: 
                         <input type="text" value="<?=$value['phone']?>"/>
                     <p class="card-text">Loại tài khoản: <?php 
@@ -102,12 +120,16 @@
                     }
                    
                     ?>
-                </div>
+                
                
             </div>
     </div>
         <?php
     }
-    
+?>  
+        </div>
 
-?>
+
+</body>
+</html>
+
