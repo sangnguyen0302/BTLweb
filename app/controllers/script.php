@@ -8,7 +8,14 @@
         $product_id = $_GET['store-product-id'];
         $cart = new CartModel($product_id);
         $cart->storeProduct();
-        header("Location: ../views/cart.php");
+        header("Location: ../views/home.php");
+        exit();
+    }
+    if(isset($_GET['single-store-product-id'])){
+        $product_id = $_GET['single-store-product-id'];
+        $cart = new CartModel($product_id);
+        $cart->storeProduct();
+        header("Location: ../views/single.php?prod_id=".$product_id);
         exit();
     }
     if(isset($_GET['remove-product-id'])){

@@ -21,8 +21,11 @@
                 </a>
                   <ul class="dropdown-menu dropdown-menu-dark">
                   <?php
-                    foreach ($listCategory as $category) { ?>
-                      <li><a class="dropdown-item" href="#"><?= $category['name'] ?></a></li>
+      
+                    foreach ($listCategory as $category) { 
+                      $id=$category['id']
+                      ?>
+                      <li><a class="dropdown-item" href='home.php?cateid=<?=$id?>'><?= $category['name'] ?></a></li>
                   <?php }
                   ?>
                   </ul>

@@ -55,7 +55,10 @@
                     $page=1;    
                 } 
                 
-                $result = $prod->getPage($page);
+                if(isset($_GET['cateid'])){
+                    $result=$prod->getPageandCateid($page,$_GET['cateid']);
+                }
+                else{ $result = $prod->getPage($page);}
                 
                 if($result){
                     while($data=$result->fetch_assoc()) 
@@ -65,9 +68,11 @@
 					<div class="col">
                         <div class="card h-100 text-center">
 					<!-- The products image -->
+                        <a href="single.php?prod_id=<?=$data['id']?>">
                         <div class="zoom">
                             <img src="<?php echo "../../image/".$data['image'] ?>" class="card-img-top" alt="...">
                         </div>
+                        </a>
 					<!-- The products name -->
                         <div class="card-body">
                             <h5 class="card-title"><?php echo $data['name'] ?></h5>
@@ -89,7 +94,10 @@
         <nav aria-label="Page navigation" class="my-3 text-dark">
             <ul class="pagination justify-content-center">
             <?php  
-                $result = $prod->getAll();
+                if(isset($_GET['cateid'])){
+                    $result=$prod->getByCateid($_GET['cateid']);
+                }
+                else{$result = $prod->getAll();}
                 $total_records = mysqli_num_rows($result);    
           
                 $per_page_record = 6;
