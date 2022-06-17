@@ -102,4 +102,3 @@ class ProductModel
         return $result;
     }
 }
-    

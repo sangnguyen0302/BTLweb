@@ -1,5 +1,6 @@
     <?php 
       require_once '../models/categoryModel.php';
+      require_once '../DB.php';
       require_once '../models/cartModel.php';
       $result2="0";
       if(isset($_SESSION['user_id'])){
@@ -10,7 +11,7 @@
     ?>
       <nav class="navbar navbar-expand-md bg-dark navbar-dark sticky-top">
         <div class="container-fluid">
-          <a class="navbar-brand" href="home.php">LOGO</a>
+          <a class="navbar-brand" href="../views/home.php">LOGO</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -60,20 +61,21 @@
               <?php  }
               ?>
               <li class="nav-item">
-                <a class="nav-link" href="cart.php"><i class="fa-solid fa-cart-shopping"></i> 
+                <a class="nav-link position-relative" href="cart.php" style="width: 34px;"><i class="fa-solid fa-cart-shopping"></i> 
+                <span class="position-absolute top-10 start-100 translate-middle badge rounded-circle bg-danger">
                 <?php if(!isset($_SESSION['user_id'])&&isset($_SESSION['cart'])){
-                  echo "(";
                   echo count($_SESSION['cart']);
-                  echo ")";
-                }else if(!isset($_SESSION['user_id'])){echo"(0)";}
-                else if(isset($_SESSION['user_id'])){
+                }else if(!isset($_SESSION['user_id'])){echo"0";}
+                else if(isset($_SESSION['user_id'])){ 
                   if($result2&&mysqli_num_rows($result2)>0){
                     echo mysqli_num_rows($result2);
                   }else{
                     echo "0";
                   }
                 }
-                ?></a>
+                ?>
+                </span>
+              </a>
               </li>
           </ul>
           

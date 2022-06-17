@@ -12,7 +12,7 @@
     <link type="text/css" rel="stylesheet" href= "../../css/footer.css">
     <link type="text/css" rel="stylesheet" href= "../../css/nav.css">
     <link type="text/css" rel="stylesheet" href= "../../css/pro_cart.css">
-    <link type="text/css" rel="stylesheet" href= "../../css/profile.css">
+    
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>

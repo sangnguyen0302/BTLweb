@@ -35,7 +35,7 @@
 			$result = $product->getAll();
 			$productsList= $result->fetch_all(MYSQLI_ASSOC);
 
-			require_once "../views/productsManagement.php";
+			require_once "../views/management/ProductsManagement.php";
 
 		}
 

@@ -31,6 +31,7 @@
             <tbody class="text-center align-middle">
       
                 <?php
+                    //print_r($_SESSION['cart']);
                     foreach($_SESSION['cart'] as $value){
                 ?>
                 <tr> <!-- The product html template -->
@@ -86,7 +87,7 @@
         </table>
 </div>
 
-    <?php } else if(!$_SESSION['user_id']) { ?>
+    <?php } else if(!isset($_SESSION['user_id'])) { ?>
          <div class="container-fluid text-center">
             <img src="https://www.english-learning.net/wp-content/uploads/2019/04/sorry-min.png" alt="Sorry" width="300px" heigt="300px" class="m-3">
             <h5>Giỏ hàng đang trống</h5>
@@ -180,6 +181,28 @@
     ?>
 
 </div>
+
+<!--
+    This is payment form. It's will send a request to paymentController with value Payment. 
+    You can place it in another location that is reasonable.
+-->
+    <form action = "../controllers/paymentController.php" method="post">
+        
+        <p>vui lòng chọn hình thức thanh toán</p>
+        <input type="radio" name="paymentMethod" value="Payment_on_deliver">
+        <lable>Thanh toán khi nhận hàng</label><br>
+
+        <input type="radio" name="paymentMethod" value="digital_wallet">
+        <label>Thanh toán bằng ví điện tử</label><br>
+
+        <input type="radio" name="paymentMethod" value="banking">
+        <label>Chuyển khoản ngân hàng</label><br>
+
+        <input type="submit" name="paymentAction" value="Payment">
+        
+    </form>
+
+
     <?php require_once 'inc/footer.php'; ?>
     
 </body>
