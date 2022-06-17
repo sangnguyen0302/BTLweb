@@ -68,163 +68,153 @@
                 </div>
 
                 <div class="col-md-6 self-contact py-3">
-                    <div class="contact mb-5">
+                    <div class="contact mb-3">
                     <h5>Thông tin liên hệ</h5>
                         <ul class="list-group">
-                            <li class="phoneli">  
-                                <div class="py-2 phone-num ms-4 d-flex">
+                            <li class="phoneli">
+                                <form action="">
+                                <div class="py-1 phone-num ms-4 d-flex">
                                     <div>
                                         <span>Số điện thoại</span> <br>
-                                        <span><?=$value['phone']?></span>
+                                        <input class="form-control-plaintext" type="text" name="phone" value="<?= $value['phone'] ?>">
                                     </div>
                                     <div class="text-end flex-fill">
-                                        <a href="#" class="btn btn-outline-primary">Cập nhật</a>
+                                        <button type="submit" class="btn btn-outline-primary">Cập nhật</button>
                                     </div>
                                 </div>
-                                
+                                </form>
                             </li>
 
                             <li class="emaili">
-                                <div class="py-2 email d-inline-block ms-4 d-flex">
+                                <form action="">
+                                <div class="py-1 email d-inline-block ms-4 d-flex">
                                     <div>
                                         <span>Địa chỉ email</span> <br>
-                                        <span><?=$value['email']?></span>
+                                        <input class="form-control-plaintext" type="text" name="mail" value="<?= $value['email'] ?>">
                                     </div>
                                     <div class="text-end flex-fill">
-                                        <a href="#" class="btn btn-outline-primary">Cập nhật</a>
+                                        <button type="submit" class="btn btn-outline-primary">Cập nhật</button>
                                     </div>
                                 </div>
+                                </form>
+                                
                             </li>
                         </ul>
                     </div>
 
-                    <div class="security mb-5">
+                    <div class="security mb-3">
                     <h5>Bảo mật</h5>
                         <ul class="list-group">
                             <li class="lockli">
                             <div class="py-2 pwd d-inline-block ms-4 d-flex">
                                 <div>
-                                    <span>Thiết lập mật khẩu</span> 
+                                    <span>
+                                        Thiết lập mật khẩu
+                                    </span>
+                                    <div class="card card-body collapse" id="collapsepwd">
+
+                                        <?php
+                    
+                    
+                                        if(isset($_POST['submit-change-pass'])){
+                                            $id = $_POST['user_id'];
+                                            $sql="SELECT * FROM users WHERE id='$id'";
+                                            $result= mysqli_query($db->con, $sql);
+                                            $value=$result->fetch_assoc();
+                                            $new_pass=$_POST['new-pass'];
+                                            if($_POST['old-pass']!=$value['password']){
+                                                $message="Sai mật khẩu";
+                                            }else if($_POST['new-pass']!=$_POST['confirm-pass']){
+                                                $message="Mật khẩu xác nhận không khớp";
+                                            }else{
+                                                $sql = "UPDATE users SET password='$new_pass' WHERE id='$id'";
+                                                $result= mysqli_query($db->con, $sql);
+                                                if($result){
+                                                    echo "Change password success fully";
+                                                }else{
+                                                    echo mysqli_error($db->con);
+                                                }
+                            
+                                            }
+                                        }
+                                        ?>
+                                        <form action="" method="POST" >
+                                            <?php
+                                                if(isset($message)){
+                                                echo "<span class='text-danger'>".$message.'</span>';
+                                                }
+                                            ?>
+                                            <input type="hidden" name="user_id" value="<?=$user_id?>">
+                                            <!--input type="hidden" name="change-pass" value="Đổi mật khẩu"-->
+                                            <div class="mb-2 old-pwd">
+                                                <label for="">Mật khẩu hiện tại :</label>
+                                                <input class="form-control" type="password" name="old-pass" placeholder="Mật khẩu hiện tại" required>
+                                            </div>
+
+                                            <div class="mb-2 new-pwd">
+                                                <label for="">Mật khẩu mới :</label>
+                                                <input class="form-control" type="password" name="new-pass" placeholder="Mật khẩu mới" required>
+                                            </div>
+                                            
+                                            <div class="mb-2 confirm-pwd">
+                                                <label for="">Nhập lại mật khẩu mới :</label>
+                                                <input class="form-control" type="password" name="confirm-pass" placeholder="Nhập lại mật khẩu mới" required>
+                                            </div>
+                                            <input class="btn btn-primary" type="submit" name="submit-change-pass" value="Xác nhận">
+                                        </form>
+                                    </div> 
                                 </div>
                                 <div class="text-end flex-fill">
-                                        <a href="#" class="btn btn-outline-primary">Cập nhật</a>
+                                        <a href="#collapsepwd" class="btn border border-2" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapsepwd">Đổi mật khẩu</a>
                                 </div>
                             </div>
                             </li>
                         </ul>
                     </div>
 
-                    <div class="role mb-3">
+                    <div class="role">
                     <h5>Tư cách</h5>
                         <ul class="list-group">
                             <li class="roleli">
-                            <div class="py-2 rol d-inline-block ms-4 d-flex">
-                                <div>
-                                    <span>  
-                                    <?php
-                                        if($value['roleId']== 1 ) {
-                                            echo "Quản trị viên";
-                                        } else {
-                                            echo "Khách hàng";
-                                        } ?>
-                                    </span> 
+                                <form action="">
+                                <div class="py-1 rol d-inline-block ms-4 d-flex">
+                                    <div>
+                                    <select name="roleId" id="roleID" class="form-control-plaintext">
+				                        <?php
+                                            if($value['roleId']== 1 ) {
+                                        ?>
+                                            <option value="1" selected>Quản trị viên</option>
+                                            <option value="2">Khách hàng</option>
+                                        <?php } else {
+                                        ?>
+                                            <option value="1">Quản trị viên</option>
+                                            <option value="2" selected>Khách hàng</option>
+                                        <?php } ?>
+			                        </select>
+                                    </div>
+                                    <div class="text-end flex-fill">
+                                        <button type="submit" class="btn btn-outline-primary">Cập nhật</button>
+                                    </div>
                                 </div>
-                                <div class="text-end flex-fill">
-                                        <a href="#" class="btn btn-outline-primary">Cập nhật</a>
-                                </div>
-                            </div>
+                                </form>
+                            
                             </li>
                         </ul>
                     </div>
                     
-
-                        <!--div class="mb-3">
-                            <label for="">Loại tài khoản</label>
-                            <select name="cateId" id="cateID">
-				                <,?php
-                                    if($value['roleId']== 1 ) {
-                                ?>
-                                <option value="1" selected>Quản trị viên</option>
-                                <option value="2">Khách hàng</option>
-                                <,?php } else {
-                                ?>
-                                <option value="1">Quản trị viên</option>
-                                <option value="2" selected>Khách hàng</option>
-                                <,?php } ?>
-			                </select>
-                        </div>
-
-                        <button class="btn btn-primary" type="submit">Thay đổi</button>
-                    </form-->
                 </div>
 
             </div>
         </div>
     </div>
                 
-                    <form action="" method="get">
-                        <input type="submit" name="change-pass" value="Đổi mật khẩu">
-                        <input type="hidden" name="user_id" value="<?=$user_id?>">
-                    </form>
-                    <?php
-                    $css="change_pass active";
-                    if(isset($_GET['change-pass'])){
-                        if(isset($_GET['submit-change-pass'])){
-                            $id = $_GET['user_id'];
-                            $sql="SELECT * FROM users WHERE id='$id'";
-                            $result= mysqli_query($db->con, $sql);
-                            $value=$result->fetch_assoc();
-                            $new_pass=$_GET['new-pass'];
-                            if($_GET['old-pass']!=$value['password']){
-                                $message="Sai mật khẩu";
-                            }else if($_GET['new-pass']!=$_GET['confirm-pass']){
-                                $message="Mật khẩu xác nhận không khớp";
-                            }else{
-                                $sql = "UPDATE users SET password='$new_pass' WHERE id='$id'";
-                                $result= mysqli_query($db->con, $sql);
-                                if($result){
-                                    echo "Change password success fully";
-                                    $css="change_pass";
-                                }else{
-                                    echo mysqli_error($db->con);
-                                }
-                                
-                            }
-                        }
-                        ?>
-                        <!-- SỬA FORM ĐỔI MẬT KHẨU TRONG class change-pass -->
-                        <div class="<?=$css?>">
-                            <form action="?chage-pass='Đổi mật khẩu'" method="get" >
-                            <?php
-                                if(isset($message)){
-                                    echo "<div class='message'>".$message.'</div>';
-                                }
-                            ?>
-                            <input type="hidden" name="user_id" value="<?=$user_id?>">
-                            <input type="hidden" name="change-pass" value="Đổi mật khẩu">
-                            Nhập mật khẩu hiện tại: <br>
-                            <input type="password" name="old-pass" placeholder="Nhập mật khẩu hiện tại"><br>
-                            Nhập mật khẩu mới: <br>
-                            <input type="password" name="new-pass" placeholder="Nhập mật khẩu mới"><br>
-                            Nhập lại mật khẩu mới: <br>
-                            <input type="password" name="confirm-pass" placeholder="Nhập lại mật khẩu mới"><br>
-                            <input type="submit" name="submit-change-pass" value="Xác nhận">
-                            </form>
-                        </div>
-                        <?php
-                    }
-                   
-                    ?>
-                
                
             </div>
-    </div>
-        <?php
-    }
-?>  
+        </div>
         </div>
         <?php require_once 'inc/footer.php'; ?>
 
 </body>
+<?php } ?>
 </html>
 
