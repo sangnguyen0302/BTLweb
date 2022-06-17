@@ -4,10 +4,105 @@
 <title>Đơn hàng của tôi</title>
 </head>
 <body>
-	<?php require_once '../views/inc/nav.php' ?>
-	<div class="container-fluid mb-5 py-5">
-	<div class="container mb-5 p-3 bg-light">
-		<h4>Đơn hàng của tôi</h4>
+	<table id = "order_table">
+		<?php
+
+			if(count($list)>0){  
+				$count=1;
+				$total=0;
+				$prev_orderId=$list['0']['id'];
+		?>
+		<tr>
+			<tr>STT</tr>
+			<tr>Mã đơn hàng</tr>
+			<tr>Ngày đặt hàng</tr>
+			<tr>Tên sản phẩm</tr>
+			<tr>Số lượng</tr>
+			<tr>Giá</tr>
+			<tr>Ngày giao dự kiến</tr>
+			<tr>Tình trạng đơn hàng</tr>
+			<tr>Thao tác</tr>						
+		</tr>
+
+		<?php foreach ($list as $key => $value) {
+
+			if($value['id']==$prev_orderId){
+
+            	$total += $value['productPrice'] * $value['qty'];
+        ?>
+                <tr>
+                	<?php 
+                		if($count == 1){
+                	?>
+                	       <td><?php echo $count; ?></td>
+                	<?php  
+                		}else{
+                	?>
+                            <td></td>
+                    <?php
+                		}
+                    ?>
+                <td><?php echo $value['id']; ?></td>
+                <td><?php echo $value['createdDate']; ?></td>
+                <td><?php echo $value['productName']; ?></td>
+                <td><?php echo $value['qty']; ?></td>
+                <td><?php echo number_format($value['productPrice'], 0, '', ','); ?>VND</td>
+                <td><?php echo $value['receivedDate']; ?></td>
+                <td><?php echo $value['status']; ?></td>
+                    <?php 
+                    	if($value['status']=='processing'){
+                     ?>
+                            <td><a href="../controllers/orderController.php?action=removeProduct&id=<?php echo $value['productId']?>">Bỏ đơn hàng</a>
+                            	<br>
+                    <?php 
+                		} 
+                	?>
+                <a href="../controllers/orderController.php?action=viewDetail&id=<?php echo $value['productId']?>">Chi tiết sản phẩm</a></td>
+
+                </tr>
+        <?php 
+    		}
+        ?>
+		<tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>Tổng tiền</td>
+            <td><?= number_format($total, 0, '', ',') ?>VND</td>
+        </tr>
+        <?php  
+            if($value['id']!=$prev_orderId){
+        ?>
+
+            	<tr>
+                    <td><?php echo ++$count; ?></td>
+                    <td><?php echo $value['id']; ?></td>
+                    <td><?php echo $value['createdDate']; ?></td>
+                    <td><?php echo $value['productName']; ?></td>
+                    <td><?php echo $value['qty']; ?></td>
+                    <td><?php echo number_format($value['productPrice'], 0, '', ','); ?>VND</td>
+                    <td><?php echo $value['receivedDate']; ?></td>
+                    <td><?php echo $value['status']; ?></td>
+                <?php 
+                	if($value['status']=='processing'){
+                 ?>
+                        <td><a href="../controllers/orderController.php?action=removeProduct&id=<?php echo $value['productId']?>">Bỏ đơn hàng</a>
+                        	<br>
+                <?php 
+            		} 
+            	?>
+                    <a href="../controllers/orderController.php?action=viewDetail&id=<?php echo $value['productId']?>">Chi tiết sản phẩm</a></td>
+
+                </tr>
+
+
+        <?php    	
+            }
+        ?>
 		
 			<?php
 
@@ -64,12 +159,12 @@
         		</tr>
 			</tbody>
 	</table>
-	</div>
+    <?php  
+        }
+    ?>
 
-	<div class="text-end">
-		<a class="btn btn-warning"href="../views/home.php">Tiếp tục mua hàng</a>
-	</div>
-	
+
+	<a href="../controllers/loginController.php?action=return">Tiếp tục mua hàng</a>
 	
 	<?php  
 		}else{

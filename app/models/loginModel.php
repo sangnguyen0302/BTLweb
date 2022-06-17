@@ -71,7 +71,7 @@
 
 		$captcha = rand(10000, 99999);
 
-        $sql = "INSERT INTO users(id, fullName, email, dob, address, password, roleId, status,captcha, isConfirmed, phone, image) VALUES (NULL,'$fullName','$email','$dob','$address','$password',1,1,'$captcha',1,'$phone', '$image')";
+        $sql = "INSERT INTO users(id, fullName, email, dob, address, password, roleId, status,captcha, isConfirmed, phone, image) VALUES (NULL,'$fullName','$email','$dob','$address','$password',2,1,'$captcha',1,'$phone', '$image')";
         $result = mysqli_query($user->con, $sql);
         if ($result) {
             return true;

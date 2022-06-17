@@ -1,11 +1,11 @@
 
 <?php
-    session_start();
+    //session_start();
     require_once '../DB.php';
     require_once 'inc/head.php';
     $db = new DB();
     $user = $db->getInstance();
-    $id = $_GET['prod_id'];
+    $id = $productId;
     $sql = "SELECT * FROM products WHERE id='$id'";
     $result=mysqli_query($user->con, $sql);
     $value=$result->fetch_assoc();
@@ -15,8 +15,14 @@
 <link type="text/css" rel="stylesheet" href= "../../css/single.css">
 </head>
 <body>
-    <?php require_once 'inc/nav.php';
-        
+    <?php 
+        require_once 'inc/nav.php';
+        $db = new DB();
+        $user = $db->getInstance();
+        $id = $productId;
+        $sql = "SELECT * FROM products WHERE id='$id'";
+        $result=mysqli_query($user->con, $sql);
+        $value=$result->fetch_assoc();
     ?>
     
     <main class="my-5">
@@ -38,12 +44,14 @@
                         <div class="product-price bg-light py-2 px-3">
                             <span class="h2 text-danger"><?php echo number_format($value['originalPrice'])?> VNĐ</span>
                         </div>
-
+                        <form>
                         <div class="add-to-cart py-5">
                             <div class="qty-modify">
                                 <p>Số lượng</p>
+                               
                                 <div class="input-group qty-button-group">
                                 <span class="input-group-btn">
+                               
                                 <button name="quantity-update" class="btn btn-number btn-outline-light border border-1 text-dark" data-type="minus" data-field="a">
                                     <i class="fa-solid fa-minus"></i>
                                 </button>
@@ -55,16 +63,26 @@
                                 <button name="quantity-update" class="btn btn-number btn-outline-light border border-1 text-dark" data-type="plus" data-field="a">
                                     <i class="fa-solid fa-plus"></i>
                                 </button>
+                                
                                 </span>
                                 </div>
+                                
                                 <!--input type="hidden" name="product-id" value=""/-->
                             </div>
 
                             <div class="add-to-cart-btn my-5">
-                                    <a class="btn btn-outline-dark" href="../controllers/script.php?single-store-product-id=<?php echo $value['id'];?>">Thêm vào giỏ hàng</a>
+                                    <?php 
+                                        if(!isset($_SESSION['user_id'])){
+                                            $url= "../controllers/script.php?single-store-product-id=".$value['id'];
+                                        }else{
+                                            $url = "../controllers/script.php?single-store-product-id-user=".$value['id'];
+                                        }
+                                    ?>
+                                    <a class="btn btn-outline-dark" href="<?=$url?>">Thêm vào giỏ hàng</a>
                             </div>
+                            
                         </div>
-                        
+                        </form>
                     </div>
             
                 </div>
@@ -117,7 +135,7 @@
                 </div>
 
                 <?php  
-                    if($checkOrdered){
+                    if($checkOrdered ){
                 ?>
                 
                     <!--
@@ -125,22 +143,30 @@
                     They will sent a request to productMnController.php 
                      -->
                     <p>Đánh giá</p>
-                    <a href="../controllers/productMnController.php?action=rate1Star">1 sao</a>
-                    <a href="../controllers/productMnController.php?action=rate2Star">2 sao</a>
-                    <a href="../controllers/productMnController.php?action=rate3Star">3 sao</a>
-                    <a href="../controllers/productMnController.php?action=rate4Star">4 sao</a>
-                    <a href="../controllers/productMnController.php?action=rate5Star">5 sao</a>
+                    <a href="../controllers/productMnController.php?action=rate&value=1&productId=<?php echo $productId?>">1 sao</a>
+                    <a href="../controllers/productMnController.php?action=rate&value=2&productId=<?php echo $productId?>">2 sao</a>
+                    <a href="../controllers/productMnController.php?action=rate&value=3&productId=<?php echo $productId?>">3 sao</a>
+                    <a href="../controllers/productMnController.php?action=rate&value=4&productId=<?php echo $productId?>">4 sao</a>
+                    <a href="../controllers/productMnController.php?action=rate&value=5&productId=<?php echo $productId?>">5 sao</a>
 
 
                     <!-- 
                         This <form> tag below is allows user to comment into thier ordered product
                         It will sent a request to productMnController.php with post method
                     -->
-                    <form action="../controllers/productMnController.php" method= "post">
-                        <p>Bình luận</p>
-                        <textarea name="des" cols="100" rows="5">Bình luận...</textarea>
-                        <input type="submit" name="comment" value="comment">
-                    </form>
+                    <?php  
+                        if($checkComment ){
+                    ?>
+
+                            <form action="../controllers/productMnController.php" method= "post">
+                                <p>Bình luận</p>
+                                <textarea name="user_comment" cols="100" rows="5">Bình luận...</textarea>
+                                <input type="submit" name="comment" value="<?php echo $productId?>">
+                            </form>
+                    <?php
+                        }
+                    ?>
+                    
 
 
                 <?php       

@@ -17,7 +17,17 @@
 
 		}else if ($_REQUEST['action'] == 'manageComments'){
 
+			include_once '../models/rateCommentModel.php';
 
+			$manage = new rateCommentModel();
+
+			$sumRate= $manage->getSumRate();
+
+			$sumComment =$manage->getSumComment();
+
+			$list = $manage->getAll();
+
+			require_once '../views/management/rateComManagement.php';
 
 		}else if ($_REQUEST['action'] == 'manageCustomerContacted'){
 

@@ -31,7 +31,7 @@
 
 		public function getMemById($id){
 			$db = DB::getInstance();
-	        $sql = "SELECT * FROM users WHERE id='$id'";
+	        $sql = "SELECT * FROM users WHERE id='$id' AND roleId=2";
 	        $result = mysqli_query($db->con, $sql);
 	        return $result;
 		}

@@ -10,6 +10,7 @@
 <title>Đăng nhập</title>
 <?php
 require_once '../models/loginModel.php';
+require_once '../DB.php';
 
 if(isset($_POST['LoginAction'])){
       
