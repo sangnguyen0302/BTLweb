@@ -4,7 +4,7 @@
 
 		if($_REQUEST['action'] == 'editInfor' && !empty($_REQUEST['id'])){
 
-			$memId = $_REQUEST['id'];
+			/*$memId = $_REQUEST['id'];
 
 			include_once "../models/memberModel.php";
 
@@ -13,7 +13,7 @@
 
 			$listInfor = $result->fetch_assoc();
 
-			require_once "../views/management/editInforMem.php";
+			require_once "../views/management/editInforMem.php";*/
 
 
 		}else if($_REQUEST['action']=='removeMem' && !empty($_REQUEST['id'])){

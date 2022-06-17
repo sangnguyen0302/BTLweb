@@ -87,12 +87,9 @@
 				
 			</tbody>
 	</table>
-	</div>
 
-	<div class="text-end">
-		<a class="btn btn-warning"href="../views/home.php">Tiếp tục mua hàng</a>
-	</div>
-	
+
+	<a href="../controllers/loginController.php?action=return">Tiếp tục mua hàng</a>
 	
 	<?php  
 		}else{
@@ -109,7 +106,7 @@
 	</div>
 	</div>
 
-
+	</div>
 	<?php require_once '../views/inc/footer.php' ?>
 </body>
 </html>

@@ -78,7 +78,7 @@
 					<div class="col">
                         <div class="card h-100 text-center">
 					<!-- The products image -->
-                        <a href="single.php?prod_id=<?=$data['id']?>">
+                        <a href="../controllers/orderController.php?action=viewDetail&id=<?=$data['id']?>">
                         <div class="zoom">
                             <img src="<?php echo "../../image/".$data['image'] ?>" class="card-img-top" alt="...">
                         </div>
@@ -88,7 +88,7 @@
                             <h5 class="card-title"><?php echo $data['name'] ?></h5>
 						<!--p class="name"><,?php echo $data['name'] ?></p-->
 					<!-- The products price formatted with two decimals  -->
-                            <p class="card-text">$<?php echo number_format($data['originalPrice'], 2) ?></p>
+                            <p class="card-text text-danger"><?php echo number_format($data['originalPrice']) ?> VNĐ</p>
 						    <!--p class="price">$<,?php echo number_format($data['originalPrice'], 2) ?></p-->
 					<!-- The add cart button -->
                             <?php 

@@ -1,4 +1,7 @@
-<?php require_once '../views/inc/head.php'; ?>
+<?php
+session_start();
+ require_once '../views/inc/head.php'; 
+ ?>
 <style>
 	a {
 		text-decoration : none;
@@ -22,7 +25,7 @@
 				<thead class="text-center align-middle">
 				<tr>
 					<td>STT</td>
-					<td>Id</td>
+					<!--td>Id</td-->
 					<td>Tên dầy đủ</td>
 					<td>Email</td>
 					<td>Ngày sinh</td>
@@ -44,7 +47,7 @@
 
 					<tr>
 						<td><?php echo ++$count ?></td>
-						<td><?php echo $value['id']; ?></td>
+						<!--td><,?php echo $value['id']; ?></td-->
 						<td><?php echo $value['fullName']; ?></td>
 						<td><?php echo $value['email']; ?></td>
 						<td><?php echo $value['dob']; ?></td>
@@ -55,7 +58,7 @@
 						<td><,?php echo $value['isConfirmed']; ?></td-->
 						<td><?php echo $value['phone']; ?></td>
 						<td>
-							<a href="../controllers/memMnController.php?action=editInfor&id=<?php echo $value['id'] ?>">Sửa thông tin</a><br>
+							<!--a href="../controllers/memMnController.php?action=editInfor&id=<,?php echo $value['id'] ?>">Sửa thông tin</a><br-->
 							<a class="text-danger" href="../controllers/memMnController.php?action=removeMem&id=<?php echo $value['id'] ?>">Xóa</a>
 						</td>
 					</tr>

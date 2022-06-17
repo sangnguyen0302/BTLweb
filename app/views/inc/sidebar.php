@@ -7,7 +7,7 @@
     <hr>
     <ul class="nav nav-pills flex-column">
       <li class="nav-item">
-        <a href="#" class="nav-link active" aria-current="page">
+        <a href="../views/management.php?user_id=<?=$_SESSION['admin_id']?>" class="nav-link active" aria-current="page">
           <!--svg class="bi me-2" width="16" height="16"><use xlink:href="#home"/></svg-->
           Thông tin tài khoản
         </a>
