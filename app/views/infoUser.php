@@ -2,7 +2,6 @@
     session_start();
     require_once("inc/head.php");
     require_once("../DB.php");
-    require_once '../models/ProductModel.php';
  ?>
 <link type="text/css" rel="stylesheet" href= "../../css/profile.css">
 <title>Thông tin tài khoản</title>
