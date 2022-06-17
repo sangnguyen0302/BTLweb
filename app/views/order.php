@@ -77,8 +77,6 @@
             		<td></td>
             		<td></td>
             		<td></td>
-            		<td></td>
-            		<td></td>
             		<td>Tổng tiền</td>
             		<td><?= number_format($value['totalPrice'], 0, '', ',') ?>VND</td>
         		</tr>
