@@ -12,8 +12,9 @@
 		<?php
 
 			if(count($list)>0){  
-				$count=0;
+				$count=1;
 				$total=0;
+				$prev_orderId=$list['0']['id'];
 		?>
 		<tr>
 			<tr>STT</tr>
@@ -28,22 +29,43 @@
 		</tr>
 
 		<?php foreach ($list as $key => $value) {
-            $total += $value['productPrice'] * $value['qty'];
+
+			if($value['id']==$prev_orderId){
+
+            	$total += $value['productPrice'] * $value['qty'];
         ?>
-        <tr>
-            <td><?php echo ++$count; ?></td>
-            <td><?php echo $value['id']; ?></td>
-            <td><?php echo $value['createdDate']; ?></td>
-            <td><?php echo $value['productName']; ?></td>
-            <td><?php echo $value['qty']; ?></td>
-            <td><?php echo number_format($value['productPrice'], 0, '', ','); ?>VND</td>
-            <td><?php echo $value['receivedDate']; ?></td>
-            <td><?php echo $value['status']; ?></td>
-            <td><a href="../controllers/orderController.php?action=removeProduct&id=<?php echo $value['productId']?>">Bỏ đơn hàng</a>
-            	<br>
-            <a href="../controllers/orderController.php?action=viewDetail&id=<?php echo $value['productId']?>">Chi tiết sản phẩm</a></td>                 
-        </tr>
-        <?php }
+                <tr>
+                	<?php 
+                		if($count == 1){
+                	?>
+                	       <td><?php echo $count; ?></td>
+                	<?php  
+                		}else{
+                	?>
+                            <td></td>
+                    <?php
+                		}
+                    ?>
+                <td><?php echo $value['id']; ?></td>
+                <td><?php echo $value['createdDate']; ?></td>
+                <td><?php echo $value['productName']; ?></td>
+                <td><?php echo $value['qty']; ?></td>
+                <td><?php echo number_format($value['productPrice'], 0, '', ','); ?>VND</td>
+                <td><?php echo $value['receivedDate']; ?></td>
+                <td><?php echo $value['status']; ?></td>
+                    <?php 
+                    	if($value['status']=='processing'){
+                     ?>
+                            <td><a href="../controllers/orderController.php?action=removeProduct&id=<?php echo $value['productId']?>">Bỏ đơn hàng</a>
+                            	<br>
+                    <?php 
+                		} 
+                	?>
+                <a href="../controllers/orderController.php?action=viewDetail&id=<?php echo $value['productId']?>">Chi tiết sản phẩm</a></td>
+
+                </tr>
+        <?php 
+    		}
         ?>
 		<tr>
             <td></td>
@@ -56,9 +78,40 @@
             <td>Tổng tiền</td>
             <td><?= number_format($total, 0, '', ',') ?>VND</td>
         </tr>
+        <?php  
+            if($value['id']!=$prev_orderId){
+        ?>
+
+            	<tr>
+                    <td><?php echo ++$count; ?></td>
+                    <td><?php echo $value['id']; ?></td>
+                    <td><?php echo $value['createdDate']; ?></td>
+                    <td><?php echo $value['productName']; ?></td>
+                    <td><?php echo $value['qty']; ?></td>
+                    <td><?php echo number_format($value['productPrice'], 0, '', ','); ?>VND</td>
+                    <td><?php echo $value['receivedDate']; ?></td>
+                    <td><?php echo $value['status']; ?></td>
+                <?php 
+                	if($value['status']=='processing'){
+                 ?>
+                        <td><a href="../controllers/orderController.php?action=removeProduct&id=<?php echo $value['productId']?>">Bỏ đơn hàng</a>
+                        	<br>
+                <?php 
+            		} 
+            	?>
+                    <a href="../controllers/orderController.php?action=viewDetail&id=<?php echo $value['productId']?>">Chi tiết sản phẩm</a></td>
+
+                </tr>
+
+
+        <?php    	
+            }
+        ?>
 		
 	</table>
-
+    <?php  
+        }
+    ?>
 
 
 	<a href="../controllers/loginController.php?action=return">Tiếp tục mua hàng</a>

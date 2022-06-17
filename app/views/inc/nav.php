@@ -42,7 +42,7 @@
                   <ul class="dropdown-menu dropdown-menu-dark">
                     <li><a class="dropdown-item" href="../controllers/orderController.php?action=myOrder">Đơn hàng của tôi</a></li>
                     <li><a class="dropdown-item" href="infoUser.php?user_id=<?=$_SESSION['user_id']?>">Thông tin tài khoản</a></li>
-                    <li><a class="dropdown-item" href="logout.php">Đăng xuất</a></li>
+                    <li><a class="dropdown-item" href="../views/logout.php">Đăng xuất</a></li>
                   </ul>
                 </li>
                 <?php } else { ?>
@@ -55,7 +55,7 @@
               <?php  }
               ?>
               <li class="nav-item">
-                <a class="nav-link" href="cart.php"><i class="fa-solid fa-cart-shopping"></i> 
+                <a class="nav-link" href="../views/cart.php"><i class="fa-solid fa-cart-shopping"></i> 
                 <?php if(isset($_SESSION['cart'])){
                   echo "(";
                   echo count($_SESSION['cart']);

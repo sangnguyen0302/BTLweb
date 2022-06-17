@@ -15,15 +15,13 @@
 	        return $result;
     	}
 
-    	public function insertToOrder($productId,$userId,$productName,$qty,$productPrice){
-			$db = new DB();
-
-			$user = $db->getInstance();
+    	public function insertToOrder($orderId,$productId,$userId,$productName,$qty,$productPrice){
+			$db = DB::getInstance();
 
 			$totalPrice= $productPrice*$qty;
 
-	        $sql = "INSERT INTO orders(id,productId,userId,createdDate,productName,qty,receivedDate,productPrice,status) VALUES (NULL,'$productId','$userId', '" . date('d/m/y') . "','$productName','$qty','after 3 days','$totalPrice','processing')";
-	        $result = mysqli_query($user->con, $sql);
+	        $sql = "INSERT INTO orders(id,productId,userId,createdDate,productName,qty,receivedDate,productPrice,status) VALUES ('$orderId','$productId','$userId', '" . date('d/m/y') . "','$productName','$qty','after 3 days','$totalPrice','processing')";
+	        $result = mysqli_query($db->con, $sql);
 	        if ($result) {
 	            return true;
 	        }
@@ -32,7 +30,7 @@
 
 		public function getByUserId($userId)
     	{
-	        $db = DB::getInstance();
+	        
 	        $sql = "SELECT * FROM orders WHERE userId='$userId'";
 	        $result = mysqli_query($db->con, $sql);
 	        return $result;
@@ -42,7 +40,7 @@
     	public function getOrder($userId)
     	{
 	        $db = DB::getInstance();
-	        $sql = "SELECT * FROM orders WHERE userId='$userId' AND status='processing'";
+	        $sql = "SELECT * FROM orders WHERE userId='$userId'";
 	        $result = mysqli_query($db->con, $sql);
 	        return $result;
     	}
@@ -52,6 +50,27 @@
 	        $sql = "DELETE FROM orders WHERE userId='$userId' AND productId='$productId'";
 	        $result = mysqli_query($db->con, $sql);
 	        return $result;
+    	}
+
+    	public function getLatestOrderId()
+    	{
+    		$db= DB::getInstance();
+    		$sql = "SELECT MAX(id) FROM orders";
+    		$result = mysqli_query($db->con,$sql);
+    		if(!empty($result)){
+    			return $result;
+    		}else{
+    			return 0;
+    		}
+    	}
+
+    	public function getOrderId($userId,$productId)
+    	{
+    		$db= DB::getInstance();
+    		$sql ="SELECT * from orders WHERE userId='$userId' AND productId='$productId'";
+    		$result = mysqli_query($db->con, $sql);
+    		$list = $result->fetch_assoc();
+    		return $list['id'];
     	}
 
     	

@@ -7,7 +7,7 @@
 			//$product_id = $_REQUEST['id'];
         	include_once "../models/orderModel.php";
 
-        	$cart = new orderModel();
+        	//$cart = new orderModel();
 
         	//Three line below aren't necessary anymore
         	//$result= $cart->getById($product_id);
@@ -18,15 +18,27 @@
         	$userId=$_SESSION['user_id'];
 
             //Sửa sau
+            include_once "../models/cartModel.php";
+            $cart = new CartModel();
 
-        	//Isert from cart to order after payment
-        	foreach($_SESSION['cart'] as $value){
-        		$cart->insertToOrder($value['id'],$userId,$value['name'],1,$value['promotionPrice']);
+            $cartResult = $cart->getCartById($userId); //Hàm này chưa có. Hàm này dùng để lấy danh sách sản phẩm trong đơn hàng theo Id của người dùng
+
+            $listCart = $cartResult->fetch_all(MYSQLI_ASSOC);
+
+            //chèn từ cart sang order
+            $order = new orderModel();
+
+        	foreach($listCart as $value){
+
+                //Lấy orderId mới nhất
+                $orderID=$order->getLatestOrderId();
+
+        		$order->insertToOrder($orderId+1,$value['id'],$userId,$value['name'],$value['qty'],$value['promotionPrice']);
         	}
 
 
         	//$checkInsert=$cart->insertToOrder($product_id,$userId,$productRow['name'],1,$productRow['promotionPrice']);
-        	unset($_SESSION['cart']);
+        	//unset($_SESSION['cart']);
         	header("Location: ../views/home.php");
 
 		}else if($_REQUEST['action'] == 'myOrder'){
@@ -63,6 +75,7 @@
             }
 
             $checkOrdered = $cart->checkExistOrder($userId,$productId); 
+            $checkComment = $cart->checkComment($userId,$productId);
 
         	require_once "../views/single.php";
     	}else if($_REQUEST['action'] == 'removeProduct' && !empty($_REQUEST['id'])){

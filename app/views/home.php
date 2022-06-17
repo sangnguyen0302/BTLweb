@@ -68,7 +68,7 @@
 					<div class="col">
                         <div class="card h-100 text-center">
 					<!-- The products image -->
-                        <a href="single.php?prod_id=<?=$data['id']?>">
+                        <a href="../controllers/orderController.php?action=viewDetail&id=<?=$data['id']?>">
                         <div class="zoom">
                             <img src="<?php echo "../../image/".$data['image'] ?>" class="card-img-top" alt="...">
                         </div>

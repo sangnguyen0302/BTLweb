@@ -1,6 +1,6 @@
 
 <?php
-    session_start();
+    //session_start();
     require_once '../DB.php';
     require_once 'inc/head.php';?>
 <title>Tên sản phẩm</title>
@@ -8,10 +8,11 @@
 <link type="text/css" rel="stylesheet" href= "../../css/single.css">
 </head>
 <body>
-    <?php require_once 'inc/nav.php';
+    <?php 
+        require_once 'inc/nav.php';
         $db = new DB();
         $user = $db->getInstance();
-        $id = $_GET['prod_id'];
+        $id = $productId;
         $sql = "SELECT * FROM products WHERE id='$id'";
         $result=mysqli_query($user->con, $sql);
         $value=$result->fetch_assoc();
@@ -115,7 +116,7 @@
                 </div>
 
                 <?php  
-                    if($checkOrdered){
+                    if($checkOrdered ){
                 ?>
                 
                     <!--
@@ -123,22 +124,30 @@
                     They will sent a request to productMnController.php 
                      -->
                     <p>Đánh giá</p>
-                    <a href="../controllers/productMnController.php?action=rate1Star">1 sao</a>
-                    <a href="../controllers/productMnController.php?action=rate2Star">2 sao</a>
-                    <a href="../controllers/productMnController.php?action=rate3Star">3 sao</a>
-                    <a href="../controllers/productMnController.php?action=rate4Star">4 sao</a>
-                    <a href="../controllers/productMnController.php?action=rate5Star">5 sao</a>
+                    <a href="../controllers/productMnController.php?action=rate&value=1&productId=<?php echo $productId?>">1 sao</a>
+                    <a href="../controllers/productMnController.php?action=rate&value=2&productId=<?php echo $productId?>">2 sao</a>
+                    <a href="../controllers/productMnController.php?action=rate&value=3&productId=<?php echo $productId?>">3 sao</a>
+                    <a href="../controllers/productMnController.php?action=rate&value=4&productId=<?php echo $productId?>">4 sao</a>
+                    <a href="../controllers/productMnController.php?action=rate&value=5&productId=<?php echo $productId?>">5 sao</a>
 
 
                     <!-- 
                         This <form> tag below is allows user to comment into thier ordered product
                         It will sent a request to productMnController.php with post method
                     -->
-                    <form action="../controllers/productMnController.php" method= "post">
-                        <p>Bình luận</p>
-                        <textarea name="user_comment" cols="100" rows="5">Bình luận...</textarea>
-                        <input type="submit" name="comment" value="<?php echo $productId?>">
-                    </form>
+                    <?php  
+                        if($checkComment ){
+                    ?>
+
+                            <form action="../controllers/productMnController.php" method= "post">
+                                <p>Bình luận</p>
+                                <textarea name="user_comment" cols="100" rows="5">Bình luận...</textarea>
+                                <input type="submit" name="comment" value="<?php echo $productId?>">
+                            </form>
+                    <?php
+                        }
+                    ?>
+                    
 
 
                 <?php       
