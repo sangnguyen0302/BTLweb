@@ -15,7 +15,7 @@
 <div class="container my-5">
 <h4>GIỎ HÀNG</h4>
 <?php
-    if(isset($_SESSION['cart'])&&count($_SESSION['cart'])!=0) { ?>
+    if(!isset($_SESSION['user_id'])&&isset($_SESSION['cart'])&&count($_SESSION['cart'])!=0) { ?>
         <div class="table-responsive">
         <table class="table mb-5">
             <thead class="table-dark text-center align-middle">
@@ -87,13 +87,99 @@
         </table>
 </div>
 
-    <?php } else { ?>
+    <?php } else if(!$_SESSION['user_id']) { ?>
          <div class="container-fluid text-center">
             <img src="https://www.english-learning.net/wp-content/uploads/2019/04/sorry-min.png" alt="Sorry" width="300px" heigt="300px" class="m-3">
             <h5>Giỏ hàng đang trống</h5>
             <a href="home.php" class="btn btn-dark">Quay lại</a>
          </div>
     <?php } ?>
+    <?php
+    if(isset($_SESSION['user_id'])) { 
+        $id = $_SESSION['user_id'];
+        $result = CartModel::getCartFromId($id);
+        if($result&&mysqli_num_rows($result)>0){
+        ?>
+        <div class="table-responsive">
+        <table class="table mb-5">
+            <thead class="table-dark text-center align-middle">
+            <tr>
+                <th> Sản phẩm </th>
+                <th> Tên </th>
+                <th> Số lượng </th>
+                <th> Đơn giá </th>
+                <th> Thành tiền </th>
+                <th> Xóa </th>
+            </tr>
+            </thead>
+            <tbody class="text-center align-middle">
+      
+                <?php
+                    while($value = $result->fetch_assoc()){
+                ?>
+                <tr> <!-- The product html template -->
+				    <td><img src="<?php echo "../../image/".$value['image']?>" width="100px" height="100px"></td>
+				    <td><?php echo $value['name']?></td>
+				    <td>
+                    <form action="../controllers/script.php" method="get">
+                        <div class="input-group">
+                            <span class="input-group-btn">
+                            <button type="submit" name="quantity-update-user" class="btn btn-number" data-type="minus" data-field="<?= $value['id']?>">
+                            <i class="fa-solid fa-minus"></i>
+                            </button>
+                            </span>
+                        
+                            <input type="text" name="quantity-user" id="<?= $value['id']?>" class="form-control input-number" value="<?=$value['quanty']?>" min="1" max="5" style="width:5px">
+
+                            <span class="input-group-btn">
+                            <button type="submit" name="quantity-update-user" class="btn btn-number" data-type="plus" data-field="<?= $value['id']?>">
+                            <i class="fa-solid fa-plus"></i>
+                            </button>
+                            </span>
+                        </div>
+                        <input type="hidden" name="product-id-user" value="<?php echo $value['id']?>"/>
+                    </form>
+                    
+                    </td>
+				    <td><?php echo number_format($value['originalPrice'])."VND"?></td>
+				    <td><?php echo number_format($value['originalPrice']*$value['quanty'])."VND"?></td>
+                        <td><a class="text-danger" href="../controllers/script.php?remove-product-id-user=<?php echo $value['id'];?>"><i class="fa-solid fa-trash-can"></i></a></td>
+                    </tr>
+                <?php
+                }
+                ?>
+
+            <tr>
+			    <td class="cart-items" colspan="6">
+                    Cart Items <span> <?php echo CartModel::getNumberCartUser()?></span>
+                </td>
+	        </tr>
+
+            <tr> <!-- The total sum -->
+				<td class="total-price" colspan="6">Total Price
+                    <span>
+                        <?php echo number_format(CartModel::getTotalPriceUser())."VND"?>
+                    </span>
+                </td>
+			</tr>
+
+			<tr> <!-- The clear cart button -->
+				<td colspan="6"> <a href="../controllers/script.php?clear-cart-user" class="btn btn-danger">Dọn dẹp giỏ hàng</a> </td>
+			</tr>
+            </tbody>
+        </table>
+</div>
+
+    <?php } else { ?>
+         <div class="container-fluid text-center">
+            <img src="https://www.english-learning.net/wp-content/uploads/2019/04/sorry-min.png" alt="Sorry" width="300px" heigt="300px" class="m-3">
+            <h5>Giỏ hàng đang trống</h5>
+            <a href="home.php" class="btn btn-dark">Quay lại</a>
+         </div>
+    <?php } 
+    }
+    ?>
+
 </div>
 
 <!--

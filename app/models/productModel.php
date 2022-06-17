@@ -35,6 +35,16 @@ class ProductModel
         $result = mysqli_query($db->con, $sql);
         return $result;
     }
+    public function getPageandSearch($page, $searchkey)
+    {
+        $db = DB::getInstance();
+        $per_page_record = 6;  // Number of entries to show in a page.   
+        $start_from = ($page-1) * $per_page_record;
+        $tmp = '%'.$searchkey.'%';
+        $sql = "SELECT * FROM Products  WHERE name LIKE '$tmp' AND qty>0 LIMIT $start_from, $per_page_record";
+        $result = mysqli_query($db->con, $sql);
+        return $result;
+    }
 
     public function search($keyword)
     {
@@ -172,5 +182,12 @@ class ProductModel
 	        $result = mysqli_query($db->con, $sql);
 	        return $result;
 		}
+    public function searchKey($key){
+        $db = DB::getInstance();
+        $tmp= '%'.$key.'%';
+        $sql = "SELECT * FROM products WHERE name LIKE '$tmp'";
+        $result = mysqli_query($db->con, $sql);
+        return $result;
+    }
 }
     

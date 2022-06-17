@@ -31,6 +31,7 @@
                         <input type="hidden" name="user-id" value=<?=$user_id?>>
                         <input type="submit" name="change-avt" value="Đổi ảnh đại diện">
                     </form>
+                    <form>
                     <h4 class="card-title">Họ và tên: <?php echo $value['fullName'];?></h4>
                     <p class="card-text">Ngày sinh: 
                         <input type="date" value="<?=$value['dob']?>"/>
@@ -39,7 +40,7 @@
                         <p class="card-text">Số điện thoại: 
                         <input type="text" value="<?=$value['phone']?>"/>
                     <p class="card-text">Loại tài khoản: <?php 
-                        if($value['roleId']){
+                        if($value['roleId']==2){
                             echo "Khách hàng";
                         }else{
                             echo "Quản trị viên";
