@@ -46,10 +46,7 @@ USE `ecommerce`;
 CREATE TABLE `cart` (
   `userId` int(11) NOT NULL,
   `productId` int(11) NOT NULL,
-  `qty` int(11) NOT NULL,
-  `productName` varchar(100) NOT NULL,
-  `productPrice` decimal(10,0) NOT NULL,
-  `productImage` varchar(50) NOT NULL
+  `quanty` int(11) NOT NULL
 );
 
 -- --------------------------------------------------------
@@ -223,6 +220,7 @@ ALTER TABLE `users`
 
 -- AUTO_INCREMENT cho bảng `categories`
 --
+
 ALTER TABLE `categories`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
@@ -249,6 +247,7 @@ ALTER TABLE `products`
 --
 ALTER TABLE `role`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 
 --
 -- Đang đổ dữ liệu cho bảng `orders`
@@ -295,6 +294,9 @@ INSERT INTO `users` (`id`, `fullName`, `email`, `dob`, `address`, `password`, `r
 INSERT INTO `users` (`id`, `fullName`, `email`, `dob`, `address`, `password`, `roleId`, `status`, `captcha`, `isConfirmed`, `phone`,`image`) VALUES
 ('59', 'Nguyễn Tuấn Vinh', 'nguyentuanvinh1222@gmail.com', '2022-06-12', '276/1, Đường Tỉnh Lộ 827B', '12345', 1, 1, '930819', 1, '0793191854','');
 
+INSERT INTO `users` (`id`, `fullName`, `email`, `dob`, `address`, `password`, `roleId`, `status`, `captcha`, `isConfirmed`, `phone`,`image`) VALUES
+('60', 'Thanh Sang', 'sang@gmail.com', '2022-06-13', '276/1, Đường Tỉnh Lộ 827B', '123', 2, 1, '930819', 1, '03456677','');
+
 --
 -- Đang đổ dữ liệu cho bảng `role`
 --
@@ -303,7 +305,11 @@ INSERT INTO `role` (`id`, `name`) VALUES
 (1, 'Admin'),
 (2, 'Normal');
 
-
+--
+-- Đang đổ dữ liệu cho bảng `cart`
+--
+INSERT INTO `cart`(`userId`,`productId`,`quanty`) VALUES
+            ('60','24','1');
 --
 -- Các ràng buộc cho các bảng đã đổ
 --

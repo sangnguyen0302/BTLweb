@@ -1,5 +1,10 @@
     <?php 
       require_once '../models/categoryModel.php';
+      require_once '../models/cartModel.php';
+      $result2="0";
+      if(isset($_SESSION['user_id'])){
+        $result2= CartModel::getCartFromId($_SESSION['user_id']);
+      }
       $result = CategoryModel::getAllClient();
       $listCategory = $result->fetch_all(MYSQLI_ASSOC);
     ?>
@@ -10,9 +15,9 @@
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarNav">
-          <form class="d-flex me-auto">
-            <input class="form-control me-2" type="search" placeholder="Tìm kiếm sản phẩm" aria-label="Search">
-            <button class="btn btn-outline-light" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+          <form action="home.php"class="d-flex me-auto">
+            <input class="form-control me-2" type="search" placeholder="Tìm kiếm sản phẩm" aria-label="Search" name="search-key" required>
+            <button class="btn btn-outline-light" type="submit" name="search-submit"><i class="fa-solid fa-magnifying-glass" ></i></button>
           </form>
           <ul class="navbar-nav my-2 my-lg-0">
               <li class="nav-item dropdown">
@@ -56,11 +61,19 @@
               ?>
               <li class="nav-item">
                 <a class="nav-link" href="cart.php"><i class="fa-solid fa-cart-shopping"></i> 
-                <?php if(isset($_SESSION['cart'])){
+                <?php if(!isset($_SESSION['user_id'])&&isset($_SESSION['cart'])){
                   echo "(";
                   echo count($_SESSION['cart']);
                   echo ")";
-                }else{echo"(0)";}?></a>
+                }else if(!isset($_SESSION['user_id'])){echo"(0)";}
+                else if(isset($_SESSION['user_id'])){
+                  if($result2&&mysqli_num_rows($result2)>0){
+                    echo mysqli_num_rows($result2);
+                  }else{
+                    echo "0";
+                  }
+                }
+                ?></a>
               </li>
           </ul>
           

@@ -53,13 +53,23 @@
                 }    
                 else {    
                     $page=1;    
-                } 
-                
-                if(isset($_GET['cateid'])){
-                    $result=$prod->getPageandCateid($page,$_GET['cateid']);
                 }
-                else{ $result = $prod->getPage($page);}
-                
+                if(isset($_GET['search-submit'])){
+                    $key = $_GET['search-key'];
+                    $result=$prod->getPageandSearch($page,$key);
+                    if($result&&mysqli_num_rows($result)>0){
+                        
+                    }else{
+                        echo "<div class='message'>Không tồn tại sản phẩm tìm kiếm</div>";
+                    }
+                } else{
+                    if(isset($_GET['cateid'])){
+                        $result=$prod->getPageandCateid($page,$_GET['cateid']);
+                    }
+                    else{
+                        $result = $prod->getPage($page);
+                    }
+                }
                 if($result){
                     while($data=$result->fetch_assoc()) 
 			    {
@@ -81,7 +91,15 @@
                             <p class="card-text">$<?php echo number_format($data['originalPrice'], 2) ?></p>
 						    <!--p class="price">$<,?php echo number_format($data['originalPrice'], 2) ?></p-->
 					<!-- The add cart button -->
-						    <a class="btn btn-dark" href="../controllers/script.php?store-product-id=<?php echo $data['id'];?>">Thêm vào giỏ hàng</a> 
+                            <?php 
+                                if(!isset($_SESSION['user_id'])){
+                                    $url = "../controllers/script.php?store-product-id=".$data['id'];
+                                }else{
+                                    $url = "../controllers/script.php?store-product-id-user=".$data['id'];
+                                }
+                                
+                            ?>
+						    <a class="btn btn-dark" href="<?=$url?>">Thêm vào giỏ hàng</a> 
                         </div>
                         </div>
 					</div> <!-- End of product element -->
@@ -97,7 +115,13 @@
                 if(isset($_GET['cateid'])){
                     $result=$prod->getByCateid($_GET['cateid']);
                 }
-                else{$result = $prod->getAll();}
+                else if(isset($_GET['search-submit'])){
+                    $key=$_GET['search-key'];
+                    $result=$prod->searchKey($key);
+                }
+                else{
+                    $result = $prod->getAll();
+                }
                 $total_records = mysqli_num_rows($result);    
           
                 $per_page_record = 6;

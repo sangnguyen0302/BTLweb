@@ -36,7 +36,6 @@
                         <div class="product-price bg-light py-2 px-3">
                             <span class="h2 text-dark">Giá: <?php echo $value['originalPrice']?></span>
                         </div>
-
                         <div class="add-to-cart py-5">
                             <div class="qty-modify">
                                 <p>Số lượng</p>
@@ -59,7 +58,14 @@
                             </div>
 
                             <div class="add-to-cart-btn my-5">
-                                    <a class="btn btn-outline-dark" href="../controllers/script.php?single-store-product-id=<?php echo $value['id'];?>">Thêm vào giỏ hàng</a>
+                                    <?php 
+                                        if(!isset($_SESSION['user_id'])){
+                                            $url= "../controllers/script.php?single-store-product-id=".$value['id'];
+                                        }else{
+                                            $url = "../controllers/script.php?single-store-product-id-user=".$value['id'];
+                                        }
+                                    ?>
+                                    <a class="btn btn-outline-dark" href="<?=$url?>">Thêm vào giỏ hàng</a>
                             </div>
                         </div>
                         
