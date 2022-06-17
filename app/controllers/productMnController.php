@@ -40,7 +40,7 @@
 
 		if(isset($_POST['edit'])){			
 
-        	if($_POST['edit']=="Confirm"){
+        	/*if($_POST['edit']=="Confirm"){*/
 
         		$productId = $_POST['id'];
 
@@ -106,28 +106,12 @@
 
         		}
 
-        		if(isset($_POST['status']) && !empty($_POST['status'])){
-
-        			$status = $_POST['status'];
-
-        			$product->changeStatusById($productId,$status);
-
-        		}
-
-        		if(isset($_POST['soldCount']) && !empty($_POST['soldCount'])){
-
-        			$soldCount = $_POST['soldCount'];
-
-        			$product->changeSoldoutById($productId,$soldCount);
-
-        		}
-
         		$result = $product->getAll();
         		$productsList= $result->fetch_all(MYSQLI_ASSOC);
 
 				require_once "../views/management/ProductsManagement.php";
 
-        	}
+        	/*}*/
         }else if(isset($_POST['add'])){
         	/*if($_POST['add']=='Confirm'){*/
         		$name=$_POST['product-name'];

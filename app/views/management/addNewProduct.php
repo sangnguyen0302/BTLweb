@@ -1,9 +1,10 @@
 <?php 
+session_start();
 require_once '../views/inc/head.php'; 
 require_once '../DB.php';
 require_once '../models/categoryModel.php'; 
 ?>
-<title>Thông tin sản phẩm</title>
+<title>Thêm sản phẩm</title>
 <!--link type="text/css" rel="stylesheet" href= "../../css/admin.css"-->
 </head>
 <body>
