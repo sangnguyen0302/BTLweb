@@ -3,8 +3,7 @@
       <div class="col-lg-2 col-link">
         <h4>Liên kết</h4>
         <ul>
-          <li><a href="#">Tìm kiếm</a></li>
-          <li><a href="#">Giới thiệu</a></li>
+          <li><a href="../views/intro.php">Giới thiệu</a></li>
           <li><a href="#">Chính sách đổi trả</a></li>
           <li><a href="#">Chính sách bảo mật</a></li>
           <li><a href="#">Điều khoản dịch vụ</a></li>

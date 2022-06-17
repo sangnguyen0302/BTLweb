@@ -88,7 +88,7 @@
                             <h5 class="card-title"><?php echo $data['name'] ?></h5>
 						<!--p class="name"><,?php echo $data['name'] ?></p-->
 					<!-- The products price formatted with two decimals  -->
-                            <p class="card-text">$<?php echo number_format($data['originalPrice'], 2) ?></p>
+                            <p class="card-text text-danger"><?php echo number_format($data['originalPrice']) ?> VNĐ</p>
 						    <!--p class="price">$<,?php echo number_format($data['originalPrice'], 2) ?></p-->
 					<!-- The add cart button -->
                             <?php 

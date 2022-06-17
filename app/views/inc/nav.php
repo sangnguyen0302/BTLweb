@@ -37,7 +37,7 @@
                   </ul>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">Giới thiệu</a>
+                <a href="../views/intro.php" class="nav-link">Giới thiệu</a>
               </li>
               <?php
                 if (isset($_SESSION['user_id'])) { ?>
@@ -47,7 +47,7 @@
                   </a>
                   <ul class="dropdown-menu dropdown-menu-dark">
                     <li><a class="dropdown-item" href="../controllers/orderController.php?action=myOrder">Đơn hàng của tôi</a></li>
-                    <li><a class="dropdown-item" href="infoUser.php?user_id=<?=$_SESSION['user_id']?>">Thông tin tài khoản</a></li>
+                    <li><a class="dropdown-item" href="../views/infoUser.php?user_id=<?=$_SESSION['user_id']?>">Thông tin tài khoản</a></li>
                     <li><a class="dropdown-item" href="../views/logout.php">Đăng xuất</a></li>
                   </ul>
                 </li>
