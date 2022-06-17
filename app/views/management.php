@@ -1,21 +1,10 @@
 <?php 
-<<<<<<< HEAD
-	session_start();
-?>
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Managemant Webpage</title>
-=======
     session_start();
     require_once("inc/head.php");
     require_once("../DB.php");
  ?>
 <title>Thông tin tài khoản</title>
 <link type="text/css" rel="stylesheet" href= "../../css/profile.css">
->>>>>>> 27f09a5661a34634ce30a62608372e04134ef95d
 </head>
 <?php
     if(isset($_GET['user_id'])){

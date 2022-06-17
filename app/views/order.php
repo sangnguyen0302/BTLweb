@@ -1,5 +1,8 @@
 <?php
-	require_once '../views/inc/head.php'
+	require_once '../views/inc/head.php';
+	require_once '../DB.php';
+	$db=new DB();
+	$user= $db->getInstance();
 ?>
 <title>Đơn hàng của tôi</title>
 </head>
@@ -8,50 +11,67 @@
 	<div class="container-fluid mb-5 py-5">
 	<div class="container mb-5 p-3 bg-light">
 		<h4>Đơn hàng của tôi</h4>
-		
 			<?php
-
 				if(count($list)>0){  
-					$count=0;
 					$total=0;
 			?>
-			<div class="table-responsive-xxl">
-			<table id = "order_table" class="table table-hover">
-			<thead class="text-center align-middle">
-			<tr>
-				<th>STT</th>
-				<th>Mã đơn hàng</th>
-				<th>Ngày đặt hàng</th>
-				<th>Tên sản phẩm</th>
-				<th>Số lượng</th>
-				<th>Giá</th>
-				<th>Ngày giao dự kiến</th>
-				<th>Tình trạng đơn hàng</th>
-				<th>Thao tác</th>						
-			</tr>
-			</thead>
-
-			<tbody class="text-center align-middle">
+			
 				<?php foreach ($list as $key => $value) {
-            		$total += $value['productPrice'] * $value['qty'];
-        		?>
-        		<tr>
-            		<td><?php echo ++$count; ?></td>
-            		<td><?php echo $value['id']; ?></td>
-            		<td><?php echo $value['createdDate']; ?></td>
-            		<td><?php echo $value['productName']; ?></td>
-            		<td><?php echo $value['qty']; ?></td>
-            		<td><?php echo number_format($value['productPrice'], 0, '', ','); ?>VND</td>
-            		<td><?php echo $value['receivedDate']; ?></td>
-            		<td><?php echo $value['status']; ?></td>
-            		<td><a href="../controllers/orderController.php?action=removeProduct&id=<?php echo $value['productId']?>">Bỏ đơn hàng</a>
-            		<br>
-            		<a href="../controllers/orderController.php?action=viewDetail&id=<?php echo $value['productId']?>">Chi tiết sản phẩm</a></td>                 
-        		</tr>
-        		<?php }
-        		?>
+					$count=0;
+					?>
+					<div class="table-responsive-xxl">
+					<table id = "order_table" class="table table-hover">
+						<thead class="text-center align-middle">
+						<tr>
+							<th>STT</th>
+							<th>Sản phẩm</th>
+							<th>Giá</th>
+							<th>Số lượng</th>
+							<th>Tạm tính</th>					
+						</tr>
+						</thead>
+				<?php
+            		$total = $value['totalPrice'];
+					$orderId=$value['id'];
+					$sql = "SELECT * FROM order_details WHERE orderId='$orderId'";
+					$result=mysqli_query($user->con,$sql);
+					while($value2=$result->fetch_assoc()){
 
-				<tr>
+				?>		
+					
+						<?php
+								$productId=$value2['productId'];
+								$sql="SELECT * FROM products WHERE id='$productId'";
+								$result2 = mysqli_query($user->con, $sql);
+								$prod = $result2->fetch_assoc(); 
+						?>
+						<tbody class="text-center align-middle">
+						<tr>
+						<td><?php echo ++$count; ?></td>
+						<td>
+							<div>
+								<?php
+								echo $prod['image'];
+									echo $prod['name'];
+									echo $prod['id'];
+								?>
+								<form>
+									<input type="submit" name="write-cmt" value="Viết nhận xét">
+								</form>
+								<form>
+									<input type="text" name="rate" value="">
+									<input type="submit" name="write-cmt" value="Đánh giá">
+								</form>
+							</div>
+						</td>
+						<td><?php echo $prod['originalPrice']; ?></td>
+						<td><?php echo $value2['productQty']; ?></td>
+						<td><?php echo $prod['originalPrice']*$value2['productQty']; ?></td>              
+						</tr>
+				<?php
+					}
+					?>
+					<tr>
             		<td></td>
             		<td></td>
             		<td></td>
@@ -60,8 +80,13 @@
             		<td></td>
             		<td></td>
             		<td>Tổng tiền</td>
-            		<td><?= number_format($total, 0, '', ',') ?>VND</td>
+            		<td><?= number_format($value['totalPrice'], 0, '', ',') ?>VND</td>
         		</tr>
+				<?php
+				 }
+        		?>
+
+				
 			</tbody>
 	</table>
 	</div>

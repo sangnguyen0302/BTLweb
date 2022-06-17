@@ -34,7 +34,7 @@
                             }
                         ?>
                     </div>
-                        <form action="../controllers/infoController.php".$user_id method="POST" enctype="multipart/form-data">
+                        <form action="../controllers/infoController.php" method="POST" enctype="multipart/form-data">
                             <div class="text-center my-3">
                             <input type="file" name="image" accept="image/jpg, image/jpeg, image/png">
                             </div>
@@ -71,30 +71,41 @@
                     <h5>Thông tin liên hệ</h5>
                         <ul class="list-group">
                             <li class="phoneli">
-                                <form action="">
+                                <form action="../controllers/infoController.php" method="post" enctype="multipart/form-data">
                                 <div class="py-1 phone-num ms-4 d-flex">
                                     <div>
                                         <span>Số điện thoại</span> <br>
-                                        <input class="form-control-plaintext" type="text" name="phone" value="<?= $value['phone'] ?>">
+                                        <input class="form-control-plaintext" type="text" name="phone" value="<?= $value['phone']?>">
+                                        <input type="hidden" name="user-id-phone" value="<?=$user_id?>">
                                     </div>
                                     <div class="text-end flex-fill">
-                                        <button type="submit" class="btn btn-outline-primary">Cập nhật</button>
+                                        <input type="submit" class="btn btn-outline-primary" name="change-phone-user" value="Cập nhật">
                                     </div>
                                 </div>
                                 </form>
                             </li>
 
                             <li class="emaili">
-                                <form action="">
+                            
+                                <form action="../controllers/infoController.php" method="post">
                                 <div class="py-1 email d-inline-block ms-4 d-flex">
                                     <div>
+                                        
                                         <span>Địa chỉ email</span> <br>
-                                        <input class="form-control-plaintext" type="text" name="mail" value="<?= $value['email'] ?>">
+                                        <input class="form-control-plaintext" type="text" name="new-email" value="<?= $value['email'] ?>">
+                                        <input type="hidden" name="user-id-email" value="<?=$user_id?>">
                                     </div>
                                     <div class="text-end flex-fill">
-                                        <button type="submit" class="btn btn-outline-primary">Cập nhật</button>
+                                        <button type="submit" class="btn btn-outline-primary" name="change-email-user">Cập nhật</button>
                                     </div>
                                 </div>
+                                <?php 
+                                        if(isset($_GET['message'])&&$_GET['message']!=""){
+                                        ?>
+                                        <span class="text-danger"><?php echo $_GET['message']?></span>
+                                        <?php
+                                            }       
+                                        ?>
                                 </form>
                                 
                             </li>

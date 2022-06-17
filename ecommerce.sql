@@ -69,14 +69,11 @@ CREATE TABLE `categories` (
 
 CREATE TABLE `orders` (
   `id` int(11) NOT NULL,
-  `productId` int(11) NOT NULL,
   `userId` int(11) NOT NULL,
   `createdDate` date NOT NULL,
-  `productName` varchar(255) NOT NULL,
-  `qty` int(10) NOT NULL,
-  `productPrice` int(20) NOT NULL,
+  `totalPrice` int(20) NOT NULL,
   `receivedDate` date DEFAULT NULL,
-  `status` varchar(20) NOT NULL
+  `status` varchar(20) NOT NULL 
 ) ;
 
 
@@ -89,9 +86,10 @@ CREATE TABLE `orders` (
 CREATE TABLE `order_details` (
   `id` int(11) NOT NULL,
   `orderId` int(11) NOT NULL,
-  `userId` int(11) NOT NULL,
-  `userName` varchar(255) NOT NULL,
+  `userId` int(11) ,
+  `userName` varchar(10),
   `productId` int(11) NOT NULL,
+  `productQty` int(11) NOT NULL,
   `rate` int(11) NOT NULL,
   `comment` varchar(1000) NOT NULL
 ) ;
@@ -222,83 +220,35 @@ ALTER TABLE `users`
 --
 
 ALTER TABLE `categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5000;
 
 --
 -- AUTO_INCREMENT cho bảng `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4000;
 
 --
 -- AUTO_INCREMENT cho bảng `order_details`
 --
 ALTER TABLE `order_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3000;
 
 --
 -- AUTO_INCREMENT cho bảng `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2000;
 
 --
 -- AUTO_INCREMENT cho bảng `role`
 --
 ALTER TABLE `role`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 
 --
 -- Đang đổ dữ liệu cho bảng `orders`
---
-
-INSERT INTO `orders` (`id`, `productId`, `userId`, `createdDate`, `productName`, `qty`, `productPrice`, `receivedDate`, `status`) VALUES
-(57, 21, 59, '2009-06-22', 'Xe điều khiển 1:24 Ferrari FXXK Evo', 1, 335000, '0000-00-00', 'processing');
-
---
--- AUTO_INCREMENT cho bảng `users`
---
-ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
-
---
--- Đang đổ dữ liệu cho bảng `categories`
---
-
-INSERT INTO `categories` (`id`, `name`, `status`) VALUES
-(6, 'Xe điều khiển', 1),
-(7, 'Đồ chơi lắp ghép', 1),
-(8, 'Đồ chơi mô phỏng', 1);
-
---
--- Đang đổ dữ liệu cho bảng `products`
---
-
-INSERT INTO `products` (`id`, `name`, `originalPrice`, `promotionPrice`, `image`, `createdBy`, `createdDate`, `cateId`, `qty`, `des`, `status`, `soldCount`) VALUES
-(21, 'Xe điều khiển 1:24 Ferrari FXXK Evo', '335000', '335000', 'R79300_1.jpg', 59, '2022-03-08', 6, 10, 'Xe điều khiển Ferrari FXXK Evo R79300 của thương hiệu RASTAR, được mua bản quyền và mô phỏng lại chính xác với tỷ lệ thu nhỏ 1:24. Sở hữu thiết kế chân thực như một chiếc xe ngoài đời thật, sản phẩm không chỉ là món đồ chơi giải trí sau những giờ học tập mệt mỏi mà còn giúp bé có thêm kiến thức về các loại phương tiện giao thông.', 1, 1),
-(22, 'Trụ Sở Nghiên Cứu NASA Mặt Trăng', '3199000', '3199000', '60350_1_.jpg', 59, '2022-03-11', 7, 9, 'Hãy hạ cánh tàu đổ bộ mặt trăng để có những cuộc phiêu lưu tuyệt vời tại Trụ Sở Nghiên Cứu NASA Mặt Trăng. Tời và di chuyển các vật thể bằng máy bay không người lái, lấy mẫu từ máy bay VIPER và thực hiện các thí nghiệm trong phòng thí nghiệm khoa học và thực vật học. Sau đó nhảy lên xe buggy mặt trăng và đi đến khóa không khí và chỗ ở, nơi bạn có thể cất mũ bảo hiểm và ba lô của mình cho đến nhiệm vụ tiếp theo!', 1, 0),
-(23, 'Xe Ford® F-150 Raptor', '4899000', '4899000', '42126_1_.jpg', 59, '2022-03-11', 7, 10, 'Xe bán tải Ford® nổi tiếng về sức mạnh và chức năng của chúng. Giờ đây, bạn có thể sở hữu sự bản sao của chiếc xe này với bộ LEGO® Technic ™ Xe Ford® F-150 Raptor (42126). Tận hưởng thời gian chất lượng khi bạn khám phá các tính năng thực tế được thiết kế trong mô hình giống như thật này, gồm động cơ V6 với các piston chuyển động, cùng với hệ thống treo trên tất cả các bánh xe.', 1, 0),
-(24, 'Trạm Cứu Hỏa Abrick', '1000000', '1100000', '003026_2_.jpg', 59, '2022-06-10', 7, 20, 'Abrick ECOIFFIER 003026 Fire Station is a realistic fire station simulation toy model - a barracks complete with a team of qualified firefighters for all interventions: air, road… help put out quickly extinguish the fire, bringing peace to the people. Through simulation toys, children learn to understand the world around them, practice the skills they need for life, and be more independent every day.', 1, 2),
-(28, 'Vinh', '12022001', '1000000000', '', 59, '2022-06-11', 6, 1, 'nice', 1, 0);
-
-
---
--- Đang đổ dữ liệu cho bảng `users`
---
-
-INSERT INTO `users` (`id`, `fullName`, `email`, `dob`, `address`, `password`, `roleId`, `status`, `captcha`, `isConfirmed`, `phone`, `image`) VALUES
-('50', 'Thanh Sang', 'admin@gmail.com', '2022-06-12', '276/1, Đường Tỉnh Lộ 827B', '123', 1, 1, '123455', 1, '0365840620', 'ic.jpg');
-
-INSERT INTO `users` (`id`, `fullName`, `email`, `dob`, `address`, `password`, `roleId`, `status`, `captcha`, `isConfirmed`, `phone`,`image`) VALUES
-('59', 'Nguyễn Tuấn Vinh', 'nguyentuanvinh1222@gmail.com', '2022-06-12', '276/1, Đường Tỉnh Lộ 827B', '12345', 1, 1, '930819', 1, '0793191854','');
-
-INSERT INTO `users` (`id`, `fullName`, `email`, `dob`, `address`, `password`, `roleId`, `status`, `captcha`, `isConfirmed`, `phone`,`image`) VALUES
-('60', 'Thanh Sang', 'sang@gmail.com', '2022-06-13', '276/1, Đường Tỉnh Lộ 827B', '123', 2, 1, '930819', 1, '03456677','');
-
---
--- Đang đổ dữ liệu cho bảng `role`
 --
 
 INSERT INTO `role` (`id`, `name`) VALUES
@@ -306,11 +256,73 @@ INSERT INTO `role` (`id`, `name`) VALUES
 (2, 'Normal');
 
 --
+-- AUTO_INCREMENT cho bảng `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1000;
+
+INSERT INTO `users` (`id`, `fullName`, `email`, `dob`, `address`, `password`, `roleId`, `status`, `captcha`, `isConfirmed`, `phone`, `image`) VALUES
+('1000', 'Thanh Sang', 'admin@gmail.com', '2022-06-12', '276/1, Đường Tỉnh Lộ 827B', '123', 1, 1, '123455', 1, '0365840620', 'ic.jpg');
+
+INSERT INTO `users` (`id`, `fullName`, `email`, `dob`, `address`, `password`, `roleId`, `status`, `captcha`, `isConfirmed`, `phone`,`image`) VALUES
+('1001', 'Nguyễn Tuấn Vinh', 'nguyentuanvinh1222@gmail.com', '2022-06-12', '276/1, Đường Tỉnh Lộ 827B', '12345', 1, 1, '930819', 1, '0793191854','');
+
+INSERT INTO `users` (`id`, `fullName`, `email`, `dob`, `address`, `password`, `roleId`, `status`, `captcha`, `isConfirmed`, `phone`,`image`) VALUES
+('1002', 'Thanh Sang', 'sang@gmail.com', '2022-06-13', '276/1, Đường Tỉnh Lộ 827B', '123', 2, 1, '930819', 1, '03456677','');
+
+
+--
+-- Đang đổ dữ liệu cho bảng `categories`
+--
+
+INSERT INTO `categories` (`id`, `name`, `status`) VALUES
+(5001, 'Xe điều khiển', 1),
+(5002, 'Đồ chơi lắp ghép', 1),
+(5003, 'Đồ chơi mô phỏng', 1);
+
+--
+-- Đang đổ dữ liệu cho bảng `products`
+--
+
+INSERT INTO `products` (`id`, `name`, `originalPrice`, `promotionPrice`, `image`, `createdBy`, `createdDate`, `cateId`, `qty`, `des`, `status`, `soldCount`) VALUES
+(2001, 'Xe điều khiển 1:24 Ferrari FXXK Evo', '335000', '335000', 'R79300_1.jpg', 1000, '2022-03-08', 5001, 10, 'Xe điều khiển Ferrari FXXK Evo R79300 của thương hiệu RASTAR, được mua bản quyền và mô phỏng lại chính xác với tỷ lệ thu nhỏ 1:24. Sở hữu thiết kế chân thực như một chiếc xe ngoài đời thật, sản phẩm không chỉ là món đồ chơi giải trí sau những giờ học tập mệt mỏi mà còn giúp bé có thêm kiến thức về các loại phương tiện giao thông.', 1, 1),
+(2002, 'Trụ Sở Nghiên Cứu NASA Mặt Trăng', '3199000', '3199000', '60350_1_.jpg', 1000, '2022-03-11', 5002, 9, 'Hãy hạ cánh tàu đổ bộ mặt trăng để có những cuộc phiêu lưu tuyệt vời tại Trụ Sở Nghiên Cứu NASA Mặt Trăng. Tời và di chuyển các vật thể bằng máy bay không người lái, lấy mẫu từ máy bay VIPER và thực hiện các thí nghiệm trong phòng thí nghiệm khoa học và thực vật học. Sau đó nhảy lên xe buggy mặt trăng và đi đến khóa không khí và chỗ ở, nơi bạn có thể cất mũ bảo hiểm và ba lô của mình cho đến nhiệm vụ tiếp theo!', 1, 0),
+(2003, 'Xe Ford® F-150 Raptor', '4899000', '4899000', '42126_1_.jpg', 1000, '2022-03-11', 5003, 10, 'Xe bán tải Ford® nổi tiếng về sức mạnh và chức năng của chúng. Giờ đây, bạn có thể sở hữu sự bản sao của chiếc xe này với bộ LEGO® Technic ™ Xe Ford® F-150 Raptor (42126). Tận hưởng thời gian chất lượng khi bạn khám phá các tính năng thực tế được thiết kế trong mô hình giống như thật này, gồm động cơ V6 với các piston chuyển động, cùng với hệ thống treo trên tất cả các bánh xe.', 1, 0),
+(2004, 'Trạm Cứu Hỏa Abrick', '1000000', '1100000', '003026_2_.jpg', 1000, '2022-06-10', 5003, 20, 'Abrick ECOIFFIER 003026 Fire Station is a realistic fire station simulation toy model - a barracks complete with a team of qualified firefighters for all interventions: air, road… help put out quickly extinguish the fire, bringing peace to the people. Through simulation toys, children learn to understand the world around them, practice the skills they need for life, and be more independent every day.', 1, 2);
+
+
+--
+-- Đang đổ dữ liệu cho bảng `orderDetail`
+--
+
+
+
+--
+-- Đang đổ dữ liệu cho bảng `users`
+--
+
+
+--
+-- Đang đổ dữ liệu cho bảng `role`
+--
+
+
+INSERT INTO `orders` (`id`,  `userId` ,  `createdDate` ,  `totalPrice` ,  `receivedDate`,  `status`
+) VALUES (4001,'1002', '2022-03-10','10267000','2022-03-15', 'processing'),
+(4002,'1002', '2022-03-10','9798000','2022-03-15', 'processing');
+
+INSERT INTO `order_details` ( `orderId` ,  `userId` ,  `userName`,  `productId` ,  `productQty`,  `rate` ,  `comment`
+) VALUES (4001, '1002', 'Thanh Sang', '2001', '2', '4', 'OK') ,
+ (4001, '1002', 'Thanh Sang', '2002', '3', '4', 'OK1') ,
+ (4002, '1002', 'Thanh Sang', '2003', '2', '5', 'OK2') ;
+
+
+--
 -- Đang đổ dữ liệu cho bảng `cart`
 --
 INSERT INTO `cart`(`userId`,`productId`,`quanty`) VALUES
-            ('60','24','1');
---
+            ('1002','2002','1');
+
 -- Các ràng buộc cho các bảng đã đổ
 --
 
