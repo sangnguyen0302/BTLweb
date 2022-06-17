@@ -58,7 +58,8 @@
     		$sql = "SELECT MAX(id) FROM orders";
     		$result = mysqli_query($db->con,$sql);
     		if(!empty($result)){
-    			return $result;
+    			$num= $result->fetch_assoc();
+    			return $num;
     		}else{
     			return 0;
     		}

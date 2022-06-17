@@ -19,11 +19,12 @@
 
             //Sửa sau
             include_once "../models/cartModel.php";
-            $cart = new CartModel();
+            $cart = new CartModel(1);
 
-            $cartResult = $cart->getCartById($userId); //Hàm này chưa có. Hàm này dùng để lấy danh sách sản phẩm trong đơn hàng theo Id của người dùng
+            $cartResult = $cart->getCartFromId($userId);
 
             $listCart = $cartResult->fetch_all(MYSQLI_ASSOC);
+
 
             //chèn từ cart sang order
             $order = new orderModel();
@@ -31,11 +32,15 @@
         	foreach($listCart as $value){
 
                 //Lấy orderId mới nhất
-                $orderID=$order->getLatestOrderId();
+                $orderId=$order->getLatestOrderId()['MAX(id)'];
+
+                echo $orderId;
 
         		$order->insertToOrder($orderId+1,$value['id'],$userId,$value['name'],$value['qty'],$value['promotionPrice']);
+
         	}
 
+            $cart->clearCartUser();
 
         	//$checkInsert=$cart->insertToOrder($product_id,$userId,$productRow['name'],1,$productRow['promotionPrice']);
         	//unset($_SESSION['cart']);
