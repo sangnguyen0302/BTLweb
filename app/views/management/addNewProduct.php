@@ -1,5 +1,4 @@
 <?php 
-session_start();
 require_once '../views/inc/head.php'; 
 require_once '../DB.php';
 require_once '../models/categoryModel.php'; 

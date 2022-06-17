@@ -3,6 +3,14 @@
     require_once("inc/head.php");
     require_once("../DB.php");
  ?>
+ <style>
+	a {
+		text-decoration : none;
+	}
+	a:hover {
+		text-decoration : underline;
+	}
+</style>
 <title>Thông tin tài khoản</title>
 <link type="text/css" rel="stylesheet" href= "../../css/profile.css">
 </head>
