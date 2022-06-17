@@ -5,7 +5,7 @@
     require_once 'inc/head.php';
     $db = new DB();
     $user = $db->getInstance();
-    $id = $_GET['prod_id'];
+    $id = $productId;
     $sql = "SELECT * FROM products WHERE id='$id'";
     $result=mysqli_query($user->con, $sql);
     $value=$result->fetch_assoc();
