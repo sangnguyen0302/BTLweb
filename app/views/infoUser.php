@@ -20,7 +20,7 @@
 ?>
 <body>
     <?php require_once 'inc/nav.php'; ?>
-    <div class="container my-5 px-5">
+    <div class="container-md my-5 px-5">
         <h3>Thông tin tài khoản</h3>
         <div class="container-fluid px-3 bg-light">
             <div class="row">
