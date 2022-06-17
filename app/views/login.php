@@ -10,6 +10,7 @@
 <title>Đăng nhập</title>
 <?php
 require_once '../models/loginModel.php';
+require_once '../DB.php';
 
 if(isset($_POST['LoginAction'])){
       
@@ -27,7 +28,7 @@ if(isset($_POST['LoginAction'])){
                    $current_admin = mysqli_fetch_assoc($result);
                    $_SESSION['admin_name'] = $current_admin['fullName'];
                    $_SESSION['admin_id'] = $current_admin['id'];
-                   header("Location: management.php");
+                   header("Location: management.php?user_id=".$current_admin['id']);
              }else{
                    $message="Tài khoản hoặc mật khẩu không chính xác!";
              }

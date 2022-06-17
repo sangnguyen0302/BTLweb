@@ -87,7 +87,7 @@
         </table>
 </div>
 
-    <?php } else if(!$_SESSION['user_id']) { ?>
+    <?php } else if(!isset($_SESSION['user_id'])) { ?>
          <div class="container-fluid text-center">
             <img src="https://www.english-learning.net/wp-content/uploads/2019/04/sorry-min.png" alt="Sorry" width="300px" heigt="300px" class="m-3">
             <h5>Giỏ hàng đang trống</h5>

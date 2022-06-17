@@ -1,6 +1,6 @@
 <?php
     session_start();
-
+    require_once("../DB.php");
     require("../models/cartModel.php");
     require("../models/ProductModel.php");
     //require("../DB.php");

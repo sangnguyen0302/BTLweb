@@ -165,14 +165,15 @@
 
         	}
         }else if(isset($_POST['add'])){
-        	if($_POST['add']=='Confirm'){
-        		$name=$_POST['name'];
+        	/*if($_POST['add']=='Confirm'){*/
+        		$name=$_POST['product-name'];
         		$originalPrice=$_POST['originalPrice'];
         		$promotionPrice=$_POST['promotionPrice'];
         		$createdDate=$_POST['createdDate'];
         		$cateId=$_POST['cateId'];
         		$qty=$_POST['qty'];
         		$des=$_POST['des'];
+				$image = $_POST['product-image'];
 
         		$listValue = array($name, $originalPrice,$promotionPrice, $createdDate, $cateId, $qty, $des);
 
@@ -187,7 +188,7 @@
 
 				require_once "../views/management/ProductsManagement.php";
 
-        	}
+        	/*}*/
 
         }else if(isset($_POST['comment'])){
         	

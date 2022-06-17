@@ -12,9 +12,13 @@
 <title>Quản trị sản phẩm</title>
 </head>
 <body>
-	<div class="container my-5 bg-light py-3">
+
+<?php require_once '../views/inc/sidebar.php'; ?>
+
+ <main style="margin-left: 220px" class="p-3">
+  <div class="container-fluid my-5 bg-light py-3">
 	<h4>Danh sách sản phẩm</h4>
-	<div class="table-responsive">
+	<div class="table-responsive-lg">
 	<table class="table table-hover">
 		<?php 
 			$count=0;
@@ -73,9 +77,9 @@
 
 	<div class="text-end">
 	<a class="btn btn-primary text-decoration-none" href="../controllers/productMnController.php?action=add">Thêm sản phẩm</a>
-	</div>
+  </main>
 	
-	</div>
+
 	
 </body>
 </html>

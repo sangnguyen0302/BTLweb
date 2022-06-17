@@ -1,68 +1,32 @@
-.pro_container {
-   min-height: 100vh;
-   background-color: lightblue;
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   padding: 20px;
+.input-label {
+   width: 110px;
+   margin-left: 10px;
 }
 
-.pro_container .profile {
-   padding: 20px;
-   background-color: white;
-   box-shadow: saddlebrown;
-   text-align: center;
-   width: 400px;
-   border-radius: 5px;
+.phoneli::before {
+   padding: 8px 0;
+   font-family: 'FontAwesome';
+   content: "\f095";
+   position: absolute;
 }
 
-.pro_container .profile img {
-   height: 150px;
-   width: 150px;
-   border-radius: 50%;
-   object-fit: cover;
-   margin-bottom: 5px;
+.roleli::before {
+   padding: 8px 0;
+   font-family: 'FontAwesome';
+   content: "\f007";
+   position: absolute;
 }
 
-.pro_container .profile h3 {
-   margin: 5px 0;
-   font-size: 20px;
-   color: rebeccapurple;
+.emaili::before {
+   padding: 8px 0;
+   font-family: 'FontAwesome';
+   content: "\f0e0";
+   position: absolute;
 }
 
-.pro_container .profile a {
-   text-decoration: none;
+.lockli::before {
+   padding: 8px 0;
+   font-family: 'FontAwesome';
+   content: "\f023";
+   position: absolute;
 }
-
-/*.btn,
-.delete-btn{
-   width: 100%;
-   border-radius: 5px;
-   padding:10px 30px;
-   color:white;
-   display: block;
-   text-align: center;
-   cursor: pointer;
-   font-size: 20px;
-   margin-top: 10px;
-}
- .btnn{
-    background-color: blue;
- }
- 
- .btnn:hover{
-    background-color: darkblue;
- }
- .deletee-btnn{
-    background-color: red;
- }
- 
- .deletee-btnn:hover{
-    background-color: darkred;
- }*/
- .change_pass{
-   display: none;
- }
- .change_pass.active{
-   display: block;
- }
