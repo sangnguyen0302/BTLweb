@@ -69,12 +69,9 @@ CREATE TABLE `categories` (
 
 CREATE TABLE `orders` (
   `id` int(11) NOT NULL,
-  `productId` int(11) NOT NULL,
   `userId` int(11) NOT NULL,
   `createdDate` date NOT NULL,
-  `productName` varchar(255) NOT NULL,
-  `qty` int(10) NOT NULL,
-  `productPrice` int(20) NOT NULL,
+  `totalPrice` int(20) NOT NULL,
   `receivedDate` date DEFAULT NULL,
   `status` varchar(20) NOT NULL
 ) ;
@@ -89,9 +86,9 @@ CREATE TABLE `orders` (
 CREATE TABLE `order_details` (
   `id` int(11) NOT NULL,
   `orderId` int(11) NOT NULL,
-  `userId` int(11) NOT NULL,
-  `userName` varchar(255) NOT NULL,
+  `userId` int(11) ,
   `productId` int(11) NOT NULL,
+  `productQty` int(11) NOT NULL,
   `rate` int(11) NOT NULL,
   `comment` varchar(1000) NOT NULL
 ) ;
@@ -253,8 +250,6 @@ ALTER TABLE `role`
 -- Đang đổ dữ liệu cho bảng `orders`
 --
 
-INSERT INTO `orders` (`id`, `productId`, `userId`, `createdDate`, `productName`, `qty`, `productPrice`, `receivedDate`, `status`) VALUES
-(57, 21, 59, '2009-06-22', 'Xe điều khiển 1:24 Ferrari FXXK Evo', 1, 335000, '0000-00-00', 'processing');
 
 --
 -- AUTO_INCREMENT cho bảng `users`

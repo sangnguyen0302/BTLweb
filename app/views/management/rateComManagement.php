@@ -32,7 +32,7 @@
 
 		<?php  
 			$count=0;
-			foreach ($list as $value) {
+			foreach ($list as $key => $value) {
 				
 		?>
 		<tr>

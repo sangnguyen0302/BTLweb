@@ -17,7 +17,7 @@
 	        }
 		}
 	}else{
-		header("Location: app/views/home.php");
+		header("Location: ../views/home.php");
 	}
 
 

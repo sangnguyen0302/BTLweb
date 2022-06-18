@@ -43,8 +43,8 @@
 			$rate= new orderDetailModel();
 			$userId=$_SESSION['user_id'];
 			$productId=$_REQUEST['productId'];
-			$rate->rate($userId,$productId,$value);
-
+			$list=$rate->rate($userId,$productId,$value);
+			print_r($list);
 
 			include_once "../models/orderDetailModel.php";
 
@@ -55,14 +55,17 @@
         	$totalRate = 0;
             $countRate =0; 
             $averRate=0;
-            foreach($productRow as $value){
-                ++$countRate;
-                $totalRate+=$value['rate'];
+            foreach($productRow as $key => $value){
+                if($value['rate']!=0){
+	                ++$countRate;
+	                $totalRate+=$value['rate'];
+            	}
+
             }
 
 
             if($countRate>0){
-                $averRate = floor($totalRate/$countRate);
+                $averRate = round($totalRate/$countRate,1);
             }
 
             $checkOrdered = $detail->checkExistOrder($userId,$productId); 
@@ -196,19 +199,19 @@
     		$productId= $_POST['comment'];
     		$comment = $_POST['user_comment'];
 
-    		include_once "../models/memberModel.php";
+    		// include_once "../models/memberModel.php";
 
-    		$user = new memberModel();
-    		$user_result = $user->getMemById($userId);
-    		$user_property = $user_result->fetch_assoc();
+    		// $user = new memberModel();
+    		// $user_result = $user->getMemById($userId);
+    		// $user_property = $user_result->fetch_assoc();
     		
-    		$userName = $user_property['fullName']; 
+    		//$userName = $user_property['fullName']; 
 
     		include_once "../models/orderDetailModel.php";
 
     		$detail = new orderDetailModel();
     		
-    		$detail->addNewComment($userId,$userName,$productId,$comment);
+    		$detail->addNewComment($userId,$productId,$comment);
 
 
         	$result= $detail->getProduct($productId);
@@ -217,14 +220,16 @@
         	$totalRate = 0;
             $countRate =0; 
             $averRate=0;
-            foreach($productRow as $value){
-                ++$countRate;
-                $totalRate+=$value['rate'];
+            foreach($productRow as $key => $value){
+            	if($value['rate']!=0){
+	                ++$countRate;
+	                $totalRate+=$value['rate'];
+            	}
             }
 
 
             if($countRate>0){
-                $averRate = floor($totalRate/$countRate);
+                $averRate = round($totalRate/$countRate);
             }
 
             $checkOrdered = $detail->checkExistOrder($userId,$productId); 

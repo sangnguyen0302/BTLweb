@@ -15,17 +15,31 @@
 	        return $result;
     	}
 
-    	public function insertToOrder($orderId,$productId,$userId,$productName,$qty,$productPrice){
+    	public function insertToOrder($list,$userId){
 			$db = DB::getInstance();
 
-			$totalPrice= $productPrice*$qty;
+			$totalPrice=0;
+			foreach ($list as $key => $value) {
+				$totalPrice+=$value['quanty']*$value['promotionPrice'];
+			}
+			//thêm đơn hàng
+			$add_new_order_sql="INSERT INTO orders(id, userId, createdDate, totalPrice, receivedDate, status) VALUES (NULL,'$userId','" . date('d/m/y') . "','$totalPrice','3 ngày sau','processing')";
 
-	        $sql = "INSERT INTO orders(id,productId,userId,createdDate,productName,qty,receivedDate,productPrice,status) VALUES ('$orderId','$productId','$userId', '" . date('d/m/y') . "','$productName','$qty','after 3 days','$totalPrice','processing')";
-	        $result = mysqli_query($db->con, $sql);
-	        if ($result) {
-	            return true;
-	        }
-	        return false;
+			$order_result=mysqli_query($db->con, $add_new_order_sql);
+
+			//tìm order id mới nhất
+			$get_order_id_sql = "SELECT MAX(id) FROM orders WHERE userId='$userId'";
+    		$order_id_result = mysqli_query($db->con,$get_order_id_sql);
+    		$order_id=$order_id_result->fetch_assoc()["MAX(id)"];
+
+
+    		include_once "orderDetailModel.php";
+    		$detail= new orderDetailModel();
+
+    		foreach ($list as $key => $value) {
+    			$detail->add($value,$order_id);
+    		}
+			
 		}
 
 		public function getByUserId($userId)

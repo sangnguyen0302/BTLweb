@@ -13,10 +13,26 @@
 
 			$detail->deleteComment($userId,$productId);
 
+			$sumRate= $detail->getSumRate();
+
+			$sumComment =$detail->getSumComment();
+
+			$list = $detail->getAll();
+
+			require_once "../views/management/rateComManagement.php";
+
 
 		}else if($_REQUEST['action']=='deleteRate'){
 
 			$detail->deleteRate($userId,$productId);
+
+			$sumRate= $detail->getSumRate();
+
+			$sumComment =$detail->getSumComment();
+
+			$list = $detail->getAll();
+
+			require_once "../views/management/rateComManagement.php";
 
 		}
 

@@ -24,21 +24,11 @@
             $cartResult = $cart->getCartFromId($userId);
 
             $listCart = $cartResult->fetch_all(MYSQLI_ASSOC);
+            print_r($listCart);
 
+            $order= new orderModel();
 
-            //chèn từ cart sang order
-            $order = new orderModel();
-
-        	foreach($listCart as $value){
-
-                //Lấy orderId mới nhất
-                $orderId=$order->getLatestOrderId()['MAX(id)'];
-
-                echo $orderId;
-
-        		$order->insertToOrder($orderId+1,$value['id'],$userId,$value['name'],$value['qty'],$value['promotionPrice']);
-
-        	}
+            echo $order->insertToOrder($listCart,$userId);
 
             $cart->clearCartUser();
 
@@ -60,27 +50,30 @@
     		$userId=$_SESSION['user_id'];
     		$productId = $_REQUEST['id'];
     		include_once "../models/orderDetailModel.php";
-    		include_once "../models/orderModel.php";
-
-        	$cart = new orderDetailModel();
-        	$result= $cart->getProduct($productId);
+    		// include_once "../models/orderModel.php";
+      //       $order= new orderModel();
+        	$orderDetail = new orderDetailModel();
+        	$result= $orderDetail->getProduct($productId);
         	$productRow=$result->fetch_all(MYSQLI_ASSOC);
-
+            // echo "haha";
+            // print_r($productRow);
         	$totalRate = 0;
             $countRate =0; 
             $averRate=0;
-            foreach($productRow as $value){
-                ++$countRate;
-                $totalRate+=$value['rate'];
+            foreach($productRow as $key => $value){
+                if($value['rate']!=0){
+                    ++$countRate;
+                    $totalRate+=$value['rate'];
+                }
             }
 
 
             if($countRate>0){
-                $averRate = floor($totalRate/$countRate);
+                $averRate = round($totalRate/$countRate);
             }
 
-            $checkOrdered = $cart->checkExistOrder($userId,$productId); 
-            $checkComment = $cart->checkComment($userId,$productId);
+            $checkOrdered = $orderDetail->checkExistOrder($userId,$productId); 
+            $checkComment = $orderDetail->checkComment($userId,$productId);
 
         	require_once "../views/single.php";
     	}else if($_REQUEST['action'] == 'removeProduct' && !empty($_REQUEST['id'])){

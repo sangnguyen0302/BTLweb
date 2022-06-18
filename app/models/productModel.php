@@ -1,4 +1,6 @@
 <?php
+
+include_once "../DB.php";
 class ProductModel
 {
     public function __construct()
