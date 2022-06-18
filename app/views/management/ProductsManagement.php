@@ -63,7 +63,6 @@
 				<a href="../controllers/productMnController.php?action=editInfor&id=<?php echo $value['id'] ?>">Sửa thông tin</a><br>
 				<a class="text-danger" href="../controllers/productMnController.php?action=remove&id=<?php echo $value['id'] ?>">Xóa</a>
 			</td>
-
 		</tr>
 
 		<?php  

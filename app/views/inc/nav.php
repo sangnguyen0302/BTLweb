@@ -61,7 +61,7 @@
               <?php  }
               ?>
               <li class="nav-item">
-                <a class="nav-link position-relative" href="cart.php" style="width: 34px;"><i class="fa-solid fa-cart-shopping"></i> 
+                <a class="nav-link position-relative" href="../views/cart.php" style="width: 34px;"><i class="fa-solid fa-cart-shopping"></i> 
                 <span class="position-absolute top-10 start-100 translate-middle badge rounded-circle bg-danger">
                 <?php if(!isset($_SESSION['user_id'])&&isset($_SESSION['cart'])){
                   echo count($_SESSION['cart']);

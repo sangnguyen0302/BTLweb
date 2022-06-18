@@ -16,8 +16,6 @@
 		public function getAll()
 		{
 			$db = DB::getInstance();
-	        $sql = "DELETE FROM order_details WHERE rate = 0 AND comment=''";
-	        $result = mysqli_query($db->con, $sql);
 
 	        $sql1 ="SELECT * FROM order_details";
 	        $result1 = mysqli_query($db->con, $sql1);

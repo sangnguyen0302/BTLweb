@@ -1,5 +1,4 @@
 <?php
-require_once("../DB.php");
 class ProductModel
 {
     public function __construct()
@@ -105,8 +104,8 @@ class ProductModel
     public function removeProductById($productId){
         $db = DB::getInstance();
         $sql = "DELETE FROM products WHERE id='$productId'";
-        $result = mysqli_query($db->con, $sql);
-        return $result;
+        mysqli_query($db->con, $sql);
+        echo mysqli_error($db->con);
     }
 
     public function addNewProduct($listValue)

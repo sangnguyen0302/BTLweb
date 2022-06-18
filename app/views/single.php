@@ -112,19 +112,21 @@
 
                 <div class="print-comments">
                     <!-- Print comments -->
-                    <?php  
-                        if(count($productRow)>0){
-                            foreach ($productRow as $value) {
-                                if(!empty($value['comment'])){
+                    <?php
+                        $checkExistComment=0;  
+                        foreach ($productRow as $key => $value) {
+                            if(!empty($value['comment'])){
+                                $checkExistComment=1;
                     ?>
 
-                                    <h4><?php echo $value['userName'] ?></h4>
-                                    <p><?php echo $value['comment'] ?></p>
-                                    <br>
+                                <h4><?php echo $value['fullName'] ?></h4>
+                                <p><?php echo $value['comment'] ?></p>
+                                <br>
                     <?php        
                                 }
-                            }
-                        }else{
+                        }
+                        if($checkExistComment==0){
+                        
                     ?>
 
                             <p>Chưa có bình luận</p>

@@ -87,7 +87,6 @@ CREATE TABLE `order_details` (
   `id` int(11) NOT NULL,
   `orderId` int(11) NOT NULL,
   `userId` int(11) ,
-  `userName` varchar(10),
   `productId` int(11) NOT NULL,
   `productQty` int(11) NOT NULL,
   `rate` int(11) NOT NULL,
@@ -310,10 +309,10 @@ INSERT INTO `orders` (`id`,  `userId` ,  `createdDate` ,  `totalPrice` ,  `recei
 ) VALUES (4001,'1002', '2022-03-10','10267000','2022-03-15', 'processing'),
 (4002,'1002', '2022-03-10','9798000','2022-03-15', 'processing');
 
-INSERT INTO `order_details` ( `orderId` ,  `userId` ,  `userName`,  `productId` ,  `productQty`,  `rate` ,  `comment`
-) VALUES (4001, '1002', 'Thanh Sang', '2001', '2', '4', 'OK') ,
- (4001, '1002', 'Thanh Sang', '2002', '3', '4', 'OK1') ,
- (4002, '1002', 'Thanh Sang', '2003', '2', '5', 'OK2') ;
+INSERT INTO `order_details` ( `orderId` ,  `userId` ,  `productId` ,  `productQty`,  `rate` ,  `comment`
+) VALUES (4001, '1002', '2001', '2', '4', 'OK') ,
+ (4001, '1002', '2002', '3', '4', 'OK1') ,
+ (4002, '1002', '2003', '2', '5', 'OK2') ;
 
 
 --
@@ -329,7 +328,7 @@ INSERT INTO `cart`(`userId`,`productId`,`quanty`) VALUES
 -- Các ràng buộc cho bảng `cart`
 --
 ALTER TABLE `cart`
-  ADD CONSTRAINT `cart_ibfk_1` FOREIGN KEY (`productId`) REFERENCES `products` (`id`),
+  ADD CONSTRAINT `cart_ibfk_1` FOREIGN KEY (`productId`) REFERENCES `products` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `cart_ibfk_2` FOREIGN KEY (`userId`) REFERENCES `users` (`id`);
 
 --
@@ -342,7 +341,7 @@ ALTER TABLE `orders`
 -- Các ràng buộc cho bảng `order_details`
 --
 ALTER TABLE `order_details`
-  ADD CONSTRAINT `order_details_ibfk_1` FOREIGN KEY (`productId`) REFERENCES `products` (`id`),
+  ADD CONSTRAINT `order_details_ibfk_1` FOREIGN KEY (`productId`) REFERENCES `products` (`id`)  ON DELETE CASCADE,
   ADD CONSTRAINT `order_details_ibfk_2` FOREIGN KEY (`orderId`) REFERENCES `orders` (`id`);
 
 --
