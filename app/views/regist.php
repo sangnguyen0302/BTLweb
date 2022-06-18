@@ -22,7 +22,7 @@ if(isset($_POST['RegisterAction']) && $_POST['RegisterAction']=="Đăng ký"){
        $message='Người dùng đã tồn tại';
     } else if (!preg_match("/^0([0-9]){9}$/", $phone)){
         $message="Số điện thoại không hợp lệ";
-    }else if(strlen($password)<6 || strlen($password>15)){
+    }else if(strlen($password)<6 || strlen($password)>15){
         $message="Mật khẩu không hợp lệ";
     }
     else{

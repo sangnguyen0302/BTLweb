@@ -15,7 +15,7 @@
 <div class="pb-5">
 
 
-<div class="container my-5">
+<div class="container-fluid my-5">
 <h4>GIỎ HÀNG</h4>
 <?php
     if(!isset($_SESSION['user_id'])&&isset($_SESSION['cart'])&&count($_SESSION['cart'])!=0) { ?>
@@ -136,7 +136,7 @@
                                 </button>
                                 </span>
                         
-                                <input type="text" name="quantity-user" id="<?= $value['id']?>" class="form-control input-number" value="<?=$value['quanty']?>" min="1" max="5" style="width:5px">
+                                <input type="text" name="quantity-user" id="<?= $value['id']?>" class="form-control input-number" value="<?=$value['quanty']?>" min="1" max="5" style="width:10px">
 
                                 <span class="input-group-btn">
                                 <button type="submit" name="quantity-update-user" class="btn btn-number" data-type="plus" data-field="<?= $value['id']?>">
@@ -175,7 +175,7 @@
             </div>
             </div>
 
-            <div class="col-xl-3">
+            <div class="col-xl-3 p-0">
                 <div class="bg-light p-3">
                     <div class="row border border-2 border-start-0 border-end-0 border-top-0 mb-3">
                         <div class="col">

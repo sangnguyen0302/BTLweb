@@ -277,7 +277,7 @@ INSERT INTO `products` (`id`, `name`, `originalPrice`, `promotionPrice`, `image`
 ', 1, 2),
 (2006, 'Bộ lắp ráp robot siêu nhân', '900000', '900000', 'ask_a123231.png', 1000, '2022-06-10', 5002, 30, 'Bộ đồ chơi lắp ráp robot siêu nhân là người bạn cùng vui chơi mỗi ngày với bé thông qua việc lắp ráp và hóa thân vào các nhân vật trong mỗi sản phẩm. Đồ chơi thương hiệu Banbao có 20 dòng sản phẩm khác nhau với hơn 130 sản phẩm, chất liệu an toàn và những mẫu mã tính năng thông minh sẽ giúp bé vui chơi và phát triển những kĩ năng khám phá, vận động và thỏa sức sáng tạo.
 ', 1, 10),
-(2007, 'Xe tăng điều khiển từ xa mini chính hãng Henglong M26 Pershing sóng 2.4Ghz, bắn đạn hồng ngoại, có giả lập âm thanh như thật', '1500000', '1500000', 'xetang_1231.png', 1000, '2022-06-10', 5001, 30, 'Xe tăng điều khiển từ xa Heng Long M26 Pershing là mẫu mini tank chính hãng vừa ra mắt của Henglong - thương hiệu xe tăng điều khiển từ xa đình đám trên thế giới với những sản phẩm có giá lên đến vài chục triệu đồng. M26 Pershing cùng M4A3 là mẫu xe tăng mini được phát triển riêng ở phân khúc giá bình dân, nhằm phổ cập xe tăng điều khiển đến mọi người chơi.', 1, 10);
+(2007, 'Xe tăng điều khiển từ xa mini chính hãng Henglong M26 Pershing sóng 2.4Ghz', '1500000', '1500000', 'xetang_1231.png', 1000, '2022-06-10', 5001, 30, 'Xe tăng điều khiển từ xa Heng Long M26 Pershing là mẫu mini tank chính hãng vừa ra mắt của Henglong - thương hiệu xe tăng điều khiển từ xa đình đám trên thế giới với những sản phẩm có giá lên đến vài chục triệu đồng. M26 Pershing cùng M4A3 là mẫu xe tăng mini được phát triển riêng ở phân khúc giá bình dân, nhằm phổ cập xe tăng điều khiển đến mọi người chơi.', 1, 10);
 
 
 --
