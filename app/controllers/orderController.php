@@ -56,14 +56,15 @@
         	$result= $orderDetail->getProduct($productId);
         	$productRow=$result->fetch_all(MYSQLI_ASSOC);
             // echo "haha";
-            // print_r($productRow);
+            //print_r($productRow);
         	$totalRate = 0;
             $countRate =0; 
             $averRate=0;
             foreach($productRow as $key => $value){
-                if($value['rate']!=0){
+                if($value['rate']!=0 && $value['productId']==$productId){
                     ++$countRate;
                     $totalRate+=$value['rate'];
+                    //echo "totalRate".$totalRate;
                 }
             }
 
@@ -87,6 +88,8 @@
     		require_once "../views/order.php";
     	}else if($_REQUEST['action']=='canclePayment'){
     		header("Location: ../views/home.php");
-    	}
+    	}elseif ($_REQUEST['action'] == 'rateComment' && !empty($_REQUEST['id'])) {
+            require_once "../views/rateComment.php";
+        }
     }
 ?>

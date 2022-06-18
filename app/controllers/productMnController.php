@@ -44,7 +44,7 @@
 			$userId=$_SESSION['user_id'];
 			$productId=$_REQUEST['productId'];
 			$list=$rate->rate($userId,$productId,$value);
-			print_r($list);
+			//print_r($list);
 
 			include_once "../models/orderDetailModel.php";
 
@@ -193,11 +193,12 @@
 
         	/*}*/
 
-        }else if(isset($_POST['comment'])){
+        }else if(isset($_POST['Rate'])){
         	
     		$userId = $_SESSION['user_id'];
-    		$productId= $_POST['comment'];
+    		$productId= $_SESSION['rate_prod_id'];
     		$comment = $_POST['user_comment'];
+    		$rateValue = $_POST['rateValue'];
 
     		// include_once "../models/memberModel.php";
 
@@ -212,7 +213,7 @@
     		$detail = new orderDetailModel();
     		
     		$detail->addNewComment($userId,$productId,$comment);
-
+    		$detail->rate($userId,$productId,$rateValue);
 
         	$result= $detail->getProduct($productId);
         	$productRow=$result->fetch_all(MYSQLI_ASSOC);
@@ -221,7 +222,7 @@
             $countRate =0; 
             $averRate=0;
             foreach($productRow as $key => $value){
-            	if($value['rate']!=0){
+            	if($value['rate']!=0 && $value['productId']==$productId){
 	                ++$countRate;
 	                $totalRate+=$value['rate'];
             	}
@@ -236,7 +237,18 @@
 
             $checkComment = $detail->checkComment($userId,$productId);
 
-        	require_once "../views/single.php";
+            //unset($_SESSION['rate_prod_id']);
+
+            //Chuyển lại sang trang Đơn hàng của tôi
+      		include_once "../models/orderModel.php";
+    		$cart = new orderModel();
+    		$userId=$_SESSION['user_id'];
+    		$result = $cart->getOrder($userId);
+    		$list= $result->fetch_all(MYSQLI_ASSOC);
+
+    		require_once "../views/order.php";
+
+
 
         }
 	}	

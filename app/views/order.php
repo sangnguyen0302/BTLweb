@@ -62,7 +62,18 @@
                                     <input type="text" name="rate" value="">
                                     <input type="submit" name="write-cmt" value="Đánh giá">
                                 </form> -->
-                                <a href="../controllers/orderController.php?action=viewDetail&id=<?php echo $productId ?>">Chi tiết sản phẩm</a>
+                                <?php  
+                                    if(empty($value2['comment'])){
+                                ?>
+                                       <a href="../controllers/orderController.php?action=rateComment&id=<?php $_SESSION['rate_prod_id']=$prod['id']; echo $productId; ?>">Viết nhận xét và đánh giá</a>
+                                <?php 
+                                    }else{
+                                ?>
+                                        <p>Bạn đã đánh giá sản phảm này rồi</p>
+                                <?php
+                                    }
+                                ?>
+                                <!-- <a href="../controllers/orderController.php?action=rateComment&id=<?php //$_SESSION['rate_prod_id']=$prod['id']; echo $productId; ?>">Viết nhận xét và đánh giá</a> -->
 
                             </div>
                         </td>
