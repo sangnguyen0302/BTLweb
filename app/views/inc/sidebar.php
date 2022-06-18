@@ -5,41 +5,43 @@
     </a-->
 	<h4>Quản trị</h4>
     <hr>
-    <ul class="nav nav-pills flex-column">
+    <ul class="nav nav-pills flex-column mb-auto">
       <li class="nav-item">
         <a href="../views/management.php?user_id=<?=$_SESSION['admin_id']?>" class="nav-link active" aria-current="page">
           <!--svg class="bi me-2" width="16" height="16"><use xlink:href="#home"/></svg-->
           Thông tin tài khoản
         </a>
       </li>
-      <li>
+      <li class="nav-item">
         <a href="../controllers/managementController.php?action=manageComments" class="nav-link text-white">
           <!--svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg-->
           Bình luận và đánh giá
         </a>
       </li>
-      <li>
+      <li class="nav-item">
         <a href="../controllers/managementController.php?action=manageCustomerContacted" class="nav-link text-white">
           <!--svg class="bi me-2" width="16" height="16"><use xlink:href="#table"/></svg-->
           Liên hệ của khách hàng
         </a>
       </li>
-      <li>
+      <li class="nav-item">
         <a href="../controllers/managementController.php?action=manageExceptionInfors" class="nav-link text-white">
           Các thông tin tiêu biểu
         </a>
       </li>
-      <li>
+      <li class="nav-item">
         <a href="../controllers/managementController.php?action=manageProducts" class="nav-link text-white">
           <!--svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"/></svg-->
           Sản phẩm
         </a>
       </li>
-      <li>
+      <li class="nav-item">
         <a href="../controllers/managementController.php?action=manageMembers" class="nav-link text-white">
           <!--svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg-->
           Thành viên
         </a>
       </li>
     </ul>
+    <hr>
+    <a href="../views/logout.php" class="btn btn-danger">Đăng xuất</a>
   </div>

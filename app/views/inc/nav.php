@@ -16,7 +16,7 @@
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarNav">
-          <form action="home.php"class="d-flex me-auto">
+          <form action="../views/home.php"class="d-flex me-auto">
             <input class="form-control me-2" type="search" placeholder="Tìm kiếm sản phẩm" aria-label="Search" name="search-key" required>
             <button class="btn btn-outline-light" type="submit" name="search-submit"><i class="fa-solid fa-magnifying-glass" ></i></button>
           </form>
@@ -31,7 +31,7 @@
                     foreach ($listCategory as $category) { 
                       $id=$category['id']
                       ?>
-                      <li><a class="dropdown-item" href='home.php?cateid=<?=$id?>'><?= $category['name'] ?></a></li>
+                      <li><a class="dropdown-item" href='../views/home.php?cateid=<?=$id?>'><?= $category['name'] ?></a></li>
                   <?php }
                   ?>
                   </ul>
@@ -53,15 +53,15 @@
                 </li>
                 <?php } else { ?>
                 <li class="nav-item">
-                  <a class="nav-link" href="regist.php">Đăng ký</a>
+                  <a class="nav-link" href="../views/regist.php">Đăng ký</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="login.php">Đăng nhập</a>
+                  <a class="nav-link" href="../views/login.php">Đăng nhập</a>
                 </li>
               <?php  }
               ?>
               <li class="nav-item">
-                <a class="nav-link position-relative" href="cart.php" style="width: 34px;"><i class="fa-solid fa-cart-shopping"></i> 
+                <a class="nav-link position-relative" href="../views/cart.php" style="width: 34px;"><i class="fa-solid fa-cart-shopping"></i> 
                 <span class="position-absolute top-10 start-100 translate-middle badge rounded-circle bg-danger">
                 <?php if(!isset($_SESSION['user_id'])&&isset($_SESSION['cart'])){
                   echo count($_SESSION['cart']);
