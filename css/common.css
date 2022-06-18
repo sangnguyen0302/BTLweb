@@ -1,0 +1,34 @@
+/*html {
+    width: 100%;
+}
+* {
+    box-sizing: border-box;
+}
+.row::after {
+    content: "";
+    clear: both;
+    display: table;
+}*/
+
+body {
+    background-color: #efefef;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+li a {
+    text-decoration: none;
+}
+
+
+.qty-button-group {
+    width: 120px;
+}
+
+.qty-button-group>input {
+    text-align: center;
+}

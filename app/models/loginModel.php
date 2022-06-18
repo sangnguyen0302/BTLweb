@@ -8,7 +8,7 @@
 
 		$user = $db->getInstance();
 
-	    $sql = "SELECT * FROM Users WHERE email='$email' AND password='$password' AND isConfirmed=1";
+	    $sql = "SELECT * FROM users WHERE email='$email' AND password='$password' AND isConfirmed=1 AND roleID='2'";
 	    $result = mysqli_query($user->con, $sql);
 	    $num_rows = mysqli_num_rows($result);
 	    if ($num_rows > 0) {
@@ -24,7 +24,7 @@
 
 		$user = $db->getInstance();
 
-	    $sql = "SELECT * FROM admin WHERE email='$email' AND password='$password'";
+	    $sql = "SELECT * FROM users WHERE email='$email' AND password='$password' AND roleID='1'";
 	    $result = mysqli_query($user->con, $sql);
 	    $num_rows = mysqli_num_rows($result);
 	    if ($num_rows > 0) {
@@ -39,7 +39,7 @@
 
 		$user = $db->getInstance();
 
-		$sql = "SELECT * FROM Users WHERE email='$email' AND isConfirmed=1";
+		$sql = "SELECT * FROM users WHERE email='$email' AND isConfirmed=1";
         $result = mysqli_query($db->con, $sql);
         $num_rows = mysqli_num_rows($result);
         if ($num_rows > 0) {
@@ -54,7 +54,7 @@
 
 		$user = $db->getInstance();
 
-		$sql = "SELECT * FROM Users WHERE phone='$phone' AND isConfirmed=1";
+		$sql = "SELECT * FROM users WHERE phone='$phone' AND isConfirmed=1";
         $result = mysqli_query($db->con, $sql);
         $num_rows = mysqli_num_rows($result);
         if ($num_rows > 0) {
@@ -64,18 +64,17 @@
         }
 	}
 
-	function insert($fullName,$email, $dob, $address, $password,$phone){
+	function insert($fullName,$email, $dob, $address, $password,$phone, $image){
 		$db = new DB();
 
 		$user = $db->getInstance();
 
-		$captcha = rand(10000, 99999);
-
-        $sql = "INSERT INTO Users(id, fullName, email, dob, address, password, roleId, status,captcha, isConfirmed, phone) VALUES (NULL,'$fullName','$email','$dob','$address','$password',1,1,'$captcha',1,'$phone')";
+        $sql = "INSERT INTO users(fullName, email, dob, address, password, roleId, status, isConfirmed, phone, image) VALUES ('$fullName','$email','$dob','$address','$password',2,1,1,'$phone', '$image')";
         $result = mysqli_query($user->con, $sql);
+		//echo mysqli_error($user->con);
         if ($result) {
             return true;
         }
-        return false;
+        else return false;
 	}
 ?>

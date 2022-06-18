@@ -1,0 +1,32 @@
+.input-label {
+   width: 110px;
+   margin-left: 10px;
+}
+
+.phoneli::before {
+   padding: 8px 0;
+   font-family: 'FontAwesome';
+   content: "\f095";
+   position: absolute;
+}
+
+.roleli::before {
+   padding: 8px 0;
+   font-family: 'FontAwesome';
+   content: "\f007";
+   position: absolute;
+}
+
+.emaili::before {
+   padding: 8px 0;
+   font-family: 'FontAwesome';
+   content: "\f0e0";
+   position: absolute;
+}
+
+.lockli::before {
+   padding: 8px 0;
+   font-family: 'FontAwesome';
+   content: "\f023";
+   position: absolute;
+}

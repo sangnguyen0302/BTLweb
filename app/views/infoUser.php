@@ -3,16 +3,8 @@
     require_once("inc/head.php");
     require_once("../DB.php");
  ?>
- <style>
-	a {
-		text-decoration : none;
-	}
-	a:hover {
-		text-decoration : underline;
-	}
-</style>
-<title>Thông tin tài khoản</title>
 <link type="text/css" rel="stylesheet" href= "../../css/profile.css">
+<title>Thông tin tài khoản</title>
 </head>
 <?php
     if(isset($_GET['user_id'])){
@@ -26,9 +18,9 @@
         $value = $result->fetch_assoc();
 ?>
 <body>
-	<?php require_once 'inc/sidebar.php' ?>
-	<main style="margin-left: 220px" class="p-3">
-	<h3>Thông tin tài khoản</h3>
+    <?php require_once 'inc/nav.php'; ?>
+    <div class="container-md my-5 px-5">
+        <h3>Thông tin tài khoản</h3>
         <div class="container-fluid px-3 bg-light">
             <div class="row">
                 <div class="col-md-6 self-info border border-2 border-start-0 border-top-0 border-bottom-0 py-3">
@@ -42,7 +34,7 @@
                             }
                         ?>
                     </div>
-                        <form action="../controllers/infoController.php".$user_id method="POST" enctype="multipart/form-data">
+                        <form action="../controllers/infoController.php" method="POST" enctype="multipart/form-data">
                             <div class="text-center my-3">
                             <input type="file" name="image" accept="image/jpg, image/jpeg, image/png">
                             </div>
@@ -101,9 +93,11 @@
                             </li>
 
                             <li class="emaili">
-                            <form action="../controllers/infoController.php" method="post">
+                            
+                                <form action="../controllers/infoController.php" method="post">
                                 <div class="py-1 email d-inline-block ms-4 d-flex">
                                     <div>
+                                        
                                         <span>Địa chỉ email</span> <br>
                                         <input class="form-control-plaintext" type="text" name="new-email" value="<?= $value['email'] ?>">
                                         <input type="hidden" name="user-id-email" value="<?=$user_id?>">
@@ -137,8 +131,6 @@
                                     <div class="card card-body collapse" id="collapsepwd">
 
                                         <?php
-                    
-                    
                                         if(isset($_POST['submit-change-pass'])){
                                             $id = $_POST['user_id'];
                                             $sql="SELECT * FROM users WHERE id='$id'";
@@ -236,7 +228,10 @@
                
             </div>
         </div>
-	</main>
+        </div>
+        <?php require_once 'inc/footer.php'; ?>
+
 </body>
 <?php } ?>
 </html>
+
