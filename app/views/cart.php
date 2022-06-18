@@ -49,7 +49,7 @@
                             </button>
                             </span>
                         
-                            <input type="text" name="quantity" id="<?= $value['id']?>" class="form-control input-number" value="<?php echo $value['status']?>" min="1" max="5" style="width:5px">
+                            <input type="text" name="quantity" id="<?= $value['id']?>" class="form-control input-number" value="<?php echo $value['status']?>" min="1" max="5" style="width:10px">
 
                             <span class="input-group-btn">
                             <button type="submit" name="quantity-update" class="btn btn-number" data-type="plus" data-field="<?= $value['id']?>">
@@ -193,7 +193,7 @@
                         <form action = "../controllers/paymentController.php" method="post">
                             <div class="mb-3">
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="paymentMethod" id="radio1" value="Payment_on_deliver">
+                                <input class="form-check-input" type="radio" checked name="paymentMethod" id="radio1" value="Payment_on_deliver">
                                 <label class="form-check-label" for="radio1">Thanh toán khi nhận hàng</label>
                             </div>
                             <div class="form-check">

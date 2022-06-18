@@ -7,108 +7,113 @@
 <title>Đơn hàng của tôi</title>
 </head>
 <body>
-    <?php require_once '../views/inc/nav.php' ?>
-    <div class="container-fluid mb-5 py-5">
-    <div class="container mb-5 p-3 bg-light">
-        <h4>Đơn hàng của tôi</h4>
-            <?php
-                if(count($list)>0){  
+	<?php require_once '../views/inc/nav.php' ?>
+	<div class="container-fluid mb-5 py-5">
+	<div class="container mb-5 p-3">
+		<h4>Đơn hàng của tôi</h4>
+			<?php
+				if(count($list)>0){  
+					$total=0;
+			?>
+			
+				<?php foreach ($list as $key => $value) {
                     $total=0;
-            ?>
-            
-                <?php foreach ($list as $key => $value) {
-                    $count=0;
-                    ?>
-                    <div class="table-responsive-xxl">
-                    <table id = "order_table" class="table table-hover">
-                        <thead class="text-center align-middle">
-                        <tr>
-                            <th>STT</th>
-                            <th>Sản phẩm</th>
-                            <th>Giá</th>
-                            <th>Số lượng</th>
-                            <th>Tạm tính</th>                   
-                        </tr>
-                        </thead>
-                <?php
-                    $total = $value['totalPrice'];
-                    $orderId=$value['id'];
-                    $sql = "SELECT * FROM order_details WHERE orderId='$orderId'";
-                    $result=mysqli_query($user->con,$sql);
-                    while($value2=$result->fetch_assoc()){
+					$count=0;
+					?>
+					<div class="table-responsive-xxl bg-light mb-5">
+					<table id = "order_table" class="table table-hover">
+						<thead class="text-center align-middle">
+						<tr>
+							<!--th>STT</th-->
+							<th class="text-start">Sản phẩm</th>
+							<th>Giá</th>
+							<th>Số lượng</th>
+							<th>Tạm tính</th>					
+						</tr>
+						</thead>
 
-                ?>      
-                    
-                        <?php
-                                $productId=$value2['productId'];
-                                $sql="SELECT * FROM products WHERE id='$productId'";
-                                $result2 = mysqli_query($user->con, $sql);
-                                $prod = $result2->fetch_assoc(); 
-                        ?>
-                        <tbody class="text-center align-middle">
-                        <tr>
-                        <td><?php echo ++$count; ?></td>
-                        <td>
-                            <div>
-                                <?php
-                                    echo $prod['image'];
-                                    echo $prod['name'];
-                                    echo $prod['id'];
-                                ?>
-                                <!-- <form>
-                                    <input type="submit" name="write-cmt" value="Viết nhận xét">
-                                </form>
-                                <form>
-                                    <input type="text" name="rate" value="">
-                                    <input type="submit" name="write-cmt" value="Đánh giá">
-                                </form> -->
-                                <a href="../controllers/orderController.php?action=viewDetail&id=<?php echo $productId ?>">Chi tiết sản phẩm</a>
+						<tbody class="text-center align-middle">
+							<?php
+								$orderId=$value['id'];
+								$sql = "SELECT * FROM order_details WHERE orderId='$orderId'";
+								$result=mysqli_query($user->con,$sql);
+								while($value2=$result->fetch_assoc()){
+                                    $sum = 0;
+									$productId=$value2['productId'];
+									$sql="SELECT * FROM products WHERE id='$productId'";
+									$result2 = mysqli_query($user->con, $sql);
+									$prod = $result2->fetch_assoc(); 
+							?>
+						
+							<tr>
+						<!--td><,?php echo ++$count; ?></td-->
+								<td class="text-start">
+									<div>
+										<div>
+										<?php
+											echo "<img src='../../image/".$prod['image']."' alt='Ảnh sản phẩm' width='100px' height='100px'>";
+											echo "<span class='d-inline-block ms-3'>".$prod['name']."</span>";
+										?>
+										</div>
+								
+									<form class="d-inline-block">
+										<input type="submit" name="write-cmt" value="Viết nhận xét">
+									</form>
 
-                            </div>
-                        </td>
-                        <td><?php echo $prod['originalPrice']; ?></td>
-                        <td><?php echo $value2['productQty']; ?></td>
-                        <td><?php echo $prod['originalPrice']*$value2['productQty']; ?></td>              
-                        </tr>
-                <?php
-                    }
-                    ?>
-                    <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>Tổng tiền</td>
-                    <td><?= number_format($value['totalPrice'], 0, '', ',') ?>VND</td>
-                </tr>
-                <?php
-                 }
-                ?>
+									<form class="d-inline-block">
+										<input type="number" name="rate" value="">
+										<input type="submit" name="write-cmt" value="Đánh giá">
+									</form>
+									</div>
+								</td>
+								<td><?php echo  number_format($prod['originalPrice'],0)." VND"; ?></td>
+								<td><?php echo  $value2['productQty']; ?></td>
+								<td><?php 
+                                $sum = $prod['originalPrice']*$value2['productQty'];
+                                echo  number_format($sum)." VND"; ?></td>              
+							</tr>
 
-                
-            </tbody>
-    </table>
+							<?php
+								}
+                                $total +=$sum;
+							?>
+						</tbody>
 
+						<tfoot class="text-center align-middle">
+						<tr>
+            				<td></td>
+            				<td></td>
+            				<td>Tổng tiền</td>
+            				<td class="text-danger fs-5"><?= number_format($total, 0, '', ',') ?>VND</td>
+        				</tr>
+						</tfoot>
+					</table>
+					</div>
+				<?php
+				}
+        		?>
+	
+				 <div class="text-end">
+				 <a class="btn btn-warning" href="../controllers/loginController.php?action=return">Tiếp tục mua hàng</a>
+				 </div>
+				
+	
+		<?php  
+			}else{
+		?> 
+				<div class="text-center">
+					<img src="../../image/mascot2x.png" alt="..">
+					<h6>Bạn không có đơn hàng nào</h6>
+					<a class="btn btn-warning"href="../views/home.php">Đi mua sắm</a>
+				</div>
+	<?php
+		}
+	?>
+		
+	</div>
+	</div>
 
-    <a href="../controllers/loginController.php?action=return">Tiếp tục mua hàng</a>
-    
-    <?php  
-        }else{
-        ?> 
-                <div class="text-center">
-                    <img src="../../image/mascot2x.png" alt="..">
-                    <h6>Bạn không có đơn hàng nào</h6>
-                    <a class="btn btn-warning"href="../views/home.php">Đi mua sắm</a>
-                </div>
-    <?php
-        }
-    ?>
-        
-    </div>
-    </div>
-
-    </div>
-    <?php require_once '../views/inc/footer.php' ?>
+	
+	<?php require_once '../views/inc/footer.php' ?>
 </body>
 </html>

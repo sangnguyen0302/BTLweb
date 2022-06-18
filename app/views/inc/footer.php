@@ -13,7 +13,7 @@
       <div class="col-lg-3 col-con">
         <h4>Thông tin liên hệ</h4>
         <ul>
-          <li class="contact-1"> <span>Số 11 Đường Bàu Cát 8, Phường 14, Tân Bình, HCM</span></li>
+          <li class="contact-1"> <span> 268 Lý Thường Kiệt, Q.10, TP.HCM</span></li>
           <li class="contact-2"> <span>0123.456.789</span></li>
           <li class="contact-3"> <span>somekind.ofmail@hcmut.edu.vn</span></li>
         </ul>
