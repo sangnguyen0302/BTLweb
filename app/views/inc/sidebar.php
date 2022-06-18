@@ -7,7 +7,7 @@
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
       <li class="nav-item">
-        <a href="../views/management.php?user_id=<?=$_SESSION['admin_id']?>" class="nav-link active" aria-current="page">
+        <a href="../views/management.php?user_id=<?=$_SESSION['admin_id']?>" class="nav-link text-white" aria-current="page">
           <!--svg class="bi me-2" width="16" height="16"><use xlink:href="#home"/></svg-->
           Thông tin tài khoản
         </a>
@@ -16,17 +16,6 @@
         <a href="../controllers/managementController.php?action=manageComments" class="nav-link text-white">
           <!--svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg-->
           Bình luận và đánh giá
-        </a>
-      </li>
-      <li class="nav-item">
-        <a href="../controllers/managementController.php?action=manageCustomerContacted" class="nav-link text-white">
-          <!--svg class="bi me-2" width="16" height="16"><use xlink:href="#table"/></svg-->
-          Liên hệ của khách hàng
-        </a>
-      </li>
-      <li class="nav-item">
-        <a href="../controllers/managementController.php?action=manageExceptionInfors" class="nav-link text-white">
-          Các thông tin tiêu biểu
         </a>
       </li>
       <li class="nav-item">

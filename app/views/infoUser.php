@@ -82,6 +82,13 @@
                                         <input type="submit" class="btn btn-outline-primary" name="change-phone-user" value="Cập nhật">
                                     </div>
                                 </div>
+                                <?php 
+                                        if(isset($_GET['messagephone'])&&$_GET['messagephone']!=""){
+                                        ?>
+                                        <span class="text-danger"><?php echo $_GET['messagephone']?></span>
+                                        <?php
+                                            }       
+                                        ?>
                                 </form>
                             </li>
 
@@ -124,8 +131,6 @@
                                     <div class="card card-body collapse" id="collapsepwd">
 
                                         <?php
-                    
-                    
                                         if(isset($_POST['submit-change-pass'])){
                                             $id = $_POST['user_id'];
                                             $sql="SELECT * FROM users WHERE id='$id'";
@@ -136,6 +141,8 @@
                                                 $message="Sai mật khẩu";
                                             }else if($_POST['new-pass']!=$_POST['confirm-pass']){
                                                 $message="Mật khẩu xác nhận không khớp";
+                                            }else if(strlen($_POST['new-pass'])<6 || strlen($_POST['new-pass'])>15){
+                                                $message="Mật khẩu không hợp lệ";
                                             }else{
                                                 $sql = "UPDATE users SET password='$new_pass' WHERE id='$id'";
                                                 $result= mysqli_query($db->con, $sql);

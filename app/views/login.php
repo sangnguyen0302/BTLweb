@@ -62,8 +62,6 @@ if(isset($_POST['LoginAction'])){
 </div>
 <?php  require_once('inc/footer.php'); ?> 
 </body>
-
-
 </html>
 
 

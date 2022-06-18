@@ -69,13 +69,12 @@
 
 		$user = $db->getInstance();
 
-		$captcha = rand(10000, 99999);
-
-        $sql = "INSERT INTO users(id, fullName, email, dob, address, password, roleId, status,captcha, isConfirmed, phone, image) VALUES (NULL,'$fullName','$email','$dob','$address','$password',2,1,'$captcha',1,'$phone', '$image')";
+        $sql = "INSERT INTO users(fullName, email, dob, address, password, roleId, status, isConfirmed, phone, image) VALUES ('$fullName','$email','$dob','$address','$password',2,1,1,'$phone', '$image')";
         $result = mysqli_query($user->con, $sql);
+		//echo mysqli_error($user->con);
         if ($result) {
             return true;
         }
-        return false;
+        else return false;
 	}
 ?>

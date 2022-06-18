@@ -45,10 +45,13 @@
         $sql="SELECT * FROM users WHERE id='$id'";
         $result = mysqli_query($user->con, $sql);
         $value=$result->fetch_assoc();
+        if(!preg_match("/^0([0-9]){9}$/",$newphone)){
+            $message="Số điện thoại không hợp lệ";
+        }
         if($value['roleId']==1){
-            header("Location: ../views/management.php?user_id=".$id);
+            header("Location: ../views/management.php?user_id=".$id."&messagephone=".$message);
         }else{
-            header("Location: ../views/infoUser.php?user_id=".$id);
+            header("Location: ../views/infoUser.php?user_id=".$id."&messagephone=".$message);
         }
     }
     if(isset($_POST['change-email-user'])){
@@ -57,7 +60,9 @@
         $sql="SELECT * FROM users WHERE email='$newemail'";
         $result=mysqli_query($user->con,$sql);
         $message="";
-        if($result&&mysqli_num_rows($result)>0){
+        if(!preg_match("/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix",$newemail)){
+            $message="Email không hợp lệ";
+        }else if($result&&mysqli_num_rows($result)>0){
             $message="Email đã tồn tại";
         }else {
             $sql="UPDATE users SET email='$newemail' WHERE id='$id'";
@@ -67,9 +72,9 @@
         $result = mysqli_query($user->con, $sql);
         $value=$result->fetch_assoc();
         if($value['roleId']==1){
-            header("Location: ../views/management.php?user_id=".$id);
+            header("Location: ../views/management.php?user_id=".$id."&message=".$message);
         }else{
-            header("Location: ../views/infoUser.php?user_id=".$id);
+            header("Location: ../views/infoUser.php?user_id=".$id."&message=".$message);
         }
     }
 ?>

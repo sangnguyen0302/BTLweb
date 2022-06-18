@@ -90,6 +90,13 @@
                                         <input type="submit" class="btn btn-outline-primary" name="change-phone-user" value="Cập nhật">
                                     </div>
                                 </div>
+                                <?php 
+                                        if(isset($_GET['messagephone'])&&$_GET['messagephone']!=""){
+                                        ?>
+                                        <span class="text-danger"><?php echo $_GET['messagephone']?></span>
+                                        <?php
+                                            }       
+                                        ?>
                                 </form>
                             </li>
 
@@ -97,7 +104,6 @@
                             <form action="../controllers/infoController.php" method="post">
                                 <div class="py-1 email d-inline-block ms-4 d-flex">
                                     <div>
-                                        
                                         <span>Địa chỉ email</span> <br>
                                         <input class="form-control-plaintext" type="text" name="new-email" value="<?= $value['email'] ?>">
                                         <input type="hidden" name="user-id-email" value="<?=$user_id?>">
@@ -143,6 +149,8 @@
                                                 $message="Sai mật khẩu";
                                             }else if($_POST['new-pass']!=$_POST['confirm-pass']){
                                                 $message="Mật khẩu xác nhận không khớp";
+                                            }else if(strlen($_POST['new-pass'])<6 || strlen($_POST['new-pass'])>15){
+                                                $message="Mật khẩu không hợp lệ";
                                             }else{
                                                 $sql = "UPDATE users SET password='$new_pass' WHERE id='$id'";
                                                 $result= mysqli_query($db->con, $sql);
