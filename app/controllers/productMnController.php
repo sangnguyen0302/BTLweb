@@ -1,6 +1,7 @@
 <?php  
 
 	session_start();
+	require_once("../DB.php");
 
 	if(isset($_REQUEST['action']) && !empty($_REQUEST['action'])){ 
 
@@ -85,9 +86,9 @@
         		$product= new productModel();
 
 
-        		if(isset($_POST['name']) && !empty($_POST['name'])){
+        		if(isset($_POST['product-name']) && !empty($_POST['product-name'])){
 
-        			$name = $_POST['name'];
+        			$name = $_POST['product-name'];
 
         			$product->changeNameById($productId,$name);
 
@@ -132,6 +133,16 @@
 
         			$product->changeQtyById($productId,$qty);
 
+        		}
+				$image = $_FILES['image']['name'];
+				if(isset($image) && !empty($image)){
+					$db= new DB();
+					$user= $db->getInstance();
+					$image_tmp_name = $_FILES['image']['tmp_name'];
+					$image_folder = '../../upload_image/'.$image;
+					$sql = "UPDATE products SET image='$image' WHERE id='$productId'";
+					mysqli_query($user->con, $sql);
+					move_uploaded_file($image_tmp_name, $image_folder);
         		}
 
         		if(isset($_POST['des']) && !empty($_POST['des'])){

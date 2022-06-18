@@ -43,17 +43,17 @@
 
                             <div class="mb-3 fullName">
                                 <label for="" class="input-label">Họ và tên</label>
-                                <input type="text" name="fullname" id="fullname" value="<?= $value['fullName'] ?>">
+                                <input type="text" name="change-fullname" id="fullname" value="<?= $value['fullName'] ?>">
                             </div>
 
                             <div class="mb-3 birthDate">
                                 <label for="" class="input-label">Ngày sinh</label>
-                                <input type="date" value="<?=$value['dob']?>"/>
+                                <input type="date" name="change-dob" value="<?=$value['dob']?>"/>
                             </div>
                         
                             <div class="mb-3 address">
                                 <label for="" class="input-label">Địa chỉ</label>
-                                <input type="text" name="address" id="address" value="<?= $value['address'] ?>">
+                                <input type="text" name="change-address" id="address" value="<?= $value['address'] ?>">
                             </div>
                         
                         <!--p class="card-text">Mã số tài khoản: <,?php echo $value['id'];?></p-->

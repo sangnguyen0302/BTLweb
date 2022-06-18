@@ -9,7 +9,7 @@ require_once '../models/categoryModel.php';
 <body>
 <div class="bg-light my-5 p-3 mx-auto" style="max-width : 500px">
 	<h3>Thông tin sản phẩm</h3>
-	<form action="../controllers/productMnController.php" method="post">
+	<form action="../controllers/productMnController.php" method="post" enctype="multipart/form-data">
 		<div class="my-3 row ">
 			<label for="product-name" class="col-form-label col-4 ">Mã sản phẩm</label>
 			<input class="col form-control me-3" type="text" name="id" value="<?php echo $listInfor['id'] ?>" readonly>
@@ -72,7 +72,7 @@ require_once '../models/categoryModel.php';
 
 		<div class="mb-3">
 			<label for="product-image" class="form-label">Ảnh sản phẩm</label>
-  			<input type="file" class="form-control" id="product-image" name="product-image">
+  			<input type="file" class="form-control" id="product-image" name="image" accept="image/jpg, image/jpeg, image/png">
 		</div>
 
 		<div class="mb-3">
@@ -81,7 +81,7 @@ require_once '../models/categoryModel.php';
 		</div>
 		<div class="text-end">
 			<a href="../controllers/managementController.php?action=manageProducts" class="btn btn-secondary">Quay lại</a>
-			<button class="btn btn-primary" type="submit" name="edit">Xác nhận</button>
+			<input  class="btn btn-primary" type="submit" name="edit" value="Xác nhận">
 		</div>
 	</form>
 

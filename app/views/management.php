@@ -51,17 +51,17 @@
 
                             <div class="mb-3 fullName">
                                 <label for="" class="input-label">Họ và tên</label>
-                                <input type="text" name="fullname" id="fullname" value="<?= $value['fullName'] ?>">
+                                <input type="text" name="change-fullname" id="fullname" value="<?= $value['fullName'] ?>">
                             </div>
 
                             <div class="mb-3 birthDate">
                                 <label for="" class="input-label">Ngày sinh</label>
-                                <input type="date" value="<?=$value['dob']?>"/>
+                                <input type="date" name="change-dob" value="<?=$value['dob']?>"/>
                             </div>
                         
                             <div class="mb-3 address">
                                 <label for="" class="input-label">Địa chỉ</label>
-                                <input type="text" name="address" id="address" value="<?= $value['address'] ?>">
+                                <input type="text" name="change-address" id="address" value="<?= $value['address'] ?>">
                             </div>
                         
                         <!--p class="card-text">Mã số tài khoản: <,?php echo $value['id'];?></p-->
@@ -79,30 +79,40 @@
                     <h5>Thông tin liên hệ</h5>
                         <ul class="list-group">
                             <li class="phoneli">
-                                <form action="">
+                                <form action="../controllers/infoController.php" method="post" enctype="multipart/form-data">
                                 <div class="py-1 phone-num ms-4 d-flex">
                                     <div>
                                         <span>Số điện thoại</span> <br>
-                                        <input class="form-control-plaintext" type="text" name="phone" value="<?= $value['phone'] ?>">
+                                        <input class="form-control-plaintext" type="text" name="phone" value="<?= $value['phone']?>">
+                                        <input type="hidden" name="user-id-phone" value="<?=$user_id?>">
                                     </div>
                                     <div class="text-end flex-fill">
-                                        <button type="submit" class="btn btn-outline-primary">Cập nhật</button>
+                                        <input type="submit" class="btn btn-outline-primary" name="change-phone-user" value="Cập nhật">
                                     </div>
                                 </div>
                                 </form>
                             </li>
 
                             <li class="emaili">
-                                <form action="">
+                            <form action="../controllers/infoController.php" method="post">
                                 <div class="py-1 email d-inline-block ms-4 d-flex">
                                     <div>
+                                        
                                         <span>Địa chỉ email</span> <br>
-                                        <input class="form-control-plaintext" type="text" name="mail" value="<?= $value['email'] ?>">
+                                        <input class="form-control-plaintext" type="text" name="new-email" value="<?= $value['email'] ?>">
+                                        <input type="hidden" name="user-id-email" value="<?=$user_id?>">
                                     </div>
                                     <div class="text-end flex-fill">
-                                        <button type="submit" class="btn btn-outline-primary">Cập nhật</button>
+                                        <button type="submit" class="btn btn-outline-primary" name="change-email-user">Cập nhật</button>
                                     </div>
                                 </div>
+                                <?php 
+                                        if(isset($_GET['message'])&&$_GET['message']!=""){
+                                        ?>
+                                        <span class="text-danger"><?php echo $_GET['message']?></span>
+                                        <?php
+                                            }       
+                                        ?>
                                 </form>
                                 
                             </li>

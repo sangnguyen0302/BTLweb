@@ -143,7 +143,6 @@ CREATE TABLE `users` (
   `password` varchar(255) NOT NULL,
   `roleId` int(11) NOT NULL,
   `status` tinyint(1) NOT NULL,
-  `captcha` varchar(50) NOT NULL,
   `isConfirmed` tinyint(4) NOT NULL DEFAULT 0,
   `phone` varchar(10) NOT NULL,
   `image` varchar(50)
@@ -261,14 +260,14 @@ INSERT INTO `role` (`id`, `name`) VALUES
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1000;
 
-INSERT INTO `users` (`id`, `fullName`, `email`, `dob`, `address`, `password`, `roleId`, `status`, `captcha`, `isConfirmed`, `phone`, `image`) VALUES
-('1000', 'Thanh Sang', 'admin@gmail.com', '2022-06-12', '276/1, Đường Tỉnh Lộ 827B', '123', 1, 1, '123455', 1, '0365840620', 'ic.jpg');
+INSERT INTO `users` (`id`, `fullName`, `email`, `dob`, `address`, `password`, `roleId`, `status`, `isConfirmed`, `phone`, `image`) VALUES
+('1000', 'Thanh Sang', 'admin@gmail.com', '2022-06-12', '276/1, Đường Tỉnh Lộ 827B', '123', 1, 1, 1, '0365840620', 'ic.jpg');
 
-INSERT INTO `users` (`id`, `fullName`, `email`, `dob`, `address`, `password`, `roleId`, `status`, `captcha`, `isConfirmed`, `phone`,`image`) VALUES
-('1001', 'Nguyễn Tuấn Vinh', 'nguyentuanvinh1222@gmail.com', '2022-06-12', '276/1, Đường Tỉnh Lộ 827B', '12345', 1, 1, '930819', 1, '0793191854','');
+INSERT INTO `users` (`id`, `fullName`, `email`, `dob`, `address`, `password`, `roleId`, `status`, `isConfirmed`, `phone`,`image`) VALUES
+('1001', 'Nguyễn Tuấn Vinh', 'nguyentuanvinh1222@gmail.com', '2022-06-12', '276/1, Đường Tỉnh Lộ 827B', '12345', 1, 1, 1, '0793191854','');
 
-INSERT INTO `users` (`id`, `fullName`, `email`, `dob`, `address`, `password`, `roleId`, `status`, `captcha`, `isConfirmed`, `phone`,`image`) VALUES
-('1002', 'Thanh Sang', 'sang@gmail.com', '2022-06-13', '276/1, Đường Tỉnh Lộ 827B', '123', 2, 1, '930819', 1, '03456677','');
+INSERT INTO `users` (`id`, `fullName`, `email`, `dob`, `address`, `password`, `roleId`, `status`, `isConfirmed`, `phone`,`image`) VALUES
+('1002', 'Thanh Sang', 'sang@gmail.com', '2022-06-13', '276/1, Đường Tỉnh Lộ 827B', '123', 2, 1, 1, '03456677','');
 
 
 --
