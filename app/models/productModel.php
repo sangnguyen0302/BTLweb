@@ -1,44 +1,3 @@
-<<<<<<< HEAD
-<?php  
-
-	/**
-	 * 
-	 */
-	include_once "../DB.php";
-
-	class productModel 
-	{
-		
-		function __construct()
-		{
-			// code...
-		}
-
-
-		public function getListProduct(){
-			$db = DB::getInstance();
-	        $sql = "SELECT * FROM Products";
-	        $result = mysqli_query($db->con, $sql);
-	        return $result;
-		}
-
-		public function getProductById($productId){
-			$db = DB::getInstance();
-	        $sql = "SELECT * FROM Products WHERE id='$productId'";
-	        $result = mysqli_query($db->con, $sql);
-	        return $result;
-		}
-
-
-		public function removeProductbyId($productId){
-			$db = DB::getInstance();
-	        $sql = "DELETE FROM products WHERE id='$productId'";
-	        $result = mysqli_query($db->con, $sql);
-	        return $result;
-		}
-
-		public function addNewProduct($listValue)
-=======
 <?php
 class ProductModel
 {
@@ -150,20 +109,11 @@ class ProductModel
     }
 
     public function addNewProduct($listValue)
->>>>>>> 4635e7653b1f5b76732a786d43561ec2173a1f51
 		{
 			$db = new DB();
 
 			$product = $db->getInstance();
 
-<<<<<<< HEAD
-	        $sql = "INSERT INTO products(id, name, originalPrice, promotionPrice, createdBy, createdDate, cateId, qty, des,status, soldCount) VALUES (NULL,'$listValue[0]','$listValue[1]','$listValue[2]',59,'$listValue[3]','$listValue[4]','$listValue[5]','$listValue[6]',1,0)";
-	        $result = mysqli_query($product->con, $sql);
-	        if ($result) {
-	            return true;
-	        }
-	        return false;
-=======
 	        $sql = "INSERT INTO products(id, name, originalPrice, promotionPrice,image, createdBy, createdDate, cateId, qty, des,status, soldCount) VALUES
              (NULL,'$listValue[0]','$listValue[1]','$listValue[2]','$listValue[3]','$listValue[4]','$listValue[5]','$listValue[6]','$listValue[7]','$listValue[8]','1','0')";
 	        $result = mysqli_query($product->con, $sql);
@@ -171,7 +121,6 @@ class ProductModel
 	            return 1;
 	        }
 	        return mysqli_error($product->con);
->>>>>>> 4635e7653b1f5b76732a786d43561ec2173a1f51
 		}
 
 
@@ -237,12 +186,4 @@ class ProductModel
 	        $result = mysqli_query($db->con, $sql);
 	        return $result;
 		}
-<<<<<<< HEAD
-
-	}
-
-
-?>
-=======
 }
->>>>>>> 4635e7653b1f5b76732a786d43561ec2173a1f51

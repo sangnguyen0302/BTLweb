@@ -28,12 +28,13 @@
     <main class="my-5">
         <div class="container mx-auto">
 
-            <div class="row bg-white product-info mb-5">
-                <div class="col-lg-6 border border-start-0 border-top-0 border-bottom-0 py-3 h-100">
+            
+            <div class="row mb-5 product-info">
+                <div class="col-6 border border-start-0 border-top-0 border-bottom-0 py-3 h-100 bg-white">
                 <img src="../../image/<?=$value['image']?>" alt="" width=100% height="100%">
                 </div>
 
-                <div class="col-lg-6 py-3 h-100">
+                <div class="col-6 py-3 h-100 bg-white">
 
                     <div class="product-header my-3">
                         <h3>Tên sản phẩm: <?php echo $value['name']?></h3>
@@ -88,7 +89,11 @@
                 </div>
 
             </div>
+            
+            
 
+            
+            
             <div class="product-description bg-white row mb-5 p-3">
                 <h4>Mô tả sản phẩm</h4>
                 <div>
@@ -99,32 +104,80 @@
             </div>
 
             <div class="product-rate-comment bg-white row p-3">
-
-                <div class="print-rate">
-                    <!-- Print average rate number -->
-                    <h4>Đã đánh giá</h4>
-                    <?php
+                <h4>Đánh giá và bình luận</h4>
+                <div class="print-rate">       
+                    <h5>Đánh giá trung bình</h5>
+                    <div>
+                    <span style="font-size:3em" class="me-3">
+                        <?php
                         echo $averRate;    
+                        ?>
+                    </span>
+                    <span class="fs-5">
+                        <?php
+                            $averRate = round($averRate);
+                            for($i=1 ; $i <= $averRate ; $i++)
+                            {
+                        ?>
+                            <i class="fa-solid fa-star check"></i>
+                        <?php }
 
-                    ?>
-
+                            for($i=$averRate + 1; $i <= 5; $i++)
+                            {
+                        ?>
+                            <i class="fa-solid fa-star"></i>
+                        <?php } ?>
+                    </span>
+                    </div>
                 </div>
+                <hr style="border:3px solid #f1f1f1">
+                
 
                 <div class="print-comments">
                     <!-- Print comments -->
                     <?php
                         $checkExistComment=0;  
                         foreach ($productRow as $key => $value) {
-                            if(!empty($value['comment'])){
+                            if(!empty($value['comment']) && $value['productId']==$productId ){
+                                
                                 $checkExistComment=1;
-                    ?>
+                    ?>      
+                                <hr style="border:3px solid #f1f1f1">
+                                <div class="each-comment my-5">
+                                    <div class="user_face row">
+                                        <div class="avatar col-auto pe-0">
+                                            <img src="../../image/<?=$value['image']?>" alt="avatar" class="rounded-circle" width="45px" height="45px">
+                                        </div>
+                                        <div class="col">
+                                            <span class="h6 fw-bold">
+                                                <?php echo $value['fullName']; ?> <br>
+                                            </span> 
+                                            <span>
+                                            <?php
+                                                for($i=1 ; $i <= $value['rate'] ; $i++)
+                                                    {
+                                            ?>
+                                                        <i class="fa-solid fa-star check"></i>
+                                            <?php }
 
-                                <h4><?php echo $value['fullName']; ?></h4>
-                                <p><?php 
-                                echo $value['rate'];
-                                echo $value['comment'] ;
-                                ?></p>
-                                <br>
+                                                for($i=$value['rate'] + 1; $i <= 5; $i++)
+                                                    {
+                                            ?>
+                                                        <i class="fa-solid fa-star"></i>
+                                            <?php } ?>
+                                            </span>
+                                        </div>
+                                        
+                                    </div>
+                                
+                                    <div class="comment mt-2 ps-3" style="margin-left: 45px">
+                                        <p>
+                                            <?= $value['comment']?>
+                                        </p>
+                                    </div>
+                                
+                                </div>
+                                
                     <?php        
                                 }
                         }
@@ -132,7 +185,14 @@
                         
                     ?>
 
-                            <p>Chưa có bình luận</p>
+                            <div class="text-center">
+                                <div class="mb-2">
+                                <img src="../../image/grey_star.png" alt="Grey star">
+                                </div>
+                                
+                                <span class="fs-5">Chưa có bình luận nào</span>
+                            </div>
+                            
                     <?php
                         }
                     ?>

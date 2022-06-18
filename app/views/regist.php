@@ -62,10 +62,10 @@ if(isset($_POST['RegisterAction']) && $_POST['RegisterAction']=="Đăng ký"){
         ?>
       <p><input type="text" placeholder="Họ tên" name="fullName" required></p>
       <p><input type="text" placeholder="Email" name="email" required></p>
-      <p><input type="text" placeholder="Số điện thoại từ 6 ký tự tới 15 ký tự" name="phone" required></p>
+      <p><input type="text" placeholder="Số điện thoại" name="phone" required></p>
       <p><input type="date" name="dob" required></p>
       <p><input type="text" placeholder="Địa chỉ" name="address" required></p>
-      <p><input type="password" id="password" placeholder="Mật khẩu" name="password" required></p>
+      <p><input type="password" id="password" placeholder="Mật khẩu từ 6 ký tự tới 15 ký tự" name="password" required></p>
       <p><input type="password" placeholder="Nhập lại mật khẩu" name="repassword" required oninput="check(this)"></p>
       <p><input type="file" name="image" accept="image/jpg, image/jpeg, image/png"></p>
       <p><input type="submit" name="RegisterAction" value="Đăng ký"></p>

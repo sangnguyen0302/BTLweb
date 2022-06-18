@@ -32,3 +32,7 @@ li a {
 .qty-button-group>input {
     text-align: center;
 }
+
+.check {
+    color: rgb(244, 244, 32);
+}
