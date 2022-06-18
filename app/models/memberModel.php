@@ -25,6 +25,7 @@
 			$db = DB::getInstance();
 	        $sql = "DELETE FROM users WHERE id='$id'";
 	        $result = mysqli_query($db->con, $sql);
+			echo mysqli_error($db->con);
 	        return $result;
 		}
 

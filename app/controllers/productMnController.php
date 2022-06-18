@@ -141,7 +141,7 @@
 					$db= new DB();
 					$user= $db->getInstance();
 					$image_tmp_name = $_FILES['image']['tmp_name'];
-					$image_folder = '../../upload_image/'.$image;
+					$image_folder = '../../image/'.$image;
 					$sql = "UPDATE products SET image='$image' WHERE id='$productId'";
 					mysqli_query($user->con, $sql);
 					move_uploaded_file($image_tmp_name, $image_folder);

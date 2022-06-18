@@ -1,4 +1,5 @@
 <?php
+    session_start();
     require_once '../DB.php';
     $db = new DB();
 	$user = $db->getInstance();
@@ -16,6 +17,7 @@
             $newname= $_POST['change-fullname'];
             $sql = "UPDATE users SET fullName='$newname' WHERE id='$id'";
             mysqli_query($user->con, $sql);
+            $_SESSION['user_name']=$newname;
         }
         if(isset($_POST['change-dob'])){
             $newdob=$_POST['change-dob'];

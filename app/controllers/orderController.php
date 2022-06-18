@@ -47,7 +47,6 @@
     		require_once "../views/order.php";
     	}else if($_REQUEST['action'] == 'viewDetail' && !empty($_REQUEST['id'])){
 
-    		$userId=$_SESSION['user_id'];
     		$productId = $_REQUEST['id'];
     		include_once "../models/orderDetailModel.php";
     		// include_once "../models/orderModel.php";
@@ -73,10 +72,6 @@
             if($countRate>0){
                 $averRate = round($totalRate/$countRate);
             }
-
-            $checkOrdered = $orderDetail->checkExistOrder($userId,$productId); 
-            $checkComment = $orderDetail->checkComment($userId,$productId);
-
         	require_once "../views/single.php";
     	}else if($_REQUEST['action'] == 'removeProduct' && !empty($_REQUEST['id'])){
     		$product_id = $_REQUEST['id'];

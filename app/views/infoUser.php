@@ -147,7 +147,7 @@
                                                 $sql = "UPDATE users SET password='$new_pass' WHERE id='$id'";
                                                 $result= mysqli_query($db->con, $sql);
                                                 if($result){
-                                                    echo "Change password success fully";
+                                                    echo "Change password successfully";
                                                 }else{
                                                     echo mysqli_error($db->con);
                                                 }

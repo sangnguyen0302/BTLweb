@@ -19,6 +19,7 @@
 				<?php foreach ($list as $key => $value) {
                     $total=0;
 					$count=0;
+					$sum =0;
 					?>
 					<div class="table-responsive-xxl bg-light mb-5">
 					<table id = "order_table" class="table table-hover">
@@ -71,12 +72,13 @@
 								<td><?php echo  $value2['productQty']; ?></td>
 								<td><?php 
                                 $sum = $prod['originalPrice']*$value2['productQty'];
+								$total +=$sum;
                                 echo  number_format($sum)." VND"; ?></td>              
 							</tr>
 
 							<?php
 								}
-                                $total +=$sum;
+                                
 							?>
 						</tbody>
 
@@ -95,7 +97,7 @@
         		?>
 	
 				 <div class="text-end">
-				 <a class="btn btn-warning" href="../controllers/loginController.php?action=return">Tiếp tục mua hàng</a>
+				 <a class="btn btn-warning" href="../views/home.php">Tiếp tục mua hàng</a>
 				 </div>
 				
 	
