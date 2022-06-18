@@ -1,5 +1,5 @@
 <?php
-require_once '../DB.php';
+require_once("../DB.php");
 class ProductModel
 {
     public function __construct()
@@ -95,7 +95,13 @@ class ProductModel
         $result = mysqli_query($db->con, $sql);
         return $result;
     }
-
+    public function searchKey($key){
+        $db = DB::getInstance();
+        $tmp= '%'.$key.'%';
+        $sql = "SELECT * FROM products WHERE name LIKE '$tmp'";
+        $result = mysqli_query($db->con, $sql);
+        return $result;
+    }
     public function removeProductById($productId){
         $db = DB::getInstance();
         $sql = "DELETE FROM products WHERE id='$productId'";
@@ -180,12 +186,4 @@ class ProductModel
 	        $result = mysqli_query($db->con, $sql);
 	        return $result;
 		}
-    public function searchKey($key){
-        $db = DB::getInstance();
-        $tmp= '%'.$key.'%';
-        $sql = "SELECT * FROM products WHERE name LIKE '$tmp'";
-        $result = mysqli_query($db->con, $sql);
-        return $result;
-    }
 }
-    
