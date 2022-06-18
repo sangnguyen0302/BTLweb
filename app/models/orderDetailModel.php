@@ -28,7 +28,7 @@
 		public function getProduct($productId)
 		{
 			$db = DB::getInstance();
-	        $sql = "SELECT order_details.id, orderId, userId, productId, productQty, rate, comment, fullName  FROM order_details, users WHERE order_details.userId = users.id";
+	        $sql = "SELECT order_details.id, orderId, userId, productId, productQty, rate, comment, fullName, image  FROM order_details, users WHERE order_details.userId = users.id";
 	        $result = mysqli_query($db->con, $sql);
 	        return $result;
 		}

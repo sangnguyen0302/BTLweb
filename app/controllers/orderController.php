@@ -60,7 +60,9 @@
         	$totalRate = 0;
             $countRate =0; 
             $averRate=0;
+			
             foreach($productRow as $key => $value){
+				//var_dump($value);
                 if($value['rate']!=0){
                     ++$countRate;
                     $totalRate+=$value['rate'];

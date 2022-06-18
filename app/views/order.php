@@ -61,7 +61,7 @@
                                     if(empty($value2['comment'])){
 										$productId=$prod['id'];
 									?>
-										<a href="../controllers/orderController.php?action=rateComment&id=<?=$productId?>">Viết nhận xét và đánh giá</a>
+										<a class="btn btn-outline-primary" href="../controllers/orderController.php?action=rateComment&id=<?=$productId?>">Viết nhận xét và đánh giá</a>
 									<?php 
 									}
 									?>
