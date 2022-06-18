@@ -166,20 +166,20 @@
         		$name=$_POST['product-name'];
         		$originalPrice=$_POST['originalPrice'];
         		$promotionPrice=$_POST['promotionPrice'];
+				$createdBy=$_SESSION['admin_id'];
         		$createdDate=$_POST['createdDate'];
         		$cateId=$_POST['cateId'];
         		$qty=$_POST['qty'];
         		$des=$_POST['des'];
-				$image = $_POST['product-image'];
-
-        		$listValue = array($name, $originalPrice,$promotionPrice, $createdDate, $cateId, $qty, $des);
+				$image = $_FILES['image']['name'];
+				$image_tmp_name = $_FILES['image']['tmp_name'];
+				$image_folder = '../../image/'.$image;
+        		$listValue = array($name, $originalPrice,$promotionPrice, $image,$createdBy, $createdDate, $cateId, $qty, $des);
 
         		include_once "../models/productModel.php";
 
         		$product = new productModel();
-
         		$product->addNewProduct($listValue);
-
         		$result = $product->getAll();
         		$productsList= $result->fetch_all(MYSQLI_ASSOC);
 
@@ -187,11 +187,12 @@
 
         	/*}*/
 
-        }else if(isset($_POST['comment'])){
+        }else if(isset($_POST['Rate'])){
         	
     		$userId = $_SESSION['user_id'];
-    		$productId= $_POST['comment'];
+    		$productId= $_POST['productId'];
     		$comment = $_POST['user_comment'];
+    		$rateValue = $_POST['rateValue'];
 
     		// include_once "../models/memberModel.php";
 
@@ -206,7 +207,7 @@
     		$detail = new orderDetailModel();
     		
     		$detail->addNewComment($userId,$productId,$comment);
-
+    		$detail->rate($userId,$productId,$rateValue);
 
         	$result= $detail->getProduct($productId);
         	$productRow=$result->fetch_all(MYSQLI_ASSOC);
@@ -215,7 +216,7 @@
             $countRate =0; 
             $averRate=0;
             foreach($productRow as $key => $value){
-            	if($value['rate']!=0){
+            	if($value['rate']!=0 && $value['productId']==$productId){
 	                ++$countRate;
 	                $totalRate+=$value['rate'];
             	}
@@ -230,8 +231,15 @@
 
             $checkComment = $detail->checkComment($userId,$productId);
 
-        	require_once "../views/single.php";
+            //unset($_SESSION['rate_prod_id']);
 
+            //Chuyển lại sang trang Đơn hàng của tôi
+      		include_once "../models/orderModel.php";
+    		$cart = new orderModel();
+    		$userId=$_SESSION['user_id'];
+    		$result = $cart->getOrder($userId);
+    		$list= $result->fetch_all(MYSQLI_ASSOC);
+    		require_once "../views/order.php";
         }
 	}	
 

@@ -44,7 +44,7 @@
 
 		public function getByUserId($userId)
     	{
-	        
+			$db = DB::getInstance();
 	        $sql = "SELECT * FROM orders WHERE userId='$userId'";
 	        $result = mysqli_query($db->con, $sql);
 	        return $result;

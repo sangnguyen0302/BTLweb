@@ -7,7 +7,7 @@
         $image = $_FILES['image']['name'];
         if($image){
             $image_tmp_name = $_FILES['image']['tmp_name'];
-            $image_folder = '../../upload_image/'.$image;
+            $image_folder = '../../image/'.$image;
             $sql = "UPDATE users SET image='$image' WHERE id='$id'";
             mysqli_query($user->con, $sql);
             move_uploaded_file($image_tmp_name, $image_folder);

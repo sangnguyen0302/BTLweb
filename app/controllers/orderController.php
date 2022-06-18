@@ -87,6 +87,10 @@
     		require_once "../views/order.php";
     	}else if($_REQUEST['action']=='canclePayment'){
     		header("Location: ../views/home.php");
-    	}
+    	}else if ($_REQUEST['action'] == 'rateComment' && !empty($_REQUEST['id'])) {
+			$id=$_REQUEST['id'];
+            header( "Location: ../views/rateComment.php?productId=".$id );
+			//.$id;
+        }
     }
 ?>

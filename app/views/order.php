@@ -56,14 +56,15 @@
 										?>
 										</div>
 								
-									<form class="d-inline-block">
-										<input type="submit" name="write-cmt" value="Viết nhận xét">
-									</form>
 
-									<form class="d-inline-block">
-										<input type="number" name="rate" value="">
-										<input type="submit" name="write-cmt" value="Đánh giá">
-									</form>
+									<?php  
+                                    if(empty($value2['comment'])){
+										$productId=$prod['id'];
+									?>
+										<a href="../controllers/orderController.php?action=rateComment&id=<?=$productId?>">Viết nhận xét và đánh giá</a>
+									<?php 
+									}
+									?>
 									</div>
 								</td>
 								<td><?php echo  number_format($prod['originalPrice'],0)." VND"; ?></td>

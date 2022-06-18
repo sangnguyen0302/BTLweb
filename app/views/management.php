@@ -38,7 +38,7 @@
                             if($value['image']==''){
                                 echo '<img src="../../image/default-avatar.png" class="rounded-circle" width="200px" height="200px">';
                             }else{
-                                echo '<img src="../../upload_image/'.$value['image'].'" class="rounded-circle" width="200px" height="200px">';
+                                echo '<img src="../../image/'.$value['image'].'" class="rounded-circle" width="200px" height="200px">';
                             }
                         ?>
                     </div>

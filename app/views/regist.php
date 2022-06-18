@@ -11,7 +11,7 @@ if(isset($_POST['RegisterAction']) && $_POST['RegisterAction']=="Đăng ký"){
     $phone = $_POST['phone'];
     $image = $_FILES['image']['name'];
     $image_tmp_name = $_FILES['image']['tmp_name'];
-    $image_folder = '../../upload_image/'.$image;
+    $image_folder = '../../image/'.$image;
     $checkEmail = checkEmail($email);
     $checkPhone = checkPhone($phone);
     if(!preg_match("/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix",$email)){

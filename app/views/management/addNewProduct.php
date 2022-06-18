@@ -9,7 +9,7 @@ require_once '../models/categoryModel.php';
 <body>
 	<div class="bg-light my-5 p-3 mx-auto" style="max-width : 500px">
 	<h3>Thông tin sản phẩm</h3>
-	<form action="../controllers/productMnController.php" method="post">
+	<form action="../controllers/productMnController.php" method="post" enctype="multipart/form-data">
 		<div class="my-3">
 			<label for="product-name" class="form-label">Tên sản phẩm</label>
 			<input class="form-control" type="text" placeholder="Tên sản phẩm" name="product-name" id="product-name">
@@ -40,14 +40,14 @@ require_once '../models/categoryModel.php';
 		<div class="mb-3">
 			<label for="" class="form-label">Danh mục</label>
 			<div class="form-floating">
-			<select class="form-select" name="cateId" id="cateID">
+			<select class="form-select" name="cateId" id="cateId">
 				<?php
                     foreach ($listCategory as $category) { ?>
                       <option value="<?= $category['id'] ?>"><?= $category['name'] ?></option>
                   <?php }
                   ?>
 			</select>
-			<label for="cateID" class="form-label">Danh mục</label>
+			<label for="cateId" class="form-label">Danh mục</label>
 			</div>
 			
 		</div>
@@ -59,7 +59,7 @@ require_once '../models/categoryModel.php';
 
 		<div class="mb-3">
 			<label for="product-image" class="form-label">Ảnh sản phẩm</label>
-  			<input type="file" class="form-control" id="product-image" name="product-image">
+  			<input type="file" class="form-control" id="product-image" name="image">
 		</div>
 
 		<div class="mb-3">

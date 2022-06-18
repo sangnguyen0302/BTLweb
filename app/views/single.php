@@ -119,8 +119,11 @@
                                 $checkExistComment=1;
                     ?>
 
-                                <h4><?php echo $value['fullName'] ?></h4>
-                                <p><?php echo $value['comment'] ?></p>
+                                <h4><?php echo $value['fullName']; ?></h4>
+                                <p><?php 
+                                echo $value['rate'];
+                                echo $value['comment'] ;
+                                ?></p>
                                 <br>
                     <?php        
                                 }
@@ -135,47 +138,6 @@
                     ?>
 
                 </div>
-
-                <?php  
-                    if($checkOrdered ){
-                ?>
-                
-                    <!--
-                    Five <a> tag below are allow user to rate thier ordered product
-                    They will sent a request to productMnController.php 
-                     -->
-                    <p>Đánh giá</p>
-                    <a href="../controllers/productMnController.php?action=rate&value=1&productId=<?php echo $productId?>">1 sao</a>
-                    <a href="../controllers/productMnController.php?action=rate&value=2&productId=<?php echo $productId?>">2 sao</a>
-                    <a href="../controllers/productMnController.php?action=rate&value=3&productId=<?php echo $productId?>">3 sao</a>
-                    <a href="../controllers/productMnController.php?action=rate&value=4&productId=<?php echo $productId?>">4 sao</a>
-                    <a href="../controllers/productMnController.php?action=rate&value=5&productId=<?php echo $productId?>">5 sao</a>
-
-
-                    <!-- 
-                        This <form> tag below is allows user to comment into thier ordered product
-                        It will sent a request to productMnController.php with post method
-                    -->
-                    <?php  
-                        if($checkComment ){
-                    ?>
-
-                            <form action="../controllers/productMnController.php" method= "post">
-                                <p>Bình luận</p>
-                                <textarea name="user_comment" cols="100" rows="5">Bình luận...</textarea>
-                                <input type="submit" name="comment" value="<?php echo $productId?>">
-                            </form>
-                    <?php
-                        }
-                    ?>
-                    
-
-
-                <?php       
-                    }
-
-                ?>
-                
 
 
             </div>

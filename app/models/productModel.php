@@ -114,12 +114,13 @@ class ProductModel
 
 			$product = $db->getInstance();
 
-	        $sql = "INSERT INTO products(id, name, originalPrice, promotionPrice, createdBy, createdDate, cateId, qty, des,status, soldCount) VALUES (NULL,'$listValue[0]','$listValue[1]','$listValue[2]',59,'$listValue[3]','$listValue[4]','$listValue[5]','$listValue[6]',1,0)";
+	        $sql = "INSERT INTO products(id, name, originalPrice, promotionPrice,image, createdBy, createdDate, cateId, qty, des,status, soldCount) VALUES
+             (NULL,'$listValue[0]','$listValue[1]','$listValue[2]','$listValue[3]','$listValue[4]','$listValue[5]','$listValue[6]','$listValue[7]','$listValue[8]','1','0')";
 	        $result = mysqli_query($product->con, $sql);
 	        if ($result) {
-	            return true;
+	            return 1;
 	        }
-	        return false;
+	        return mysqli_error($product->con);
 		}
 
 
